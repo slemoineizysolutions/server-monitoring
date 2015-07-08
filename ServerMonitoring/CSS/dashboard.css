@@ -1,0 +1,80 @@
+﻿html, body {
+	background-color: #FFF;
+}
+
+.clear {
+	clear: both;
+}
+
+.header {
+	width: 100%;
+	position: relative;
+}
+
+.profil {
+	padding: 5px;
+	color: #34495e;
+	transition: all 250ms;
+}
+
+.profil:hover {
+	background-color: #F5F5F5;
+}
+
+.content {
+	width: 1080px;
+	margin: auto;
+}
+
+.section {
+	margin-bottom: 30px;
+}
+
+.section-title {
+	font-size: 30px;
+	border-bottom: 1px solid #34495e;
+}
+
+.section-infos td {
+	padding-right: 30px;
+}
+
+.section-content {
+	padding-top: 10px;
+}
+
+/*** Perf Card ***/
+.perf-card {
+	position: relative;
+	float: left;
+	color: #fff;
+	border-radius: 6px;
+	width: 150px;
+	height: 100px;
+	margin-right: 10px;
+}
+
+.perf-card-title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.perf-card-valeur {
+	text-align: center;
+	padding-top: 5px;
+	font-size: 24px;
+}
+
+.perf-card.cpu {
+	background-color: #415b76;
+	border-color: #415b76;
+}
+
+.perf-card.ram {
+	background-color: #48c9b0;
+	border-color: #48c9b0;
+}
+
+.perf-card-title {
+	text-align: center;
+}
