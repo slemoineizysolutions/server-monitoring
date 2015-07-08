@@ -1,0 +1,26 @@
+html, body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #1ABC9C;
+}
+
+.title {
+	width: 100%;
+	text-align: center;
+	font-size: 56px;
+	color: #FFF;
+	font-family: Lato, Helvetica, Arial, sans-serif; 
+}
+
+footer {
+	background-color: #25B296;
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	color: #435E79;
+	font-size: 14px;
+	padding: 5px;
+}
