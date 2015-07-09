@@ -11,75 +11,57 @@
 
 		<div class="section">
 			<div class="section-title">
-				Informations du serveur
+				Serveur
 			</div>
-			<div class="section-content">
-				<table class="section-infos">
-					<tr>
-						<td>Nom du serveur</td>
-						<td>
-							<asp:Label runat="server" ID="lblNomServeur"></asp:Label>
-						</td>
-					</tr>
-					<tr>
-						<td>IP locale</td>
-						<td>
-							<asp:Label runat="server" ID="lblIPLocale"></asp:Label>
-						</td>
-					</tr>
-					<tr>
-						<td>IP publique</td>
-						<td>
-							<asp:Label runat="server" ID="lblIPPublique"></asp:Label>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-
-		<div class="section">
-			<div class="section-title">
-				Performances
-			</div>
-
 			<asp:UpdatePanel runat="server" ID="upPerformances" UpdateMode="Conditional">
 				<ContentTemplate>
 					<asp:Timer runat="server" ID="timerPerf" Interval="500" OnTick="timerPerf_Tick"></asp:Timer>
 					<div class="section-content">
-
-						<div class="perf-card cpu">
-							<div class="perf-card-title">
-								CPU
-							</div>
-							<div class="perf-card-valeur">
-								<asp:Label runat="server" ID="lblCPUValeur"></asp:Label>
-							</div>
-						</div>
-
-						<%--<div class="perf-card ram">
-							<div class="perf-card-title">
-								RAM
-							</div>
-							<div class="perf-card-valeur">
-								<asp:Label runat="server" ID="lblRAMValeur"></asp:Label>
-							</div>
-						</div>--%>
-
-						<div class="perf-card ram">
-							<div class="perf-card-title">
-								RAM Dispo
-							</div>
-							<div class="perf-card-valeur">
-								<asp:Label runat="server" ID="lblRAMDispoValeur"></asp:Label>
-							</div>
-						</div>
-
-						<div class="clear"></div>
-
+						<table class="section-infos">
+							<tr>
+								<td>Nom du serveur</td>
+								<td>
+									<asp:Label runat="server" ID="lblNomServeur"></asp:Label>
+								</td>
+								<td rowspan="3">
+									<div class="perf-card cpu">
+										<div class="perf-card-title">
+											CPU
+										</div>
+										<div class="perf-card-valeur">
+											<asp:Label runat="server" ID="lblCPUValeur"></asp:Label>
+										</div>
+									</div>
+								</td>
+								<td rowspan="3">
+									<div class="perf-card ram">
+										<div class="perf-card-title">
+											RAM Dispo
+										</div>
+										<div class="perf-card-valeur">
+											<asp:Label runat="server" ID="lblRAMDispoValeur"></asp:Label>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>IP locale</td>
+								<td>
+									<asp:Label runat="server" ID="lblIPLocale"></asp:Label>
+								</td>
+							</tr>
+							<tr>
+								<td>IP publique</td>
+								<td>
+									<asp:Label runat="server" ID="lblIPPublique"></asp:Label>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</ContentTemplate>
 			</asp:UpdatePanel>
 		</div>
+
 
 		<div class="section">
 			<div class="section-title">
@@ -107,7 +89,7 @@
 							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label>
 							-
 							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
-							
+
 							<div class="log-buttons">
 								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres">
 									<i class="fa fa-cogs"></i>
