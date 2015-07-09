@@ -183,6 +183,10 @@
 		<div class="section">
 			<div class="section-title">
 				Bases de données
+				&nbsp;
+				<asp:LinkButton runat="server" CssClass="log-add">
+					<i class="fa fa-plus add"></i>
+				</asp:LinkButton>
 			</div>
 		</div>
 
