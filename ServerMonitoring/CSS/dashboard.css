@@ -1,21 +1,4 @@
-﻿html, body {
-	background-color: #FFF;
-}
-
-.clear {
-	clear: both;
-}
-
-.header {
-	width: 100%;
-	position: relative;
-}
-
-.profil {
-	padding: 5px;
-	color: #34495e;
-	transition: all 250ms;
-}
+﻿
 
 .profil:hover {
 	background-color: #F5F5F5;

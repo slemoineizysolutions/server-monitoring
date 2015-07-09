@@ -105,9 +105,9 @@
 
 						<div class="log blue">
 							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label>
-
-							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
 							-
+							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
+							
 							<div class="log-buttons">
 								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres">
 									<i class="fa fa-cogs"></i>

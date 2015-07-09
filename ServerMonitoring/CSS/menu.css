@@ -1,0 +1,125 @@
+﻿.menu-container {
+	position: absolute;
+	z-index: 990;
+	left: 0;
+	top: 0;
+	/*background-color: #0ff;*/
+	height: 40px;
+	width: 240px;
+	display: inline-block;
+	/*transition: all 250ms;*/
+}
+
+.menu-container:hover {
+	/*bottom: 0;*/
+	height: 100%;
+}
+
+.menu-username {
+	position: relative;
+	z-index: 999;
+	color: #34495E;
+	transition: all 400ms;
+}
+
+.menu-username-slot,
+.menu-username {
+	cursor: default;
+	width: 100%;
+	
+	padding: 10px;
+	height: 54px;
+}
+
+.menu-username-slot {
+	background-color: #2C3E50;
+}
+
+.menu-container:hover .menu-username {
+	color: #FFF;
+	padding-left: 18px;
+	font-weight: bold;
+}
+
+.menu-container .menu-username i {
+	opacity: 1;
+	/*transition: all 400ms;*/
+}
+
+.menu-container:hover .menu-username i {
+	opacity: 0;
+}
+
+.menu {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 220px;
+	left: -220px;
+	background-color: #34495E;
+}
+
+.menu-items {
+	top: 54px;
+	color: #FFF;
+	position: absolute;
+	left: -420px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.menu-item a {
+	display: block;
+	color: #FFF;
+	width: 100%;
+	padding: 7px;
+	padding-left: 12px;
+}
+
+.menu-item a:hover {
+	background-color: #3B536B;
+}
+
+.menu-item a i {
+	margin-right: 7px;
+	transition: margin-right 150ms;
+}
+
+.menu-item a:hover i {
+	margin-right: 12px;
+}
+
+@keyframes openmenu {
+	0% {
+		left: -220px;
+	}
+
+	100% {
+		left: 0px;
+	}
+}
+
+@keyframes openmenuitem {
+	0% {
+		left: -220px;
+	}
+
+	100% {
+		left: 0px;
+	}
+}
+
+.menu-container:hover .menu {
+	animation-name: openmenu;
+	animation-duration: 500ms;
+	left: 0;
+}
+
+.menu-container:hover .menu-items {
+	animation-name: openmenuitem;
+	animation-duration: 600ms;
+	animation-timing-function: ease;
+	left: 0;
+}

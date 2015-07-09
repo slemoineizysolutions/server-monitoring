@@ -34,7 +34,7 @@ public partial class Espace_Default : BasePage
 		lblIPLocale.Text = "172.15.19.56";
 		lblIPPublique.Text = "82.25.156.23";
 
-		lblCPUValeur.Text = "5.26%";
+		//lblCPUValeur.Text = "0%";
 		//lblRAMValeur.Text = "7023MB";
 
 		

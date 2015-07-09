@@ -13,6 +13,8 @@
 
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="/CSS/master.css" />
+	<link rel="stylesheet" type="text/css" href="/CSS/menu.css" />
 	<link rel="stylesheet" type="text/css" href="/CSS/bootstrap.min.css" />
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,11 +37,51 @@
 			<asp:HiddenField ID="SESSIONID" runat="server" ClientIDMode="Static" />
 			<ajax:ToolkitScriptManager runat="server"></ajax:ToolkitScriptManager>
 
-			<div class="header">
+			<%--<div class="header">
 				<asp:LinkButton runat="server" ID="lbLogoff" CssClass="profil">
 					<i class="fa fa-power-off"></i>
 					<asp:Label runat="server" ID="lblNomProfil" Text="Sylvain Lemoine"></asp:Label>
 				</asp:LinkButton>
+			</div>--%>
+
+
+			<div class="menu-container">
+				<div class="menu-username">
+					<i class="fa fa-bars"></i> Sylvain Lemoine
+				</div>
+
+
+
+				<div class="menu">
+					<div class="menu-username-slot"></div>
+
+					<ul class="menu-items">
+						<li class="menu-item">
+							<asp:LinkButton runat="server">
+								<i class="fa fa-user"></i>
+								Mon compte
+							</asp:LinkButton>
+						</li>
+						<li class="menu-item">
+							<asp:LinkButton runat="server">
+								<i class="fa fa-server"></i>
+								Serveur
+							</asp:LinkButton>
+						</li>
+						<li class="menu-item">
+							<asp:LinkButton runat="server">
+								<i class="fa fa-database"></i>
+								Projets
+							</asp:LinkButton>
+						</li>
+						<li class="menu-item">
+							<asp:LinkButton runat="server">
+								<i class="fa fa-users"></i>
+								Utilisateurs
+							</asp:LinkButton>
+						</li>
+					</ul>
+				</div>
 			</div>
 
 			<asp:ContentPlaceHolder ID="Content" runat="server">
