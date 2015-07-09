@@ -78,3 +78,76 @@
 .perf-card-title {
 	text-align: center;
 }
+
+/*** Logs ***/
+
+.log {
+	width: 100%;
+	padding-left: 10px;
+	border-radius: 6px;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 10px;
+	color: #FFF;
+}
+
+.log-label-project {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.log-label-subtitle {
+	font-size: 14px;
+}
+
+.log-buttons {
+	position: relative;
+	float: right;
+}
+
+.log-buttons .log-btn {
+	color: #FFF;
+	display: inline-block;
+	font-size: 24px;
+	text-align: center;
+	width: 50px;
+	height: 50px;
+	transition: all 250ms;
+}
+
+.log-buttons .log-btn:last-child {
+	border-radius: 0 6px 6px 0;
+}
+
+
+.log-buttons .log-btn i {
+	vertical-align: middle;
+}
+
+/** Theme **/
+/* Bleu */
+.log.blue {
+	background-color: #2980B9;
+}
+
+.log.blue .log-btn:hover {
+	background-color: #2A72A1;
+}
+
+/* Orange*/
+.log.orange {
+	background-color: #F39C12;
+}
+
+.log.orange .log-btn:hover {
+	background-color: #D98C10;
+}
+
+/* Rouge */
+.log.red {
+	background-color: #E74C3C;
+}
+
+.log.red .log-btn:hover {
+	background-color: #CD4435;
+}

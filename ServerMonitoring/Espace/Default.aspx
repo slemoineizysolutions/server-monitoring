@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="Content">
-	
+
 
 	<div class="content">
 
@@ -41,7 +41,7 @@
 			<div class="section-title">
 				Performances
 			</div>
-			
+
 			<asp:UpdatePanel runat="server" ID="upPerformances" UpdateMode="Conditional">
 				<ContentTemplate>
 					<asp:Timer runat="server" ID="timerPerf" Interval="500" OnTick="timerPerf_Tick"></asp:Timer>
@@ -85,6 +85,91 @@
 			<div class="section-title">
 				Logs
 			</div>
+			<asp:UpdatePanel runat="server" ID="upLogs" UpdateMode="Conditional">
+				<ContentTemplate>
+					<div class="section-content">
+
+						<%--<asp:Repeater runat="server" ID="rptLogs">
+							<ItemTemplate>
+								
+								<div class="log">
+									<asp:Label runat="server"
+								</div>
+
+							</ItemTemplate>
+						</asp:Repeater>--%>
+
+						<div class="log blue">
+							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
+
+							<div class="log-buttons">
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-cogs"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-eye"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-floppy-o"></i>
+								</asp:LinkButton>
+							</div>
+						</div>
+
+						<div class="log blue">
+							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="iZyGridViewError" CssClass="log-label-subtitle"></asp:Label>
+
+							<div class="log-buttons">
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-cogs"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-eye"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-floppy-o"></i>
+								</asp:LinkButton>
+							</div>
+						</div>
+
+						<div class="log orange">
+							<asp:Label runat="server" Text="iZyFrais" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
+
+							<div class="log-buttons">
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-cogs"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-eye"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-floppy-o"></i>
+								</asp:LinkButton>
+							</div>
+						</div>
+
+						<div class="log red">
+							<asp:Label runat="server" Text="iFaxnet" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
+
+							<div class="log-buttons">
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-cogs"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-eye"></i>
+								</asp:LinkButton>
+								<asp:LinkButton runat="server" CssClass="log-btn">
+									<i class="fa fa-floppy-o"></i>
+								</asp:LinkButton>
+							</div>
+						</div>
+
+					</div>
+				</ContentTemplate>
+			</asp:UpdatePanel>
 		</div>
 
 		<div class="section">
