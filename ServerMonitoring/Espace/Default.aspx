@@ -84,6 +84,10 @@
 		<div class="section">
 			<div class="section-title">
 				Logs
+				&nbsp;
+				<asp:LinkButton runat="server" CssClass="log-add">
+					<i class="fa fa-plus add"></i>
+				</asp:LinkButton>
 			</div>
 			<asp:UpdatePanel runat="server" ID="upLogs" UpdateMode="Conditional">
 				<ContentTemplate>
@@ -100,7 +104,8 @@
 						</asp:Repeater>--%>
 
 						<div class="log blue">
-							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label>
+							-
 							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
 
 							<div class="log-buttons">
@@ -117,7 +122,8 @@
 						</div>
 
 						<div class="log blue">
-							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label>
+							-
 							<asp:Label runat="server" Text="iZyGridViewError" CssClass="log-label-subtitle"></asp:Label>
 
 							<div class="log-buttons">
@@ -134,7 +140,8 @@
 						</div>
 
 						<div class="log orange">
-							<asp:Label runat="server" Text="iZyFrais" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="iZyFrais" CssClass="log-label-project"></asp:Label>
+							-
 							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
 
 							<div class="log-buttons">
@@ -151,7 +158,8 @@
 						</div>
 
 						<div class="log red">
-							<asp:Label runat="server" Text="iFaxnet" CssClass="log-label-project"></asp:Label> -
+							<asp:Label runat="server" Text="iFaxnet" CssClass="log-label-project"></asp:Label>
+							-
 							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
 
 							<div class="log-buttons">

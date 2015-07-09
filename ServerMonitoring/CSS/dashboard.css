@@ -35,6 +35,25 @@
 	border-bottom: 1px solid #34495e;
 }
 
+.section-title .log-add {
+	color: rgba(52, 73, 94, 0.3);
+	/*padding: 5px;*/
+	/*width: 40px;*/
+	text-align: center;
+	display: inline-block;
+	font-size: 25px;
+	transition: all 250ms;
+}
+
+.section-title .log-add i {
+	vertical-align: middle;
+}
+
+.section-title .log-add:hover {
+	color: rgba(52, 73, 94, 1);
+	/*background-color: rgba(174, 178, 182, 0.1)*/
+}
+
 .section-infos td {
 	padding-right: 30px;
 }
@@ -150,4 +169,31 @@
 
 .log.red .log-btn:hover {
 	background-color: #CD4435;
+}
+
+/* Violet */
+.log.purple {
+	background-color: #9B59B6;
+}
+
+.log.purple .log-btn:hover {
+	background-color: #854D9C;
+}
+
+/* Gris */
+.log.grey {
+	background-color: #95A5A6;
+}
+
+.log.grey .log-btn:hover {
+	background-color: #7E8C8C;
+}
+
+/* Vert */
+.log.green {
+	background-color: #27AE60;
+}
+
+.log.green .log-btn:hover {
+	background-color: #219452;
 }
