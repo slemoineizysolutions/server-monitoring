@@ -5,27 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Threading;
 
 public partial class Espace_Default : BasePage
 {
 	protected PerformanceCounter cpuCounter;
-	protected PerformanceCounter ramCounter;
 	protected PerformanceCounter ramCounterAvailable;
 
-	public string getCurrentCpuUsage()
-	{
-		return cpuCounter.NextValue() + "%";
-	}
-
-	public string getAvailableRAM()
-	{
-		return ramCounterAvailable.NextValue() + "MB";
-	}
-
-	public string getRAM()
-	{
-		return ramCounter.NextValue() + "MB";
-	} 
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -63,23 +49,22 @@ public partial class Espace_Default : BasePage
 		cpuCounter.InstanceName = "_Total";
 
 		ramCounterAvailable = new PerformanceCounter("Memory", "Available MBytes");
-		ramCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use");
 	}
 
 	protected void timerPerf_Tick(object sender, EventArgs e)
 	{
 		cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
 
-		//cpuCounter.CategoryName = "Processor";
-		//cpuCounter.CounterName = "% Processor Time";
-		//cpuCounter.InstanceName = "_Total";
-
 		ramCounterAvailable = new PerformanceCounter("Memory", "Available MBytes");
-		//ramCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use");
+		
 
+		string firstValue = cpuCounter.NextValue() + "%";
+		Thread.Sleep(200);
 		lblCPUValeur.Text = cpuCounter.NextValue() + "%";
-		//lblRAMValeur.Text = getRAM();
+		
 		lblRAMDispoValeur.Text = ramCounterAvailable.NextValue() + "MB";
 		upPerformances.Update();
+
+		
 	}
 }
