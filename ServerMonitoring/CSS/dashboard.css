@@ -143,57 +143,119 @@
 	vertical-align: middle;
 }
 
-/** Theme **/
+/*** Base de données ***/
+.database-container {
+	position: relative;
+	float: left;
+	width: 25%;
+	padding: 10px;
+}
+
+
+.database {
+	border-radius: 6px;
+	height: 120px;
+	position: relative;
+}
+
+.database-title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 26px;
+	color: #FFF;
+	padding: 5px;
+	padding-top: 15px;
+}
+
+.database-buttons {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	font-size: 0;
+}
+
+.database-btn {
+	color: #FFF !important;
+	display: inline-block;
+	font-size: 24px;
+	text-align: center;
+	height: 50px;
+	transition: all 250ms;
+	width: 33%;
+}
+
+.database-btn:first-child {
+	border-radius: 6px 0 0 6px;
+}
+
+.database-btn:last-child {
+	width: 34%;
+	border-radius: 0 6px 6px 0;
+}
+
+/*** Theme ***/
 /* Bleu */
-.log.blue {
+.log.blue,
+.database.blue {
 	background-color: #2980B9;
 }
 
-.log.blue .log-btn:hover {
+.log.blue .log-btn:hover,
+.database.blue .database-btn:hover {
 	background-color: #2A72A1;
 }
 
 /* Orange*/
-.log.orange {
+.log.orange,
+.database.orange {
 	background-color: #F39C12;
 }
 
-.log.orange .log-btn:hover {
+.log.orange .log-btn:hover,
+.database.orange .database-btn:hover {
 	background-color: #D98C10;
 }
 
 /* Rouge */
-.log.red {
+.log.red,
+.database.red {
 	background-color: #E74C3C;
 }
 
-.log.red .log-btn:hover {
+.log.red .log-btn:hover,
+.database.red .database-btn:hover {
 	background-color: #CD4435;
 }
 
 /* Violet */
-.log.purple {
+.log.purple,
+.database.purple {
 	background-color: #9B59B6;
 }
 
-.log.purple .log-btn:hover {
+.log.purple .log-btn:hover,
+.database.purple .database-btn:hover {
 	background-color: #854D9C;
 }
 
 /* Gris */
-.log.grey {
+.log.grey,
+.database.grey {
 	background-color: #95A5A6;
 }
 
-.log.grey .log-btn:hover {
+.log.grey .log-btn:hover,
+.database.grey .database-btn:hover {
 	background-color: #7E8C8C;
 }
 
 /* Vert */
-.log.green {
+.log.green,
+.database.green {
 	background-color: #27AE60;
 }
 
-.log.green .log-btn:hover {
+.log.green .log-btn:hover,
+.database.green .database-btn:hover {
 	background-color: #219452;
 }

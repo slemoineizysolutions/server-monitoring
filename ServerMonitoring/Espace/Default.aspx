@@ -105,18 +105,18 @@
 
 						<div class="log blue">
 							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label>
-							-
-							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
 
+							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
+							-
 							<div class="log-buttons">
-								<asp:LinkButton runat="server" CssClass="log-btn">
+								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres">
 									<i class="fa fa-cogs"></i>
 								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
+								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Voir le fichier de log">
 									<i class="fa fa-eye"></i>
 								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-floppy-o"></i>
+								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Télécharger le fichier de log">
+									<i class="fa fa-download"></i>
 								</asp:LinkButton>
 							</div>
 						</div>
@@ -134,7 +134,7 @@
 									<i class="fa fa-eye"></i>
 								</asp:LinkButton>
 								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-floppy-o"></i>
+									<i class="fa fa-download"></i>
 								</asp:LinkButton>
 							</div>
 						</div>
@@ -152,13 +152,13 @@
 									<i class="fa fa-eye"></i>
 								</asp:LinkButton>
 								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-floppy-o"></i>
+									<i class="fa fa-download"></i>
 								</asp:LinkButton>
 							</div>
 						</div>
 
 						<div class="log red">
-							<asp:Label runat="server" Text="iFaxnet" CssClass="log-label-project"></asp:Label>
+							<asp:Label runat="server" Text="iFaxNet" CssClass="log-label-project"></asp:Label>
 							-
 							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
 
@@ -170,7 +170,7 @@
 									<i class="fa fa-eye"></i>
 								</asp:LinkButton>
 								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-floppy-o"></i>
+									<i class="fa fa-download"></i>
 								</asp:LinkButton>
 							</div>
 						</div>
@@ -187,6 +187,89 @@
 				<asp:LinkButton runat="server" CssClass="log-add">
 					<i class="fa fa-plus add"></i>
 				</asp:LinkButton>
+			</div>
+			<div class="section-content">
+
+				<div class="database-container">
+					<div class="database blue">
+						<div class="database-title">
+							Activa
+						</div>
+						<div class="database-buttons">
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+							</asp:LinkButton>
+						</div>
+					</div>
+				</div>
+
+				<div class="database-container">
+					<div class="database orange">
+						<div class="database-title">
+							iZyFrais
+						</div>
+						<div class="database-buttons">
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+							</asp:LinkButton>
+						</div>
+					</div>
+				</div>
+
+				<div class="database-container">
+					<div class="database red">
+						<div class="database-title">
+							iFaxNet
+						</div>
+						<div class="database-buttons">
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+							</asp:LinkButton>
+						</div>
+					</div>
+				</div>
+
+				<div class="database-container">
+					<div class="database green">
+						<div class="database-title">
+							IDDIC
+						</div>
+						<div class="database-buttons">
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+							</asp:LinkButton>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div class="clear"></div>
 			</div>
 		</div>
 
