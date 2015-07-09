@@ -266,6 +266,24 @@
 					</div>
 				</div>
 
+				<div class="database-container">
+					<div class="database grey">
+						<div class="database-title">
+							iWi
+						</div>
+						<div class="database-buttons">
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+							</asp:LinkButton>
+							<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+							</asp:LinkButton>
+						</div>
+					</div>
+				</div>
 
 
 
