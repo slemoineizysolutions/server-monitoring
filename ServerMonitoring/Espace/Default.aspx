@@ -129,7 +129,7 @@
 							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
 
 							<div class="log-buttons">
-								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres">
+								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres" OnClick="btnConfigLog_Click">
 									<i class="fa fa-cogs"></i>
 								</asp:LinkButton>
 								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Voir le fichier de log">

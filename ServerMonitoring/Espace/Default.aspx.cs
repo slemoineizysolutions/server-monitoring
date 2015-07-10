@@ -94,5 +94,13 @@ public partial class Espace_Default : BasePage
 		// Sauvegarde
 		upLogs.Update();
 	}
+
+	protected void btnConfigLog_Click(object sender, EventArgs e)
+	{
+		pnlEditLog.Visible = true;
+		btnAddLog.Enabled = false;
+		upLogs.Update();
+	}
+
 	#endregion
 }
