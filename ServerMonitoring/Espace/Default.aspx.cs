@@ -67,4 +67,32 @@ public partial class Espace_Default : BasePage
 
 		
 	}
+
+	#region LOGS
+	protected void btnAddLog_Click(object sender, EventArgs e)
+	{
+		pnlEditLog.Visible = true;
+		btnAddLog.Enabled = false;
+		upLogs.Update();
+	}
+	
+	protected void btnEditLogAnnuler_Click(object sender, EventArgs e)
+	{
+		btnAddLog.Enabled = true;
+		pnlEditLog.Visible = false;
+		tbEditLogChemin.Text = string.Empty;
+		ddlEditLogProjet.SelectedIndex = -1;
+
+		upLogs.Update();
+	}
+	protected void btnEditLogSave_Click(object sender, EventArgs e)
+	{
+		btnAddLog.Enabled = true;
+		pnlEditLog.Visible = false;
+		tbEditLogChemin.Text = string.Empty;
+		ddlEditLogProjet.SelectedIndex = -1;
+		// Sauvegarde
+		upLogs.Update();
+	}
+	#endregion
 }

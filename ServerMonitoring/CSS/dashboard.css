@@ -15,7 +15,7 @@
 
 .section-title {
 	font-size: 30px;
-	border-bottom: 1px solid #34495e;
+	border-bottom: 3px solid #34495e;
 }
 
 .section-title .log-add {
@@ -241,4 +241,64 @@
 .log.green .log-btn:hover,
 .database.green .database-btn:hover {
 	background-color: #219452;
+}
+
+/*** Edit log ***/
+
+@keyframes showedit {
+	0% {
+		height: 0px;
+		opacity: 0;
+	}
+
+	50% {
+		height: 181px;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.edit-log {
+	margin-bottom: 20px;
+	padding-top: 7px;
+	height: 181px;
+
+	animation-name: showedit;
+	animation-duration: 500ms;
+}
+
+.edit-log-title {
+	font-size: 24px;
+	border-bottom: 1px solid #34495E;
+}
+
+.edit-log-content {
+	width: 100%;
+	padding-top: 10px;
+}
+
+.edit-log-content table {
+	width: 100%;
+}
+
+.edit-log-content table td,
+.edit-log-content table th {
+	padding: 8px;
+}
+
+.edit-log-content table td:first-child,
+.edit-log-content table th:first-child {
+	padding-left: 0;
+}
+
+.edit-log-content table td:last-child,
+.edit-log-content table th:last-child {
+	padding-right: 0;
+}
+
+.edit-log-content table input,
+.edit-log-content table select{
+	height: 45px;
 }

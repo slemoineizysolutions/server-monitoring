@@ -62,18 +62,56 @@
 			</asp:UpdatePanel>
 		</div>
 
-
-		<div class="section">
-			<div class="section-title">
-				Logs
+		<asp:UpdatePanel runat="server" ID="upLogs" UpdateMode="Conditional">
+			<ContentTemplate>
+				<div class="section">
+					<div class="section-title">
+						Logs
 				&nbsp;
-				<asp:LinkButton runat="server" CssClass="log-add">
+				<asp:LinkButton runat="server" CssClass="log-add" ID="btnAddLog" OnClick="btnAddLog_Click">
 					<i class="fa fa-plus add"></i>
 				</asp:LinkButton>
-			</div>
-			<asp:UpdatePanel runat="server" ID="upLogs" UpdateMode="Conditional">
-				<ContentTemplate>
+					</div>
+
 					<div class="section-content">
+
+						<asp:Panel runat="server" ID="pnlEditLog" CssClass="edit-log" Visible="false">
+							<div class="edit-log-title">
+								<asp:Label runat="server" ID="lblEditLogTitle" Text="Ajouter un log"></asp:Label>
+							</div>
+							<div class="edit-log-content">
+								<table>
+									<thead>
+										<tr>
+											<th>Projet</th>
+											<th>Chemin</th>
+											<th>
+												<asp:Button runat="server" ID="btnEditLogAnnuler" Text="Annuler" CssClass="btn btn-block btn-lg btn-danger" OnClick="btnEditLogAnnuler_Click" /></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<asp:DropDownList runat="server" ID="ddlEditLogProjet" CssClass="form-control">
+													<asp:ListItem Value="1" Text="Activa"></asp:ListItem>
+													<asp:ListItem Value="2" Text="iFaxNet"></asp:ListItem>
+													<asp:ListItem Value="3" Text="iZyFrais"></asp:ListItem>
+													<asp:ListItem Value="4" Text="iWi"></asp:ListItem>
+												</asp:DropDownList>
+											</td>
+											<td>
+												<asp:TextBox runat="server" ID="tbEditLogChemin" placeholder="Chemin du fichier" CssClass="form-control"></asp:TextBox>
+											</td>
+											<td>
+
+												<asp:Button runat="server" ID="btnEditLogSave" Text="Sauvegarder" CssClass="btn btn-block btn-lg btn-info" OnClick="btnEditLogSave_Click" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</asp:Panel>
+
 
 						<%--<asp:Repeater runat="server" ID="rptLogs">
 							<ItemTemplate>
@@ -158,9 +196,11 @@
 						</div>
 
 					</div>
-				</ContentTemplate>
-			</asp:UpdatePanel>
-		</div>
+
+				</div>
+			</ContentTemplate>
+
+		</asp:UpdatePanel>
 
 		<div class="section">
 			<div class="section-title">
