@@ -30,7 +30,7 @@
 		<div class="login">
 
 			<div class="title">
-				Tips'n Tricks
+				Server Monitoring
 			</div>
 
 			<div class="login-screen">
@@ -46,8 +46,10 @@
 						<i class="fa fa-lock fa-lg login-field-icon"></i>
 					</div>
 
-					<asp:Button runat="server" ID="btnConnecter" Text="Se connecter" CssClass="btn btn-primary btn-lg btn-block" />
-					<a class="login-link" href="#">Mot de passe perdu ?</a>
+					<asp:Button runat="server" ID="btnConnecter" Text="Se connecter" CssClass="btn btn-primary btn-lg btn-block" OnClick="btnConnecter_Click" />
+					<div style="text-align: center">
+						<asp:Label runat="server" ID="lblError" CssClass="error-message"></asp:Label>
+					</div>
 				</div>
 			</div>
 		</div>

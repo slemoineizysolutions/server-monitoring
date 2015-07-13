@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="server_monitoringModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="server_monitoringModelStoreContainer">
+          <EntitySet Name="BaseDonnee" EntityType="server_monitoringModel.Store.BaseDonnee" store:Type="Tables" Schema="server_monitoring" />
+          <EntitySet Name="Log" EntityType="server_monitoringModel.Store.Log" store:Type="Tables" Schema="server_monitoring" />
+          <EntitySet Name="Projet" EntityType="server_monitoringModel.Store.Projet" store:Type="Tables" Schema="server_monitoring" />
+          <EntitySet Name="Serveur" EntityType="server_monitoringModel.Store.Serveur" store:Type="Tables" Schema="server_monitoring" />
+          <EntitySet Name="Utilisateur" EntityType="server_monitoringModel.Store.Utilisateur" store:Type="Tables" Schema="server_monitoring" />
+        </EntityContainer>
+        <EntityType Name="BaseDonnee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idProjet" Type="int" Nullable="false" />
+          <Property Name="host" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="databaseName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="user" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="cheminSauvegarde" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idProjet" Type="int" Nullable="false" />
+          <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="cheminFichier" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="couleur" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Serveur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ipLocale" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ipPublique" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="login" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="server_monitoringModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="BaseDonnee" EntityType="server_monitoringModel.BaseDonnee" />
+          <EntitySet Name="Log" EntityType="server_monitoringModel.Log" />
+          <EntitySet Name="Projet" EntityType="server_monitoringModel.Projet" />
+          <EntitySet Name="Serveur" EntityType="server_monitoringModel.Serveur" />
+          <EntitySet Name="Utilisateur" EntityType="server_monitoringModel.Utilisateur" />
+        </EntityContainer>
+        <EntityType Name="BaseDonnee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idProjet" Type="Int32" Nullable="false" />
+          <Property Name="host" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="databaseName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="cheminSauvegarde" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idProjet" Type="Int32" Nullable="false" />
+          <Property Name="libelle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="cheminFichier" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Projet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="couleur" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Serveur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ipLocale" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ipPublique" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="server_monitoringModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="BaseDonnee">
+            <EntityTypeMapping TypeName="server_monitoringModel.BaseDonnee">
+              <MappingFragment StoreEntitySet="BaseDonnee">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idProjet" ColumnName="idProjet" />
+                <ScalarProperty Name="host" ColumnName="host" />
+                <ScalarProperty Name="databaseName" ColumnName="databaseName" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="cheminSauvegarde" ColumnName="cheminSauvegarde" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="server_monitoringModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idProjet" ColumnName="idProjet" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="cheminFichier" ColumnName="cheminFichier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projet">
+            <EntityTypeMapping TypeName="server_monitoringModel.Projet">
+              <MappingFragment StoreEntitySet="Projet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="couleur" ColumnName="couleur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Serveur">
+            <EntityTypeMapping TypeName="server_monitoringModel.Serveur">
+              <MappingFragment StoreEntitySet="Serveur">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="ipLocale" ColumnName="ipLocale" />
+                <ScalarProperty Name="ipPublique" ColumnName="ipPublique" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateur">
+            <EntityTypeMapping TypeName="server_monitoringModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

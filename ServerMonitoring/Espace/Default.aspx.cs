@@ -7,37 +7,38 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Threading;
 
+using ServerMonitoring_fw;
+
 public partial class Espace_Default : BasePage
 {
 	protected PerformanceCounter cpuCounter;
 	protected PerformanceCounter ramCounterAvailable;
 
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-		//Utilisateur myUser = GetUtilisateur();
-		//if (myUser != null)
-		//{
-		if (!IsPostBack)
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		Utilisateur myUser = GetUtilisateur();
+		if (myUser != null)
 		{
-			Init();
+			if (!IsPostBack)
+			{
+				Init();
+			}
+			PerfInit();
 		}
-		//PerfInit();
-		//}
-		//else
-		//	Response.Redirect("~/Default.aspx");
-    }
+		else
+			Response.Redirect("~/Default.aspx");
+	}
 
 	public void Init()
 	{
-		lblNomServeur.Text = "MARS";
-		lblIPLocale.Text = "172.15.19.56";
-		lblIPPublique.Text = "82.25.156.23";
-
-		//lblCPUValeur.Text = "0%";
-		//lblRAMValeur.Text = "7023MB";
-
-		
+		List<Serveur> listeServeur = ServeurManager.FindAll();
+		if (listeServeur.Count > 0)
+		{
+			lblNomServeur.Text = listeServeur[0].libelle;
+			lblIPLocale.Text = listeServeur[0].ipLocale;
+			lblIPPublique.Text = listeServeur[0].ipPublique;
+		}
 	}
 
 	public void PerfInit()
@@ -56,16 +57,16 @@ public partial class Espace_Default : BasePage
 		cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
 
 		ramCounterAvailable = new PerformanceCounter("Memory", "Available MBytes");
-		
+
 
 		string firstValue = cpuCounter.NextValue() + "%";
 		Thread.Sleep(200);
 		lblCPUValeur.Text = cpuCounter.NextValue() + "%";
-		
+
 		lblRAMDispoValeur.Text = ramCounterAvailable.NextValue() + "MB";
 		upPerformances.Update();
 
-		
+
 	}
 
 	#region LOGS
@@ -75,7 +76,7 @@ public partial class Espace_Default : BasePage
 		btnAddLog.Enabled = false;
 		upLogs.Update();
 	}
-	
+
 	protected void btnEditLogAnnuler_Click(object sender, EventArgs e)
 	{
 		btnAddLog.Enabled = true;

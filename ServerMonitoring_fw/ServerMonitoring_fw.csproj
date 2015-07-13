@@ -30,8 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="iZyTools">
+      <HintPath>..\dll\Tools\iZyTools.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,9 +50,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BIZ\Param.cs" />
+    <Compile Include="BL\UtilisateurManager.cs" />
+    <Compile Include="BO\BaseDonnee.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BO\Context.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BO\Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BO\Context.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BO\Log.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BO\Projet.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BO\Serveur.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BO\Utilisateur.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="DAL\UtilisateurDB.cs" />
+    <Compile Include="iZyFW\BL\BaseDonneeManager.cs" />
+    <Compile Include="iZyFW\BL\LogManager.cs" />
+    <Compile Include="iZyFW\BL\ProjetManager.cs" />
+    <Compile Include="iZyFW\BL\ServeurManager.cs" />
+    <Compile Include="iZyFW\BL\UtilisateurManager.cs" />
+    <Compile Include="iZyFW\BO\BaseDonneeBO.cs" />
+    <Compile Include="iZyFW\BO\LogBO.cs" />
+    <Compile Include="iZyFW\BO\ProjetBO.cs" />
+    <Compile Include="iZyFW\BO\ServeurBO.cs" />
+    <Compile Include="iZyFW\BO\UtilisateurBO.cs" />
+    <Compile Include="iZyFW\DAL\BaseDonneeDB.cs" />
+    <Compile Include="iZyFW\DAL\LogDB.cs" />
+    <Compile Include="iZyFW\DAL\ProjetDB.cs" />
+    <Compile Include="iZyFW\DAL\ServeurDB.cs" />
+    <Compile Include="iZyFW\DAL\UtilisateurDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="BO\Context.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Context.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="BO\Context.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.Context.cs</LastGenOutput>
+    </None>
+    <None Include="BO\Context.edmx.diagram">
+      <DependentUpon>Context.edmx</DependentUpon>
+    </None>
+    <None Include="BO\Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.cs</LastGenOutput>
+      <CustomToolNamespace>ServerMonitoring_fw</CustomToolNamespace>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

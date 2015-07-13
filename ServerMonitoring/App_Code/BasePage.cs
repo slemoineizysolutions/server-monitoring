@@ -10,8 +10,8 @@ using ServerMonitoring_fw;
 /// </summary>
 public class BasePage : System.Web.UI.Page
 {
-	//protected Utilisateur GetUtilisateur()
-	//{
-
-	//}
+	protected Utilisateur GetUtilisateur()
+	{
+		return (Utilisateur)MySession.GetSession("user");
+	}
 }

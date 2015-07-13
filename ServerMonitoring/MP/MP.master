@@ -47,7 +47,7 @@
 
 			<div class="menu-container">
 				<div class="menu-username">
-					<i class="fa fa-bars"></i> Sylvain Lemoine
+					<i class="fa fa-bars"></i> <asp:Label runat="server" ID="lblUsernameConnecte"></asp:Label>
 				</div>
 
 

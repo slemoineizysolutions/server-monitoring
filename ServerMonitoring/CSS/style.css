@@ -1,14 +1,21 @@
+.login {
+	margin-top: 50px;
+}
+
+.error-message {
+	color: #ec7063;
+}
 
 .title {
 	width: 100%;
 	text-align: center;
 	font-size: 56px;
-	color: #FFF;
+	color: #1abc9c;
 	font-family: Lato, Helvetica, Arial, sans-serif; 
 }
 
 footer {
-	background-color: #25B296;
+	background-color: rgba(37, 178, 150, 0.32);
 	text-align: center;
 	width: 100%;
 	position: absolute;

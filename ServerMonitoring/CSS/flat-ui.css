@@ -5697,7 +5697,7 @@ textarea.navbar-form .form-control, textarea.navbar-form .input-group-addon, tex
 
 .login-screen {
 	min-height: 473px;
-	background-color: #1abc9c;
+	/*background-color: #1abc9c;*/
 	width: 500px;
 	margin: auto;
 }
