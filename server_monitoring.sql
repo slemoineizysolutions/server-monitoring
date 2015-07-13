@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 13 Juillet 2015 à 11:57
+-- Généré le :  Lun 13 Juillet 2015 à 12:11
 -- Version du serveur :  5.6.21-log
 -- Version de PHP :  5.6.3
 
@@ -39,6 +39,30 @@ CREATE TABLE IF NOT EXISTS `BaseDonnee` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `EnumTheme`
+--
+
+CREATE TABLE IF NOT EXISTS `EnumTheme` (
+  `id` int(11) NOT NULL,
+  `libelle` varchar(20) NOT NULL,
+  `cssClass` varchar(20) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `EnumTheme`
+--
+
+INSERT INTO `EnumTheme` (`id`, `libelle`, `cssClass`) VALUES
+(1, 'Bleu', 'blue'),
+(2, 'Orange', 'orange'),
+(3, 'Rouge', 'red'),
+(4, 'Violet', 'purple'),
+(5, 'Gris', 'grey'),
+(6, 'Vert', 'green');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Log`
 --
 
@@ -59,7 +83,18 @@ CREATE TABLE IF NOT EXISTS `Projet` (
   `id` int(11) NOT NULL,
   `libelle` varchar(50) NOT NULL,
   `couleur` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `Projet`
+--
+
+INSERT INTO `Projet` (`id`, `libelle`, `couleur`) VALUES
+(1, 'Activa', '1'),
+(2, 'iZyFrais', '2'),
+(3, 'iFaxnet', '3'),
+(4, 'IDDIC', '6'),
+(5, 'iWi', '5');
 
 -- --------------------------------------------------------
 
@@ -112,6 +147,12 @@ ALTER TABLE `BaseDonnee`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `EnumTheme`
+--
+ALTER TABLE `EnumTheme`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `Log`
 --
 ALTER TABLE `Log`
@@ -145,6 +186,11 @@ ALTER TABLE `Utilisateur`
 ALTER TABLE `BaseDonnee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `EnumTheme`
+--
+ALTER TABLE `EnumTheme`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT pour la table `Log`
 --
 ALTER TABLE `Log`
@@ -153,7 +199,7 @@ ALTER TABLE `Log`
 -- AUTO_INCREMENT pour la table `Projet`
 --
 ALTER TABLE `Projet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `Serveur`
 --
