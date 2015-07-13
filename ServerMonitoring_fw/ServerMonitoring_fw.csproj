@@ -70,6 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Context.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BO\EnumThemeBO.cs" />
     <Compile Include="BO\Log.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -85,16 +86,19 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\UtilisateurDB.cs" />
     <Compile Include="iZyFW\BL\BaseDonneeManager.cs" />
+    <Compile Include="iZyFW\BL\EnumThemeManager.cs" />
     <Compile Include="iZyFW\BL\LogManager.cs" />
     <Compile Include="iZyFW\BL\ProjetManager.cs" />
     <Compile Include="iZyFW\BL\ServeurManager.cs" />
     <Compile Include="iZyFW\BL\UtilisateurManager.cs" />
     <Compile Include="iZyFW\BO\BaseDonneeBO.cs" />
+    <Compile Include="iZyFW\BO\EnumThemeBO.cs" />
     <Compile Include="iZyFW\BO\LogBO.cs" />
     <Compile Include="iZyFW\BO\ProjetBO.cs" />
     <Compile Include="iZyFW\BO\ServeurBO.cs" />
     <Compile Include="iZyFW\BO\UtilisateurBO.cs" />
     <Compile Include="iZyFW\DAL\BaseDonneeDB.cs" />
+    <Compile Include="iZyFW\DAL\EnumThemeDB.cs" />
     <Compile Include="iZyFW\DAL\LogDB.cs" />
     <Compile Include="iZyFW\DAL\ProjetDB.cs" />
     <Compile Include="iZyFW\DAL\ServeurDB.cs" />
