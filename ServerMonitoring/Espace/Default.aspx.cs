@@ -162,7 +162,7 @@ public partial class Espace_Default : BasePage
 			Log myLog = (Log)e.Item.DataItem;
 			if (btnSeeFile != null && myLog != null)
 			{
-				btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id);
+				btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id+"&menuDisabled=1");
 			}
 		}
 

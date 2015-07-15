@@ -24,6 +24,8 @@ public partial class Espace_ViewFile : BasePage
 				{
 					lblNomFichier.Text = myLog.myProjet.libelle + " - " + myLog.libelle;
 					litFileContent.Text = File.ReadAllText(myLog.cheminFichier);
+					lblCheminFichier.Text = myLog.cheminFichier;
+					pnlHeader.CssClass += " " + myLog.myProjet.myTheme.cssClass;
 				}
 			}
 		}

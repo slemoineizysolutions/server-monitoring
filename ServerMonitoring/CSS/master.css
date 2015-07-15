@@ -10,7 +10,82 @@
 	clear: both;
 }
 
-.view-file {
-	padding: 10px;
-	padding-top: 50px;
+
+/*** Theme ***/
+/* Bleu */
+.log.blue,
+.view-file-header.blue,
+.database.blue {
+	background-color: #2980B9;
+	border-bottom: 4px solid #2A72A1;
+}
+
+.log.blue .log-btn:hover,
+.database.blue .database-btn:hover {
+	background-color: #2A72A1;
+}
+
+/* Orange*/
+.log.orange,
+.view-file-header.orange,
+.database.orange {
+	background-color: #F39C12;
+	border-bottom: 4px solid #D98C10;
+}
+
+.log.orange .log-btn:hover,
+.database.orange .database-btn:hover {
+	background-color: #D98C10;
+}
+
+/* Rouge */
+.log.red,
+.view-file-header.red,
+.database.red {
+	background-color: #E74C3C;
+	border-bottom: 4px solid #CD4435;
+}
+
+.log.red .log-btn:hover,
+.database.red .database-btn:hover {
+	background-color: #CD4435;
+}
+
+/* Violet */
+.log.purple,
+.view-file-header.purple,
+.database.purple {
+	background-color: #9B59B6;
+	border-bottom: 4px solid #854D9C;
+}
+
+.log.purple .log-btn:hover,
+.database.purple .database-btn:hover {
+	background-color: #854D9C;
+}
+
+/* Gris */
+.log.grey,
+.view-file-header.grey,
+.database.grey {
+	background-color: #95A5A6;
+	border-bottom: 4px solid #7E8C8C;
+}
+
+.log.grey .log-btn:hover,
+.database.grey .database-btn:hover {
+	background-color: #7E8C8C;
+}
+
+/* Vert */
+.log.green,
+.view-file-header.green,
+.database.green {
+	background-color: #27AE60;
+	border-bottom: 4px solid #219452;
+}
+
+.log.green .log-btn:hover,
+.database.green .database-btn:hover {
+	background-color: #219452;
 }

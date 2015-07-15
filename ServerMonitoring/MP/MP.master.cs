@@ -53,7 +53,15 @@ public partial class MP_MP : System.Web.UI.MasterPage
 		{
 			if (!IsPostBack)
 			{
-				lblUsernameConnecte.Text = user.nom;
+				if (!string.IsNullOrEmpty(MySession.GetParam("menuDisabled")))
+				{
+					pnlMenuContainer.Visible = false;
+				}
+				else
+				{
+
+					lblUsernameConnecte.Text = user.nom;
+				}
 			}
 		}
     }

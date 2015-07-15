@@ -45,7 +45,7 @@
 			</div>--%>
 
 
-			<div class="menu-container">
+			<asp:Panel runat="server" ID="pnlMenuContainer" CssClass="menu-container">
 				<div class="menu-username">
 					<i class="fa fa-bars"></i> <asp:Label runat="server" ID="lblUsernameConnecte"></asp:Label>
 				</div>
@@ -82,7 +82,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</asp:Panel>
 
 			<asp:ContentPlaceHolder ID="Content" runat="server">
 			</asp:ContentPlaceHolder>

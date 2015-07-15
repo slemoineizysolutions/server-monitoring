@@ -1,0 +1,51 @@
+﻿.view-file-header,
+.header-space {
+	height: 60px;
+}
+
+.view-file-header {
+	top: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	background-color: #34495E;
+	color: #FFF;
+	text-align: center;
+	padding-top: 8px;
+	overflow: hidden;
+
+	transition: all 250ms;
+}
+
+.view-file-header-libelle {
+	font-size: 26px;
+	transition: all 250ms;
+}
+
+.view-file-header-chemin {
+	display: inline-block;
+	font-size: 16px;
+	padding-top: 50px;
+	transition: all 250ms;
+}
+
+
+.view-file-header:hover {
+	padding-top: 5px;
+	height: 80px;
+}
+
+.view-file-header:hover .view-file-header-libelle {
+	font-size: 22px;
+}
+
+.view-file-header:hover .view-file-header-chemin {
+	padding-top: 0px;
+}
+
+
+pre {
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 0;
+}
