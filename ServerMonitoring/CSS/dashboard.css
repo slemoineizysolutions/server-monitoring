@@ -186,7 +186,7 @@
 	}
 
 	50% {
-		height: 181px;
+		height: 231px;
 	}
 
 	100% {
@@ -197,7 +197,7 @@
 .edit-log {
 	margin-bottom: 20px;
 	padding-top: 7px;
-	height: 181px;
+	height: 231px;
 
 	animation-name: showedit;
 	animation-duration: 500ms;
@@ -220,6 +220,7 @@
 .edit-log-content table td,
 .edit-log-content table th {
 	padding: 8px;
+	vertical-align: bottom;
 }
 
 .edit-log-content table td:first-child,

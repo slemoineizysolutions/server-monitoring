@@ -55,6 +55,7 @@
     <Compile Include="BO\BaseDonnee.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="BO\BaseDonneeBO.cs" />
     <Compile Include="BO\Context.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

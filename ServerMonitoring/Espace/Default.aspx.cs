@@ -43,6 +43,7 @@ public partial class Espace_Default : BasePage
 		}
 
 		ListeLog_Init();
+		ListeBaseDonnees_Init();
 		GenerateDLL();
 	}
 
@@ -54,6 +55,16 @@ public partial class Espace_Default : BasePage
 		rptLogs.DataBind();
 
 		upLogs.Update();
+	}
+
+	public void ListeBaseDonnees_Init()
+	{
+		List<BaseDonnee> bdd = BaseDonneeManager.FindAll();
+
+		rptDatabase.DataSource = bdd;
+		rptDatabase.DataBind();
+
+		upDatabase.Update();
 	}
 
 	protected void GenerateDLL()
@@ -102,6 +113,7 @@ public partial class Espace_Default : BasePage
 	#region LOGS
 	protected void btnAddLog_Click(object sender, EventArgs e)
 	{
+		hfLogId.Value = string.Empty;
 		pnlEditLog.Visible = true;
 		btnAddLog.Enabled = false;
 
@@ -113,6 +125,7 @@ public partial class Espace_Default : BasePage
 		btnAddLog.Enabled = true;
 		pnlEditLog.Visible = false;
 		tbEditLogChemin.Text = string.Empty;
+		tbEditLogLibelle.Text = string.Empty;
 		ddlEditLogProjet.SelectedIndex = -1;
 
 		upLogs.Update();
@@ -120,6 +133,24 @@ public partial class Espace_Default : BasePage
 
 	protected void btnEditLogSave_Click(object sender, EventArgs e)
 	{
+		bool isModif = false;
+		Log myLog = new Log();
+		if (!string.IsNullOrEmpty(hfLogId.Value))
+		{
+			myLog = LogManager.Load(iZyInt.ConvertStringToInt(hfLogId.Value));
+			if (myLog != null) isModif = true;
+			else myLog = new Log();
+		}
+
+		myLog.libelle = tbEditLogLibelle.Text;
+		myLog.cheminFichier = tbEditLogChemin.Text;
+		myLog.idProjet = iZyInt.ConvertStringToInt(ddlEditLogProjet.SelectedValue);
+
+		if (isModif) LogManager.Update(myLog);
+		else LogManager.Insert(myLog);
+
+		ListeLog_Init();
+
 		btnAddLog.Enabled = true;
 		pnlEditLog.Visible = false;
 		tbEditLogChemin.Text = string.Empty;
@@ -137,6 +168,8 @@ public partial class Espace_Default : BasePage
 
 			if (myLog != null)
 			{
+				hfLogId.Value = btn.CommandArgument;
+				tbEditLogLibelle.Text = myLog.libelle;
 				tbEditLogChemin.Text = myLog.cheminFichier;
 				ddlEditLogProjet.SelectedValue = myLog.idProjet.ToString();
 
@@ -152,7 +185,7 @@ public partial class Espace_Default : BasePage
 	{
 
 	}
-	#endregion
+
 	protected void rptLogs_ItemDataBound(object sender, RepeaterItemEventArgs e)
 	{
 		if (e.Item.ItemType == ListItemType.Item)
@@ -162,9 +195,22 @@ public partial class Espace_Default : BasePage
 			Log myLog = (Log)e.Item.DataItem;
 			if (btnSeeFile != null && myLog != null)
 			{
-				btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id+"&menuDisabled=1");
+				btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id + "&menuDisabled=1");
 			}
 		}
 
 	}
+	#endregion
+
+
+	#region Base de données
+	protected void btnConfigDatabase_Click(object sender, EventArgs e)
+	{
+
+	}
+	protected void btnDownload_Click(object sender, EventArgs e)
+	{
+
+	}
+	#endregion
 }
