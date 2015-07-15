@@ -18,7 +18,7 @@ namespace ServerMonitoring_fw.DAL
 		private static string GetSelectFields()
 		{
 			StringBuilder mySql = new StringBuilder();
-			mySql.Append("projet.id AS projet_id, projet.libelle AS projet_libelle, projet.couleur AS projet_couleur ");
+			mySql.Append("projet.id AS projet_id, projet.libelle AS projet_libelle, projet.idTheme AS projet_idTheme ");
 			return mySql.ToString();
 		}
 
@@ -27,7 +27,7 @@ namespace ServerMonitoring_fw.DAL
 			Projet myItem = new Projet();
 			myItem.id = iZyMySQL.GetIntFromDBInt(myReader["projet_id"]);
 			myItem.libelle = iZyMySQL.GetStringFromDBString(myReader["projet_libelle"]);
-			myItem.couleur = iZyMySQL.GetStringFromDBString(myReader["projet_couleur"]);
+			myItem.idTheme = iZyMySQL.GetIntFromDBInt(myReader["projet_idTheme"]);
 			return myItem;
 		}
 
@@ -100,14 +100,14 @@ namespace ServerMonitoring_fw.DAL
 			{
 				StringBuilder mySql = new StringBuilder();
 				mySql.Append("INSERT INTO `Projet` ");
-				mySql.Append("(`libelle`, `couleur` )");
+				mySql.Append("(`libelle`, `idTheme` )");
 				mySql.Append(" VALUES ");
-				mySql.Append("(@libelle, @couleur );");
+				mySql.Append("(@libelle, @idTheme );");
 				mySql.Append("SELECT LAST_INSERT_ID(); ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
-				myCommand.Parameters.AddWithValue("@couleur", myItem.couleur);
+				myCommand.Parameters.AddWithValue("@idTheme", myItem.idTheme);
 				myConnection.Open();
 				myItem.id = iZyMySQL.GetIntFromDBInt(myCommand.ExecuteScalar());
 				myConnection.Close();
@@ -123,13 +123,13 @@ namespace ServerMonitoring_fw.DAL
 				StringBuilder mySql = new StringBuilder();
 				mySql.Append("UPDATE `Projet` SET ");
 				mySql.Append("`libelle` = @libelle, ");
-				mySql.Append("`couleur` = @couleur ");
+				mySql.Append("`idTheme` = @idTheme ");
 				mySql.Append("WHERE `id` = @id ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@id", myItem.id);
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
-				myCommand.Parameters.AddWithValue("@couleur", myItem.couleur);
+				myCommand.Parameters.AddWithValue("@idTheme", myItem.idTheme);
 				myConnection.Open();
 				myCommand.ExecuteNonQuery();
 				myConnection.Close();

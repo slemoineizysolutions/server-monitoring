@@ -113,205 +113,146 @@
 						</asp:Panel>
 
 
-						<%--<asp:Repeater runat="server" ID="rptLogs">
+						<asp:Repeater runat="server" ID="rptLogs" OnItemDataBound="rptLogs_ItemDataBound">
 							<ItemTemplate>
-								
-								<div class="log">
-									<asp:Label runat="server"
-								</div>
+
+								<asp:Panel runat="server" CssClass='<%# "log "+Eval("myProjet.myTheme.CssClass") %>'>
+									<asp:Label runat="server" Text='<%# Eval("myProjet.libelle") %>' CssClass="log-label-project"></asp:Label>
+									-
+									<asp:Label runat="server" Text='<%# Eval("libelle") %>' CssClass="log-label-subtitle"></asp:Label>
+
+									<div class="log-buttons">
+										<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres" OnClick="btnConfigLog_Click" CommandArgument='<%# Eval("id") %>'>
+									<i class="fa fa-cogs"></i>
+										</asp:LinkButton>
+										<asp:HyperLink runat="server" CssClass="log-btn" ToolTip="Voir le fichier de log" ID="btnSeeFile">
+									<i class="fa fa-eye"></i>
+										</asp:HyperLink>
+										<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Télécharger le fichier de log" OnClick="btnDownloadFichier_Click" CommandArgument='<%# Eval("id") %>'>
+									<i class="fa fa-download"></i>
+										</asp:LinkButton>
+									</div>
+								</asp:Panel>
 
 							</ItemTemplate>
-						</asp:Repeater>--%>
-
-						<div class="log blue">
-							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label>
-							-
-							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
-
-							<div class="log-buttons">
-								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres" OnClick="btnConfigLog_Click">
-									<i class="fa fa-cogs"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Voir le fichier de log">
-									<i class="fa fa-eye"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Télécharger le fichier de log">
-									<i class="fa fa-download"></i>
-								</asp:LinkButton>
-							</div>
-						</div>
-
-						<div class="log blue">
-							<asp:Label runat="server" Text="Activa" CssClass="log-label-project"></asp:Label>
-							-
-							<asp:Label runat="server" Text="iZyGridViewError" CssClass="log-label-subtitle"></asp:Label>
-
-							<div class="log-buttons">
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-cogs"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-eye"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-download"></i>
-								</asp:LinkButton>
-							</div>
-						</div>
-
-						<div class="log orange">
-							<asp:Label runat="server" Text="iZyFrais" CssClass="log-label-project"></asp:Label>
-							-
-							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
-
-							<div class="log-buttons">
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-cogs"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-eye"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-download"></i>
-								</asp:LinkButton>
-							</div>
-						</div>
-
-						<div class="log red">
-							<asp:Label runat="server" Text="iFaxNet" CssClass="log-label-project"></asp:Label>
-							-
-							<asp:Label runat="server" Text="WebError" CssClass="log-label-subtitle"></asp:Label>
-
-							<div class="log-buttons">
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-cogs"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-eye"></i>
-								</asp:LinkButton>
-								<asp:LinkButton runat="server" CssClass="log-btn">
-									<i class="fa fa-download"></i>
-								</asp:LinkButton>
-							</div>
-						</div>
+						</asp:Repeater>
 
 					</div>
-
-				</div>
 			</ContentTemplate>
 
 		</asp:UpdatePanel>
 
-		<div class="section">
-			<div class="section-title">
-				Bases de données
-				&nbsp;
+		<asp:UpdatePanel runat="server" ID="upDatabase" UpdateMode="Conditional">
+			<ContentTemplate>
+				<div class="section">
+					<div class="section-title">
+						Bases de données
+						&nbsp;
 				<asp:LinkButton runat="server" CssClass="log-add">
 					<i class="fa fa-plus add"></i>
 				</asp:LinkButton>
-			</div>
-			<div class="section-content">
+					</div>
+					<div class="section-content">
 
-				<div class="database-container">
-					<div class="database blue">
-						<div class="database-title">
-							Activa
-						</div>
-						<div class="database-buttons">
-							<asp:LinkButton runat="server" CssClass="database-btn">
+						<div class="database-container">
+							<div class="database blue">
+								<div class="database-title">
+									Activa
+								</div>
+								<div class="database-buttons">
+									<asp:LinkButton runat="server" CssClass="database-btn">
 									<i class="fa fa-cogs"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
 									<i class="fa fa-floppy-o"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
 									<i class="fa fa-download"></i>
-							</asp:LinkButton>
+									</asp:LinkButton>
+								</div>
+							</div>
 						</div>
+
+						<div class="database-container">
+							<div class="database orange">
+								<div class="database-title">
+									iZyFrais
+								</div>
+								<div class="database-buttons">
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+									</asp:LinkButton>
+								</div>
+							</div>
+						</div>
+
+						<div class="database-container">
+							<div class="database red">
+								<div class="database-title">
+									iFaxNet
+								</div>
+								<div class="database-buttons">
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+									</asp:LinkButton>
+								</div>
+							</div>
+						</div>
+
+						<div class="database-container">
+							<div class="database green">
+								<div class="database-title">
+									IDDIC
+								</div>
+								<div class="database-buttons">
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+									</asp:LinkButton>
+								</div>
+							</div>
+						</div>
+
+						<div class="database-container">
+							<div class="database grey">
+								<div class="database-title">
+									iWi
+								</div>
+								<div class="database-buttons">
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-cogs"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-floppy-o"></i>
+									</asp:LinkButton>
+									<asp:LinkButton runat="server" CssClass="database-btn">
+									<i class="fa fa-download"></i>
+									</asp:LinkButton>
+								</div>
+							</div>
+						</div>
+
+						<div class="clear"></div>
 					</div>
 				</div>
-
-				<div class="database-container">
-					<div class="database orange">
-						<div class="database-title">
-							iZyFrais
-						</div>
-						<div class="database-buttons">
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-cogs"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-floppy-o"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-download"></i>
-							</asp:LinkButton>
-						</div>
-					</div>
-				</div>
-
-				<div class="database-container">
-					<div class="database red">
-						<div class="database-title">
-							iFaxNet
-						</div>
-						<div class="database-buttons">
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-cogs"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-floppy-o"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-download"></i>
-							</asp:LinkButton>
-						</div>
-					</div>
-				</div>
-
-				<div class="database-container">
-					<div class="database green">
-						<div class="database-title">
-							IDDIC
-						</div>
-						<div class="database-buttons">
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-cogs"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-floppy-o"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-download"></i>
-							</asp:LinkButton>
-						</div>
-					</div>
-				</div>
-
-				<div class="database-container">
-					<div class="database grey">
-						<div class="database-title">
-							iWi
-						</div>
-						<div class="database-buttons">
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-cogs"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-floppy-o"></i>
-							</asp:LinkButton>
-							<asp:LinkButton runat="server" CssClass="database-btn">
-									<i class="fa fa-download"></i>
-							</asp:LinkButton>
-						</div>
-					</div>
-				</div>
-
-
-
-				<div class="clear"></div>
-			</div>
-		</div>
-
+			</ContentTemplate>
+		</asp:UpdatePanel>
 	</div>
 </asp:Content>

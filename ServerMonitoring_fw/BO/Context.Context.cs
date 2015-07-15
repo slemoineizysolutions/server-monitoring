@@ -27,8 +27,9 @@ namespace ServerMonitoring_fw.BO
     
         public DbSet<BaseDonnee> BaseDonnee { get; set; }
         public DbSet<Log> Log { get; set; }
-        public DbSet<Projet> Projet { get; set; }
         public DbSet<Serveur> Serveur { get; set; }
         public DbSet<Utilisateur> Utilisateur { get; set; }
+        public DbSet<EnumTheme> EnumTheme { get; set; }
+        public DbSet<Projet> Projet { get; set; }
     }
 }

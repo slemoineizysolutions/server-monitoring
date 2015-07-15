@@ -181,6 +181,7 @@
 .log.blue,
 .database.blue {
 	background-color: #2980B9;
+	border-bottom: 4px solid #2A72A1;
 }
 
 .log.blue .log-btn:hover,
@@ -192,6 +193,7 @@
 .log.orange,
 .database.orange {
 	background-color: #F39C12;
+	border-bottom: 4px solid #D98C10;
 }
 
 .log.orange .log-btn:hover,
@@ -203,6 +205,7 @@
 .log.red,
 .database.red {
 	background-color: #E74C3C;
+	border-bottom: 4px solid #CD4435;
 }
 
 .log.red .log-btn:hover,
@@ -214,6 +217,7 @@
 .log.purple,
 .database.purple {
 	background-color: #9B59B6;
+	border-bottom: 4px solid #854D9C;
 }
 
 .log.purple .log-btn:hover,
@@ -225,6 +229,7 @@
 .log.grey,
 .database.grey {
 	background-color: #95A5A6;
+	border-bottom: 4px solid #7E8C8C;
 }
 
 .log.grey .log-btn:hover,
@@ -236,6 +241,7 @@
 .log.green,
 .database.green {
 	background-color: #27AE60;
+	border-bottom: 4px solid #219452;
 }
 
 .log.green .log-btn:hover,

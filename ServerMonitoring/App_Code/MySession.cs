@@ -60,7 +60,7 @@ public static class MySession
 		}
 	}
 
-	public const string key = "45FTE5896GUIJKK452632145EDZSFT485G"; //Sur 32 caractères
+	public const string key = "45FTE5896GUIJKK452632145EDZSFT4G"; //Sur 32 caractères
 	public const string IV = "4585FGB1G583GHE7";//Sur 16 caractères
 
 	public static object GetSession(string value)

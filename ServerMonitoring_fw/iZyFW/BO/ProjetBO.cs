@@ -15,7 +15,7 @@ namespace ServerMonitoring_fw
 	public partial class CondProjet
 	{
 		public Nullable<int> id { get; set; } 
-		public string libelle { get; set; } 
-		public string couleur { get; set; } 
+		public string libelle { get; set; }
+		public Nullable<int> idTheme { get; set; } 
 	}
 }

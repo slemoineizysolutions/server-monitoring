@@ -4,9 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="server_monitoringModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="server_monitoringModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="server_monitoringModelStoreContainer">
           <EntitySet Name="BaseDonnee" EntityType="server_monitoringModel.Store.BaseDonnee" store:Type="Tables" Schema="server_monitoring" />
+          <EntitySet Name="EnumTheme" EntityType="server_monitoringModel.Store.EnumTheme" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="Log" EntityType="server_monitoringModel.Store.Log" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="Projet" EntityType="server_monitoringModel.Store.Projet" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="Serveur" EntityType="server_monitoringModel.Store.Serveur" store:Type="Tables" Schema="server_monitoring" />
@@ -24,6 +25,14 @@
           <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="cheminSauvegarde" Type="text" Nullable="false" />
         </EntityType>
+        <EntityType Name="EnumTheme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="cssClass" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
         <EntityType Name="Log">
           <Key>
             <PropertyRef Name="id" />
@@ -39,7 +48,7 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="couleur" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="idTheme" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Serveur">
           <Key>
@@ -59,17 +68,17 @@
           <Property Name="login" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="server_monitoringModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="BaseDonnee" EntityType="server_monitoringModel.BaseDonnee" />
           <EntitySet Name="Log" EntityType="server_monitoringModel.Log" />
-          <EntitySet Name="Projet" EntityType="server_monitoringModel.Projet" />
           <EntitySet Name="Serveur" EntityType="server_monitoringModel.Serveur" />
           <EntitySet Name="Utilisateur" EntityType="server_monitoringModel.Utilisateur" />
+          <EntitySet Name="EnumTheme" EntityType="server_monitoringModel.EnumTheme" />
+          <EntitySet Name="Projet" EntityType="server_monitoringModel.Projet" />
         </EntityContainer>
         <EntityType Name="BaseDonnee">
           <Key>
@@ -92,14 +101,6 @@
           <Property Name="libelle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="cheminFichier" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Projet">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="libelle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="couleur" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Serveur">
           <Key>
             <PropertyRef Name="id" />
@@ -117,6 +118,22 @@
           <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="login" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EnumTheme">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="libelle" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cssClass" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Projet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="idTheme" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -147,15 +164,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Projet">
-            <EntityTypeMapping TypeName="server_monitoringModel.Projet">
-              <MappingFragment StoreEntitySet="Projet">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="libelle" ColumnName="libelle" />
-                <ScalarProperty Name="couleur" ColumnName="couleur" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Serveur">
             <EntityTypeMapping TypeName="server_monitoringModel.Serveur">
               <MappingFragment StoreEntitySet="Serveur">
@@ -173,6 +181,24 @@
                 <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnumTheme">
+            <EntityTypeMapping TypeName="server_monitoringModel.EnumTheme">
+              <MappingFragment StoreEntitySet="EnumTheme">
+                <ScalarProperty Name="cssClass" ColumnName="cssClass" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projet">
+            <EntityTypeMapping TypeName="server_monitoringModel.Projet">
+              <MappingFragment StoreEntitySet="Projet">
+                <ScalarProperty Name="idTheme" ColumnName="idTheme" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

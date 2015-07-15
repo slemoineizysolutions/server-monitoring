@@ -70,13 +70,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Context.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BO\EnumTheme.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="BO\EnumThemeBO.cs" />
     <Compile Include="BO\Log.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="BO\LogBO.cs" />
     <Compile Include="BO\Projet.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="BO\ProjetBO.cs" />
     <Compile Include="BO\Serveur.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>

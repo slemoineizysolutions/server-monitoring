@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4841b5ed7b8b4e078cd41da8805a5607" Name="Diagram1">
+      <Diagram DiagramId="4841b5ed7b8b4e078cd41da8805a5607" Name="Diagram1" ZoomLevel="101">
         <EntityTypeShape EntityType="server_monitoringModel.BaseDonnee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="server_monitoringModel.Log" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="server_monitoringModel.Projet" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="server_monitoringModel.Serveur" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="server_monitoringModel.Utilisateur" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="server_monitoringModel.EnumTheme" Width="1.5" PointX="0.625" PointY="3.75" />
+        <EntityTypeShape EntityType="server_monitoringModel.Projet" Width="1.5" PointX="2.75" PointY="3.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

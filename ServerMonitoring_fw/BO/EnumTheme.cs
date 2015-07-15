@@ -12,10 +12,10 @@ namespace ServerMonitoring_fw
     using System;
     using System.Collections.Generic;
     
-    public partial class Projet
+    public partial class EnumTheme
     {
         public int id { get; set; }
         public string libelle { get; set; }
-        public int idTheme { get; set; }
+        public string cssClass { get; set; }
     }
 }
