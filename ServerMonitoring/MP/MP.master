@@ -31,19 +31,14 @@
 	<asp:ContentPlaceHolder ID="head" runat="server">
 	</asp:ContentPlaceHolder>
 </head>
-<body>
+<body onload="duplicateSession(document.getElementById('SESSIONID').value)">
+
+	<script type="text/javascript" src="<%= this.ResolveClientUrl("~/js/Session.js") %>"></script>
+
 	<form id="form1" runat="server">
 		<div>
 			<asp:HiddenField ID="SESSIONID" runat="server" ClientIDMode="Static" />
-			<ajax:ToolkitScriptManager runat="server"></ajax:ToolkitScriptManager>
-
-			<%--<div class="header">
-				<asp:LinkButton runat="server" ID="lbLogoff" CssClass="profil">
-					<i class="fa fa-power-off"></i>
-					<asp:Label runat="server" ID="lblNomProfil" Text="Sylvain Lemoine"></asp:Label>
-				</asp:LinkButton>
-			</div>--%>
-
+			<ajax:ToolkitScriptManager runat="server"  LoadScriptsBeforeUI="false"></ajax:ToolkitScriptManager>
 
 			<asp:Panel runat="server" ID="pnlMenuContainer" CssClass="menu-container">
 				<div class="menu-username">

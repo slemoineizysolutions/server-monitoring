@@ -25,8 +25,11 @@
 	<script src="/js/jquery.min.js"></script>
 
 </head>
-<body>
+<body onload="duplicateSession(document.getElementById('SESSIONID').value)">
+	<script type="text/javascript" src="<%= this.ResolveClientUrl("~/js/Session.js") %>"></script>
 	<form id="form1" runat="server">
+		<asp:HiddenField ID="SESSIONID" runat="server" ClientIDMode="Static" />
+
 		<div class="login">
 
 			<div class="title">

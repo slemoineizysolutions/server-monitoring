@@ -138,7 +138,15 @@ namespace ServerMonitoring_fw.BIZ
 			get { return Path.Combine(ServerMonitoringPath, "scripts"); }
 		}
 
-	
+		public static string Logs
+		{
+			get
+			{
+				if (!Directory.Exists(Path.Combine(ServerMonitoringPath, "logs"))) Directory.CreateDirectory(Path.Combine(ServerMonitoringPath, "logs"));
+				return Path.Combine(ServerMonitoringPath, "logs");
+			}
+		}
+
 
 		#region URL
 
@@ -153,8 +161,8 @@ namespace ServerMonitoring_fw.BIZ
 
 		#endregion URL
 
-		
 
-		
+
+
 	}
 }

@@ -179,7 +179,7 @@
 
 /*** Edit log ***/
 
-@keyframes showedit {
+@keyframes showeditlog {
 	0% {
 		height: 0px;
 		opacity: 0;
@@ -194,46 +194,79 @@
 	}
 }
 
+@keyframes showeditdatabase {
+	0% {
+		height: 0px;
+		opacity: 0;
+	}
+
+	50% {
+		height: 411px;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
 .edit-log {
 	margin-bottom: 20px;
 	padding-top: 7px;
 	height: 231px;
-
-	animation-name: showedit;
+	animation-name: showeditlog;
 	animation-duration: 500ms;
 }
 
-.edit-log-title {
+.edit-db {
+	margin-bottom: 20px;
+	padding-top: 7px;
+	height: 411px;
+	animation-name: showeditdatabase;
+	animation-duration: 500ms;
+}
+
+.edit-log-title,
+.edit-db-title {
 	font-size: 24px;
 	border-bottom: 1px solid #34495E;
 }
 
-.edit-log-content {
+.edit-log-content,
+.edit-db-content {
 	width: 100%;
 	padding-top: 10px;
 }
 
-.edit-log-content table {
+.edit-log-content table,
+.edit-db-content table {
 	width: 100%;
 }
 
 .edit-log-content table td,
-.edit-log-content table th {
+.edit-log-content table th,
+.edit-db-content table td,
+.edit-db-content table th {
 	padding: 8px;
 	vertical-align: bottom;
 }
 
 .edit-log-content table td:first-child,
-.edit-log-content table th:first-child {
+.edit-log-content table th:first-child,
+.edit-db-content table td:first-child,
+.edit-db-content table th:first-child {
 	padding-left: 0;
 }
 
 .edit-log-content table td:last-child,
-.edit-log-content table th:last-child {
+.edit-log-content table th:last-child,
+.edit-db-content table td:last-child,
+.edit-db-content table th:last-child {
 	padding-right: 0;
 }
 
 .edit-log-content table input,
-.edit-log-content table select{
+.edit-log-content table select,
+.edit-db-content table input,
+.edit-db-content table select {
 	height: 45px;
 }
