@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 13 Juillet 2015 à 12:11
+-- Généré le :  Mer 15 Juillet 2015 à 18:37
 -- Version du serveur :  5.6.21-log
 -- Version de PHP :  5.6.3
 
@@ -34,7 +34,18 @@ CREATE TABLE IF NOT EXISTS `BaseDonnee` (
   `user` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `cheminSauvegarde` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `BaseDonnee`
+--
+
+INSERT INTO `BaseDonnee` (`id`, `idProjet`, `host`, `databaseName`, `user`, `password`, `cheminSauvegarde`) VALUES
+(1, 1, 'localhost', 'activa', 'root', 'root', 'D:\\Docs\\Activa\\BDD\\archives\\test'),
+(2, 2, 'localhost', 'izyfrais', 'root', 'root', 'D:\\Docs\\iZyFrais\\BDD\\Archives\\test'),
+(3, 3, 'localhost', 'ifanxet', 'root', 'root', 'D:\\Docs\\iFaxNet\\BDD'),
+(4, 4, 'localhost', 'iddic', 'root', 'root', 'D:\\Docs\\Eyes-Road\\BDD\\Archives'),
+(5, 5, 'locahost', 'iwi', 'root', 'root', 'D:\\Docs\\iWi\\BDD');
 
 -- --------------------------------------------------------
 
@@ -71,7 +82,20 @@ CREATE TABLE IF NOT EXISTS `Log` (
   `idProjet` int(11) NOT NULL,
   `libelle` varchar(50) NOT NULL,
   `cheminFichier` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `Log`
+--
+
+INSERT INTO `Log` (`id`, `idProjet`, `libelle`, `cheminFichier`) VALUES
+(1, 1, 'WebError', 'D:\\Activa\\log\\WebError.txt'),
+(2, 1, 'ErrorGridView', 'D:\\Activa\\log\\ErrorGridView.txt'),
+(3, 2, 'WebError', 'D:\\iZyFrais\\logs\\WebError.txt'),
+(4, 2, 'iZyGridViewERROR', 'D:\\iZyFrais\\logs\\iZyGridViewERROR.txt'),
+(5, 4, 'WebError', 'D:\\IDDICV4\\logs\\WebError.txt'),
+(6, 4, 'ErrorGridView', 'D:\\IDDICV4\\logs\\ErrorGridView.txt'),
+(7, 5, 'WebError', 'D:\\iWi\\Logs\\log.txt');
 
 -- --------------------------------------------------------
 
@@ -82,19 +106,19 @@ CREATE TABLE IF NOT EXISTS `Log` (
 CREATE TABLE IF NOT EXISTS `Projet` (
   `id` int(11) NOT NULL,
   `libelle` varchar(50) NOT NULL,
-  `couleur` varchar(20) NOT NULL
+  `idTheme` int(11) NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `Projet`
 --
 
-INSERT INTO `Projet` (`id`, `libelle`, `couleur`) VALUES
-(1, 'Activa', '1'),
-(2, 'iZyFrais', '2'),
-(3, 'iFaxnet', '3'),
-(4, 'IDDIC', '6'),
-(5, 'iWi', '5');
+INSERT INTO `Projet` (`id`, `libelle`, `idTheme`) VALUES
+(1, 'Activa', 1),
+(2, 'iZyFrais', 2),
+(3, 'iFaxnet', 3),
+(4, 'IDDIC', 6),
+(5, 'iWi', 5);
 
 -- --------------------------------------------------------
 
@@ -184,7 +208,7 @@ ALTER TABLE `Utilisateur`
 -- AUTO_INCREMENT pour la table `BaseDonnee`
 --
 ALTER TABLE `BaseDonnee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `EnumTheme`
 --
@@ -194,7 +218,7 @@ ALTER TABLE `EnumTheme`
 -- AUTO_INCREMENT pour la table `Log`
 --
 ALTER TABLE `Log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `Projet`
 --
