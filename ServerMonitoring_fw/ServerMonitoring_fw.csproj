@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BIZ\Param.cs" />
+    <Compile Include="BL\BaseDonneeManager.cs" />
     <Compile Include="BL\UtilisateurManager.cs" />
     <Compile Include="BO\BaseDonnee.cs">
       <DependentUpon>Context.tt</DependentUpon>

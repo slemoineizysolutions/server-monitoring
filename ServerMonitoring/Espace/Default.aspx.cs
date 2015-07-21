@@ -330,12 +330,32 @@ public partial class Espace_Default : BasePage
 
 	protected void btnSaveDatabase_Click(object sender, EventArgs e)
 	{
-
+		LinkButton btn = (LinkButton)sender;
+		if (btn != null && !string.IsNullOrEmpty(btn.CommandArgument))
+		{
+			int idDatabase = iZyInt.ConvertStringToInt(btn.CommandArgument);
+			BaseDonnee myDatabase = BaseDonneeManager.Load(idDatabase);
+			if (myDatabase != null)
+			{
+				// sauvegarde simple
+				BaseDonneeManager.Sauvegarde(myDatabase);
+			}
+		}
 	}
 
 	protected void btnDownload_Click(object sender, EventArgs e)
 	{
-
+		LinkButton btn = (LinkButton)sender;
+		if (btn != null && !string.IsNullOrEmpty(btn.CommandArgument))
+		{
+			int idDatabase = iZyInt.ConvertStringToInt(btn.CommandArgument);
+			BaseDonnee myDatabase = BaseDonneeManager.Load(idDatabase);
+			if (myDatabase != null)
+			{
+				// export + récupération du chemin du fichier
+				string cheminZip = BaseDonneeManager.Sauvegarde(myDatabase, true);
+			}
+		}
 	}
 	#endregion
 
