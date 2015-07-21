@@ -6,8 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Threading;
+using System.IO.Compression;
+using System.IO;
 
 using ServerMonitoring_fw;
+using ServerMonitoring_fw.BIZ;
 using iZyTools.Convertion;
 
 public partial class Espace_Default : BasePage
@@ -188,12 +191,41 @@ public partial class Espace_Default : BasePage
 
 	protected void btnDownloadFichier_Click(object sender, EventArgs e)
 	{
+		LinkButton btnDownloadFichier = (LinkButton)sender;
+		if (btnDownloadFichier != null)
+		{
+			int idLog = iZyInt.ConvertStringToInt(btnDownloadFichier.CommandArgument);
+			Log myLog = LogManager.Load(idLog);
+			if (myLog != null)
+			{
+				if (File.Exists(myLog.cheminFichier))
+				{
+					string fileName = "log-" + myLog.myProjet.libelle + "-" + myLog.libelle + "-" + DateTime.Now.ToString("yyyyMMddhhmmss");
+					string zipfile = Path.Combine(Param.TMP, fileName + ".zip");
+					if (File.Exists(zipfile))
+					{
+						File.Delete(zipfile);
+					}
 
+					using (ZipArchive zip =ZipFile.Open(zipfile, ZipArchiveMode.Create))
+					{
+						zip.CreateEntryFromFile(myLog.cheminFichier, fileName+".log");
+					}
+
+					if (File.Exists(zipfile))
+					{
+						Response.AppendHeader("content-disposition", "attachment; filename=" + fileName + "_pdf.zip");
+						Response.ContentType = "application/zip";
+						Response.WriteFile(zipfile);
+					}
+				}
+			}
+		}
 	}
 
 	protected void rptLogs_ItemDataBound(object sender, RepeaterItemEventArgs e)
 	{
-		if (e.Item.ItemType == ListItemType.Item)
+		if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
 		{
 			// ~/Espace/ViewFile.aspx
 			HyperLink btnSeeFile = (HyperLink)e.Item.FindControl("btnSeeFile");

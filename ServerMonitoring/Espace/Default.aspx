@@ -122,7 +122,7 @@
 										<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres" OnClick="btnConfigLog_Click" CommandArgument='<%# Eval("id") %>'>
 									<i class="fa fa-cogs"></i>
 										</asp:LinkButton>
-										<asp:HyperLink runat="server" CssClass="log-btn" ToolTip="Voir le fichier de log" ID="btnSeeFile">
+										<asp:HyperLink runat="server" CssClass="log-btn" ToolTip="Voir le fichier de log" ID="btnSeeFile" Target="_blank">
 									<i class="fa fa-eye"></i>
 										</asp:HyperLink>
 										<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Télécharger le fichier de log" OnClick="btnDownloadFichier_Click" CommandArgument='<%# Eval("id") %>'>

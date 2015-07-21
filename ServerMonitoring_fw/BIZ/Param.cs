@@ -147,6 +147,14 @@ namespace ServerMonitoring_fw.BIZ
 			}
 		}
 
+		public static string TMP
+		{
+			get
+			{
+				if (!Directory.Exists(Path.Combine(ServerMonitoringPath, "tmp"))) Directory.CreateDirectory(Path.Combine(ServerMonitoringPath, "tmp"));
+				return Path.Combine(ServerMonitoringPath, "tmp");
+			}
+		}
 
 		#region URL
 
