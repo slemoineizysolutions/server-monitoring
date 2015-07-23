@@ -1,0 +1,81 @@
+﻿.projet-container {
+	position: relative;
+	float: left;
+	width: 25%;
+	padding: 10px;
+}
+
+.projet {
+	display: block;
+	border-radius: 6px;
+	height: 120px;
+	position: relative;
+	cursor: pointer;
+	color: #FFF;
+	text-align: center;
+	line-height: 90px;
+	font-size: 24px;
+}
+
+.projet:hover {
+	color: #FFF;
+}
+
+
+.page-title {
+	text-align: center;
+	font-size: 32px;
+}
+
+.page-title .back {
+	float: left;
+}
+
+
+.table-infos {
+	width: 50%;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	90% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+/* Standard syntax */
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	90% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+.projet-save-message {
+	animation-name: fadeOut;
+	animation-duration: 6s;
+	opacity: 0;
+}
+
+.projet-save-message.success {
+	color: #2ECC71;
+}
+
+.projet-save-message.error {
+	color: #E74C3C;
+}

@@ -60,5 +60,10 @@ namespace ServerMonitoring_fw
 			}
 			return cheminFile;
 		}
+
+		public static List<BaseDonnee> FindAll(int idProjet)
+		{
+			return BaseDonneeDB.FindAll(idProjet);
+		}
 	}
 }

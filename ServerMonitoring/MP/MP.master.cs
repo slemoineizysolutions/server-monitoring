@@ -59,10 +59,19 @@ public partial class MP_MP : System.Web.UI.MasterPage
 				}
 				else
 				{
-
 					lblUsernameConnecte.Text = user.nom;
+					MenuInit();
 				}
 			}
 		}
     }
+
+	protected void MenuInit()
+	{
+		hlMenuMonCompte.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
+		hlMenuDashboard.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
+		hlMenuServeurs.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
+		hlMenuProjets.NavigateUrl = "~/Espace/Projets.aspx" + MySession.GenerateGetParams();
+		hlMenuUtilisateurs.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
+	}
 }

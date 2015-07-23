@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MP.master.cs" Inherits="MP_MP" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %> 
 
 <!DOCTYPE html>
 
@@ -52,28 +52,34 @@
 
 					<ul class="menu-items">
 						<li class="menu-item">
-							<asp:LinkButton runat="server">
+							<asp:HyperLink runat="server" ID="hlMenuMonCompte">
 								<i class="fa fa-user"></i>
 								Mon compte
-							</asp:LinkButton>
+							</asp:HyperLink>
 						</li>
 						<li class="menu-item">
-							<asp:LinkButton runat="server">
+							<asp:HyperLink runat="server" ID="hlMenuDashboard">
+								<i class="fa fa-tachometer"></i>
+								Tableau de bord
+							</asp:HyperLink>
+						</li>
+						<li class="menu-item">
+							<asp:HyperLink runat="server" ID="hlMenuServeurs">
 								<i class="fa fa-server"></i>
-								Serveur
-							</asp:LinkButton>
+								Serveurs
+							</asp:HyperLink>
 						</li>
 						<li class="menu-item">
-							<asp:LinkButton runat="server">
+							<asp:HyperLink runat="server" ID="hlMenuProjets">
 								<i class="fa fa-database"></i>
 								Projets
-							</asp:LinkButton>
+							</asp:HyperLink>
 						</li>
 						<li class="menu-item">
-							<asp:LinkButton runat="server">
+							<asp:HyperLink runat="server" ID="hlMenuUtilisateurs">
 								<i class="fa fa-users"></i>
 								Utilisateurs
-							</asp:LinkButton>
+							</asp:HyperLink>
 						</li>
 					</ul>
 				</div>

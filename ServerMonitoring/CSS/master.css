@@ -10,82 +10,212 @@
 	clear: both;
 }
 
+.content {
+	width: 1080px;
+	margin: auto;
+}
+
+.section {
+	margin-bottom: 30px;
+}
+
+.section-title {
+	font-size: 30px;
+	border-bottom: 3px solid #34495e;
+}
+
+.section-content {
+	padding-top: 10px;
+}
+
+
+/*** iZySwitch ***/
+
+.switch-options {
+	display: inline-block;
+	padding: 0;
+}
+
+.switch-options .switch-option,
+.switch-options .switch-option-selected {
+	float: left;
+	padding: 7px;
+	margin: 0;
+	/*border: 1px solid #c9c9c9;*/
+	border: 0;
+	border-bottom: 2px solid #c9c9c9;
+	cursor: pointer;
+	border-right: 0;
+	font-size: 12px;
+}
+
+.switch-options .switch-option {
+	background-color: white;
+	color: #565656;
+	transition: all 250ms;
+	outline: none;
+}
+
+.switch-options .switch-option-selected {
+	background-color: #EA6E2B;
+	color: white;
+}
+
+.switch-options .switch-option[disabled='disabled'],
+.switch-options .switch-option-disabled {
+	background-color: #aaaaaa;
+	color: white;
+	cursor: default;
+}
+
+.switch-options .switch-option-selected[disabled='disabled'],
+.switch-options .switch-option-selected.switch-option-disabled {
+	background-color: #ED9E73 !important;
+	cursor: default;
+}
+
+.switch-options .switch-option:hover {
+	/*background-color: #0083B7;
+ color: white;*/
+}
+
+.switch-options .switch-option:first-child,
+.switch-options .switch-option-selected:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.switch-options .switch-option:last-child,
+.switch-options .switch-option-selected:last-child {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-right: 1px solid #ccc;
+}
+
 
 /*** Theme ***/
 /* Bleu */
 .log.blue,
 .view-file-header.blue,
-.database.blue {
+.database.blue,
+.projet.blue,
+.switch-options .switch-option.blue {
 	background-color: #2980B9;
 	border-bottom: 4px solid #2A72A1;
 }
 
+.page-title.blue * {
+	color: #2980B9 !important;
+}
+
 .log.blue .log-btn:hover,
-.database.blue .database-btn:hover {
+.database.blue .database-btn:hover,
+.projet.blue:hover,
+.switch-options .switch-option.blue:hover {
 	background-color: #2A72A1;
 }
 
 /* Orange*/
 .log.orange,
 .view-file-header.orange,
-.database.orange {
+.database.orange,
+.projet.orange,
+.switch-options .switch-option.orange {
 	background-color: #F39C12;
 	border-bottom: 4px solid #D98C10;
 }
 
+.page-title.orange * {
+	color: #D98C10 !important;
+}
+
 .log.orange .log-btn:hover,
-.database.orange .database-btn:hover {
+.database.orange .database-btn:hover,
+.projet.orange:hover,
+.switch-options .switch-option.orange:hover {
 	background-color: #D98C10;
 }
 
 /* Rouge */
 .log.red,
 .view-file-header.red,
-.database.red {
+.database.red,
+.projet.red,
+.switch-options .switch-option.red {
 	background-color: #E74C3C;
 	border-bottom: 4px solid #CD4435;
 }
 
+.page-title.red * {
+	color: #E74C3C !important;
+}
+
 .log.red .log-btn:hover,
-.database.red .database-btn:hover {
+.database.red .database-btn:hover,
+.projet.red:hover,
+.switch-options .switch-option.red:hover {
 	background-color: #CD4435;
 }
 
 /* Violet */
 .log.purple,
 .view-file-header.purple,
-.database.purple {
+.database.purple,
+.projet.purple,
+.switch-options .switch-option.purple {
 	background-color: #9B59B6;
 	border-bottom: 4px solid #854D9C;
 }
 
+.page-title.purple * {
+	color: #9B59B6 !important;
+}
+
 .log.purple .log-btn:hover,
-.database.purple .database-btn:hover {
+.database.purple .database-btn:hover,
+.projet.purple:hover,
+.switch-options .switch-option.purple:hover {
 	background-color: #854D9C;
 }
 
 /* Gris */
 .log.grey,
 .view-file-header.grey,
-.database.grey {
+.database.grey,
+.projet.grey,
+.switch-options .switch-option.grey {
 	background-color: #95A5A6;
 	border-bottom: 4px solid #7E8C8C;
 }
 
+.page-title.grey * {
+	color: #95A5A6 !important;
+}
+
 .log.grey .log-btn:hover,
-.database.grey .database-btn:hover {
+.database.grey .database-btn:hover,
+.projet.grey:hover,
+.switch-options .switch-option.grey:hover {
 	background-color: #7E8C8C;
 }
 
 /* Vert */
 .log.green,
 .view-file-header.green,
-.database.green {
+.database.green,
+.projet.green,
+.switch-options .switch-option.green {
 	background-color: #27AE60;
 	border-bottom: 4px solid #219452;
 }
 
+.page-title.green * {
+	color: #27AE60 !important;
+}
+
 .log.green .log-btn:hover,
-.database.green .database-btn:hover {
+.database.green .database-btn:hover,
+.projet.green:hover,
+.switch-options .switch-option.green:hover {
 	background-color: #219452;
 }

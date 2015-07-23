@@ -18,7 +18,8 @@ namespace ServerMonitoring_fw.DAL
 		private static string GetSelectFields()
 		{
 			StringBuilder mySql = new StringBuilder();
-			mySql.Append("projet.id AS projet_id, projet.libelle AS projet_libelle, projet.idTheme AS projet_idTheme ");
+			mySql.Append("projet.id AS projet_id, projet.libelle AS projet_libelle, projet.idTheme AS projet_idTheme, ");
+			mySql.Append("projet.urlProd AS projet_urlProd, projet.urlTest AS projet_urlTest ");
 			return mySql.ToString();
 		}
 
@@ -28,6 +29,8 @@ namespace ServerMonitoring_fw.DAL
 			myItem.id = iZyMySQL.GetIntFromDBInt(myReader["projet_id"]);
 			myItem.libelle = iZyMySQL.GetStringFromDBString(myReader["projet_libelle"]);
 			myItem.idTheme = iZyMySQL.GetIntFromDBInt(myReader["projet_idTheme"]);
+			myItem.urlProd = iZyMySQL.GetStringFromDBString(myReader["projet_urlProd"]);
+			myItem.urlTest = iZyMySQL.GetStringFromDBString(myReader["projet_urlTest"]);
 			return myItem;
 		}
 
@@ -100,14 +103,16 @@ namespace ServerMonitoring_fw.DAL
 			{
 				StringBuilder mySql = new StringBuilder();
 				mySql.Append("INSERT INTO `Projet` ");
-				mySql.Append("(`libelle`, `idTheme` )");
+				mySql.Append("(`libelle`, `idTheme`, `urlProd`, `urlTest` )");
 				mySql.Append(" VALUES ");
-				mySql.Append("(@libelle, @idTheme );");
+				mySql.Append("(@libelle, @idTheme, @urlProd, @urlTest );");
 				mySql.Append("SELECT LAST_INSERT_ID(); ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myCommand.Parameters.AddWithValue("@idTheme", myItem.idTheme);
+				myCommand.Parameters.AddWithValue("@urlProd", myItem.urlProd);
+				myCommand.Parameters.AddWithValue("@urlTest", myItem.urlTest);
 				myConnection.Open();
 				myItem.id = iZyMySQL.GetIntFromDBInt(myCommand.ExecuteScalar());
 				myConnection.Close();
@@ -123,13 +128,17 @@ namespace ServerMonitoring_fw.DAL
 				StringBuilder mySql = new StringBuilder();
 				mySql.Append("UPDATE `Projet` SET ");
 				mySql.Append("`libelle` = @libelle, ");
-				mySql.Append("`idTheme` = @idTheme ");
+				mySql.Append("`idTheme` = @idTheme, ");
+				mySql.Append("`urlProd` = @urlProd, ");
+				mySql.Append("`urlTest` = @urlTest ");
 				mySql.Append("WHERE `id` = @id ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@id", myItem.id);
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myCommand.Parameters.AddWithValue("@idTheme", myItem.idTheme);
+				myCommand.Parameters.AddWithValue("@urlProd", myItem.urlProd);
+				myCommand.Parameters.AddWithValue("@urlTest", myItem.urlTest);
 				myConnection.Open();
 				myCommand.ExecuteNonQuery();
 				myConnection.Close();

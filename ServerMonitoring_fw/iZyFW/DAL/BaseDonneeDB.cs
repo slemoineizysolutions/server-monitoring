@@ -20,7 +20,7 @@ namespace ServerMonitoring_fw.DAL
 			StringBuilder mySql = new StringBuilder();
 			mySql.Append("basedonnee.id AS basedonnee_id, basedonnee.idProjet AS basedonnee_idProjet, basedonnee.host AS basedonnee_host, ");
 			mySql.Append("basedonnee.databaseName AS basedonnee_databaseName, basedonnee.user AS basedonnee_user, basedonnee.password AS basedonnee_password, ");
-			mySql.Append("basedonnee.cheminSauvegarde AS basedonnee_cheminSauvegarde ");
+			mySql.Append("basedonnee.cheminSauvegarde AS basedonnee_cheminSauvegarde, basedonnee.libelle AS basedonnee_libelle ");
 			return mySql.ToString();
 		}
 
@@ -34,6 +34,7 @@ namespace ServerMonitoring_fw.DAL
 			myItem.user = iZyMySQL.GetStringFromDBString(myReader["basedonnee_user"]);
 			myItem.password = iZyMySQL.GetStringFromDBString(myReader["basedonnee_password"]);
 			myItem.cheminSauvegarde = iZyMySQL.GetStringFromDBString(myReader["basedonnee_cheminSauvegarde"]);
+			myItem.libelle = iZyMySQL.GetStringFromDBString(myReader["basedonnee_libelle"]);
 			return myItem;
 		}
 
@@ -108,11 +109,11 @@ namespace ServerMonitoring_fw.DAL
 				mySql.Append("INSERT INTO `BaseDonnee` ");
 				mySql.Append("(`idProjet`, `host`, ");
 				mySql.Append("`databaseName`, `user`, `password`, ");
-				mySql.Append("`cheminSauvegarde` )");
+				mySql.Append("`cheminSauvegarde`, `libelle` )");
 				mySql.Append(" VALUES ");
 				mySql.Append("(@idProjet, @host, ");
 				mySql.Append("@databaseName, @user, @password, ");
-				mySql.Append("@cheminSauvegarde );");
+				mySql.Append("@cheminSauvegarde, @libelle );");
 				mySql.Append("SELECT LAST_INSERT_ID(); ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
@@ -122,6 +123,7 @@ namespace ServerMonitoring_fw.DAL
 				myCommand.Parameters.AddWithValue("@user", myItem.user);
 				myCommand.Parameters.AddWithValue("@password", myItem.password);
 				myCommand.Parameters.AddWithValue("@cheminSauvegarde", myItem.cheminSauvegarde);
+				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myConnection.Open();
 				myItem.id = iZyMySQL.GetIntFromDBInt(myCommand.ExecuteScalar());
 				myConnection.Close();
@@ -141,7 +143,8 @@ namespace ServerMonitoring_fw.DAL
 				mySql.Append("`databaseName` = @databaseName, ");
 				mySql.Append("`user` = @user, ");
 				mySql.Append("`password` = @password, ");
-				mySql.Append("`cheminSauvegarde` = @cheminSauvegarde ");
+				mySql.Append("`cheminSauvegarde` = @cheminSauvegarde, ");
+				mySql.Append("`libelle` = @libelle ");
 				mySql.Append("WHERE `id` = @id ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
@@ -152,6 +155,7 @@ namespace ServerMonitoring_fw.DAL
 				myCommand.Parameters.AddWithValue("@user", myItem.user);
 				myCommand.Parameters.AddWithValue("@password", myItem.password);
 				myCommand.Parameters.AddWithValue("@cheminSauvegarde", myItem.cheminSauvegarde);
+				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myConnection.Open();
 				myCommand.ExecuteNonQuery();
 				myConnection.Close();

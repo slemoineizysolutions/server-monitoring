@@ -4,19 +4,6 @@
 	background-color: #F5F5F5;
 }
 
-.content {
-	width: 1080px;
-	margin: auto;
-}
-
-.section {
-	margin-bottom: 30px;
-}
-
-.section-title {
-	font-size: 30px;
-	border-bottom: 3px solid #34495e;
-}
 
 .section-title .log-add {
 	color: rgba(52, 73, 94, 0.3);
@@ -41,9 +28,7 @@
 	padding-right: 30px;
 }
 
-.section-content {
-	padding-top: 10px;
-}
+
 
 /*** Perf Card ***/
 .perf-card {
@@ -164,7 +149,11 @@
 	text-align: center;
 	height: 50px;
 	transition: all 250ms;
-	width: 33%;
+	width: 50%;
+}
+
+.database-btn.third {
+	width: 33% !important;
 }
 
 .database-btn:first-child {
@@ -172,8 +161,11 @@
 }
 
 .database-btn:last-child {
-	width: 34%;
 	border-radius: 0 6px 6px 0;
+}
+
+.database-btn.third:last-child {
+	width: 34% !important;
 }
 
 
