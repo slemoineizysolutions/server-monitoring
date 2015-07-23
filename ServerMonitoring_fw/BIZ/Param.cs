@@ -156,18 +156,15 @@ namespace ServerMonitoring_fw.BIZ
 			}
 		}
 
-		#region URL
 
-		public static string ConfirmationMDPURL
+		public static string MysqlBinPath
 		{
 			get
 			{
-				return GetSingleParameter("url.confirmationmdp");
+				return GetSingleParameter("mysql.bin.path");
 			}
 		}
 
-
-		#endregion URL
 
 
 

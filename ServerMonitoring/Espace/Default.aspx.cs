@@ -207,9 +207,9 @@ public partial class Espace_Default : BasePage
 						File.Delete(zipfile);
 					}
 
-					using (ZipArchive zip =ZipFile.Open(zipfile, ZipArchiveMode.Create))
+					using (ZipArchive zip = ZipFile.Open(zipfile, ZipArchiveMode.Create))
 					{
-						zip.CreateEntryFromFile(myLog.cheminFichier, fileName+".log");
+						zip.CreateEntryFromFile(myLog.cheminFichier, fileName + ".log");
 					}
 
 					if (File.Exists(zipfile))
@@ -338,7 +338,10 @@ public partial class Espace_Default : BasePage
 			if (myDatabase != null)
 			{
 				// sauvegarde simple
-				BaseDonneeManager.Sauvegarde(myDatabase);
+				if (!string.IsNullOrEmpty(BaseDonneeManager.Sauvegarde(myDatabase)))
+				{
+					// afficher erreur car pas de sauvegarde
+				}
 			}
 		}
 	}
@@ -354,6 +357,13 @@ public partial class Espace_Default : BasePage
 			{
 				// export + récupération du chemin du fichier
 				string cheminZip = BaseDonneeManager.Sauvegarde(myDatabase, true);
+
+				if (File.Exists(cheminZip))
+				{
+					Response.AppendHeader("content-disposition", "attachment; filename=" + Path.GetFileName(cheminZip));
+					Response.ContentType = "application/zip";
+					Response.WriteFile(cheminZip);
+				}
 			}
 		}
 	}
