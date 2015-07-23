@@ -15,8 +15,8 @@ using iZyTools.Convertion;
 
 public partial class Espace_Default : BasePage
 {
-	protected PerformanceCounter cpuCounter;
-	protected PerformanceCounter ramCounterAvailable;
+	//protected PerformanceCounter cpuCounter;
+	//protected PerformanceCounter ramCounterAvailable;
 
 
 	protected void Page_Load(object sender, EventArgs e)
@@ -91,28 +91,28 @@ public partial class Espace_Default : BasePage
 	#region Performances
 	public void PerfInit()
 	{
-		cpuCounter = new PerformanceCounter();
+		//cpuCounter = new PerformanceCounter();
 
-		cpuCounter.CategoryName = "Processor";
-		cpuCounter.CounterName = "% Processor Time";
-		cpuCounter.InstanceName = "_Total";
+		//cpuCounter.CategoryName = "Processor";
+		//cpuCounter.CounterName = "% Processor Time";
+		//cpuCounter.InstanceName = "_Total";
 
-		ramCounterAvailable = new PerformanceCounter("Memory", "Available MBytes");
+		//ramCounterAvailable = new PerformanceCounter("Memory", "Available MBytes");
 	}
 
 	protected void timerPerf_Tick(object sender, EventArgs e)
 	{
-		cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+		//cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
 
-		ramCounterAvailable = new PerformanceCounter("Memory", "Available MBytes");
+		//ramCounterAvailable = new PerformanceCounter("Memory", "Available MBytes");
 
 
-		string firstValue = cpuCounter.NextValue() + "%";
-		Thread.Sleep(200);
-		lblCPUValeur.Text = cpuCounter.NextValue() + "%";
+		//string firstValue = cpuCounter.NextValue() + "%";
+		//Thread.Sleep(200);
+		//lblCPUValeur.Text = cpuCounter.NextValue() + "%";
 
-		lblRAMDispoValeur.Text = ramCounterAvailable.NextValue() + "MB";
-		upPerformances.Update();
+		//lblRAMDispoValeur.Text = ramCounterAvailable.NextValue() + "MB";
+		//upPerformances.Update();
 
 
 	}
@@ -286,7 +286,7 @@ public partial class Espace_Default : BasePage
 		myDatabase.user = tbEditDatabaseUser.Text;
 		myDatabase.password = tbEditDatabasePassword.Text;
 		myDatabase.cheminSauvegarde = tbEditDatabaseChemin.Text;
-		myDatabase.idProjet = iZyInt.ConvertStringToInt(ddlEditLogProjet.SelectedValue);
+		myDatabase.idProjet = iZyInt.ConvertStringToInt(ddlEditDatabaseProjet.SelectedValue);
 
 		if (isModif) BaseDonneeManager.Update(myDatabase);
 		else BaseDonneeManager.Insert(myDatabase);

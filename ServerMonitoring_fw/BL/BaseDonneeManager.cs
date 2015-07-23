@@ -27,8 +27,20 @@ namespace ServerMonitoring_fw
 
 				cheminFile = Path.Combine(repPath, "bdd-" + myDatabase.databaseName + "-" + DateTime.Now.ToString("yyyyMMddhhmmss") + ".sql");
 
-				string args = " -h " + myDatabase.host + " -u " + myDatabase.user + " -p" + myDatabase.password + " -r \"" + cheminFile + "\" " + myDatabase.databaseName;
-				Process.Start(Param.MysqlBinPath, args);
+				//string args = " -h " + myDatabase.host + " -u " + myDatabase.user + " -p" + myDatabase.password + " -r \"" + cheminFile + "\" " + myDatabase.databaseName;
+				//Process.Start(Param.MysqlBinPath, args);
+
+
+
+				//On lance le processus 
+				ProcessStartInfo myProcessStartInfo = new ProcessStartInfo();
+				myProcessStartInfo.FileName = "cmd";
+				myProcessStartInfo.Arguments = "/c \"\"" + Param.MysqlBinPath + "\" -h " + myDatabase.host + " -u " + myDatabase.user + " -p" + myDatabase.password + " --quick -B " + myDatabase.databaseName + "  > \"" + cheminFile + "\"\"";
+				myProcessStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+				Process myProcess = new Process();
+				myProcess.StartInfo = myProcessStartInfo;
+				myProcess.Start();
+				myProcess.WaitForExit();
 
 				if (File.Exists(cheminFile))
 				{
