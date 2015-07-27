@@ -9,6 +9,8 @@
 		<asp:Label runat="server" ID="lblNomFichier" CssClass="view-file-header-libelle"></asp:Label>
 		<br />
 		<asp:Label runat="server" ID="lblCheminFichier" CssClass="view-file-header-chemin"></asp:Label>
+		<br />
+		<asp:Label runat="server" ID="lblCommentaire" CssClass="view-file-header-chemin"></asp:Label>
 	</asp:Panel>
 	<div class="header-space"></div>
 	<pre>

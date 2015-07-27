@@ -16,7 +16,8 @@ namespace ServerMonitoring_fw
 	{
 		public Nullable<int> id { get; set; } 
 		public Nullable<int> idProjet { get; set; } 
-		public string libelle { get; set; } 
-		public string cheminFichier { get; set; } 
+		public string libelle { get; set; }
+		public string cheminFichier { get; set; }
+		public string commentaire { get; set; } 
 	}
 }

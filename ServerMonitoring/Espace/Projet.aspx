@@ -75,7 +75,7 @@
 					<ContentTemplate>
 						<div class="section">
 							<div class="section-title">
-								Logs
+								Fichiers
 								&nbsp;
 								<asp:LinkButton runat="server" CssClass="log-add" ID="btnAddLog" OnClick="btnAddLog_Click">
 									<i class="fa fa-plus add"></i>
@@ -86,23 +86,27 @@
 
 								<asp:Panel runat="server" ID="pnlEditLog" CssClass="edit-log" Visible="false">
 									<div class="edit-log-title">
-										<asp:Label runat="server" ID="lblEditLogTitle" Text="Ajouter un log"></asp:Label>
+										<asp:Label runat="server" ID="lblEditLogTitle" Text="Ajouter un fichier"></asp:Label>
 									</div>
 									<div class="edit-log-content">
 										<table>
 											<tbody>
 												<tr>
-													<td>Libellé
-												<asp:TextBox runat="server" ID="tbEditLogLibelle" placeholder="Libellé du log" CssClass="form-control"></asp:TextBox>
-													</td>
-													<td>
-
-														<asp:Button runat="server" ID="btnEditLogAnnuler" Text="Annuler" CssClass="btn btn-block btn-lg btn-danger" OnClick="btnEditLogAnnuler_Click" />
+													<td colspan="2">Libellé
+														<asp:TextBox runat="server" ID="tbEditLogLibelle" placeholder="Libellé du fichier" CssClass="form-control"></asp:TextBox>
 													</td>
 												</tr>
 												<tr>
 													<td>Chemin
-												<asp:TextBox runat="server" ID="tbEditLogChemin" placeholder="Chemin du fichier" CssClass="form-control"></asp:TextBox>
+														<asp:TextBox runat="server" ID="tbEditLogChemin" placeholder="Chemin du fichier" CssClass="form-control"></asp:TextBox>
+													</td>
+													<td>
+														<asp:Button runat="server" ID="btnEditLogAnnuler" Text="Annuler" CssClass="btn btn-block btn-lg btn-danger" OnClick="btnEditLogAnnuler_Click" />
+													</td>
+												</tr>
+												<tr>
+													<td>Commentaire
+														<asp:TextBox runat="server" ID="tbEditLogCommentaire" placeholder="Commentaire" CssClass="form-control" Rows="3" TextMode="MultiLine" style="resize: none"></asp:TextBox>
 													</td>
 													<td>
 														<asp:HiddenField runat="server" ID="hfLogId" Visible="false" />

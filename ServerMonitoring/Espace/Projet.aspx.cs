@@ -168,6 +168,7 @@ public partial class Espace_Projet : BasePage
 		pnlEditLog.Visible = false;
 		tbEditLogChemin.Text = string.Empty;
 		tbEditLogLibelle.Text = string.Empty;
+		tbEditLogCommentaire.Text = string.Empty;
 
 		upLogs.Update();
 	}
@@ -188,6 +189,7 @@ public partial class Espace_Projet : BasePage
 
 			myLog.libelle = tbEditLogLibelle.Text;
 			myLog.cheminFichier = tbEditLogChemin.Text;
+			myLog.commentaire = tbEditLogCommentaire.Text;
 			myLog.idProjet = myProjet.id;
 
 			if (isModif) LogManager.Update(myLog);
@@ -215,6 +217,7 @@ public partial class Espace_Projet : BasePage
 				hfLogId.Value = btn.CommandArgument;
 				tbEditLogLibelle.Text = myLog.libelle;
 				tbEditLogChemin.Text = myLog.cheminFichier;
+				tbEditLogCommentaire.Text = myLog.commentaire;
 
 				pnlEditLog.Visible = true;
 				btnAddLog.Enabled = false;
@@ -235,7 +238,7 @@ public partial class Espace_Projet : BasePage
 			{
 				if (File.Exists(myLog.cheminFichier))
 				{
-					string fileName = "log-" + myLog.myProjet.libelle + "-" + myLog.libelle + "-" + DateTime.Now.ToString("yyyyMMddhhmmss");
+					string fileName = "fichier-" + myLog.myProjet.libelle + "-" + myLog.libelle + "-" + DateTime.Now.ToString("yyyyMMddhhmmss");
 					string zipfile = Path.Combine(Param.TMP, fileName + ".zip");
 					if (File.Exists(zipfile))
 					{

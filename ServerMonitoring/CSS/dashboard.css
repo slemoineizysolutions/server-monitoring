@@ -175,7 +175,7 @@
 	}
 
 	50% {
-		height: 231px;
+		height: 391px;
 	}
 
 	100% {
@@ -201,7 +201,7 @@
 .edit-log {
 	margin-bottom: 20px;
 	padding-top: 7px;
-	height: 231px;
+	height: 391px;
 	animation-name: showeditlog;
 	animation-duration: 500ms;
 }

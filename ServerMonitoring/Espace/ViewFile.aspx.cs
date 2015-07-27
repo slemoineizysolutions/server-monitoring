@@ -28,6 +28,7 @@ public partial class Espace_ViewFile : BasePage
 					else
 						litFileContent.Text = "Le fichier n'existe pas ou le chemin est inaccessible";
 					lblCheminFichier.Text = myLog.cheminFichier;
+					lblCommentaire.Text = myLog.commentaire;
 					pnlHeader.CssClass += " " + myLog.myProjet.myTheme.cssClass;
 				}
 			}

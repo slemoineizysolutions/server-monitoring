@@ -66,8 +66,8 @@
 			<ContentTemplate>
 				<div class="section">
 					<div class="section-title">
-						Logs
-				&nbsp;
+						Fichiers
+						&nbsp;
 					</div>
 
 					<div class="section-content">

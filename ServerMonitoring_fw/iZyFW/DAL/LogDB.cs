@@ -19,7 +19,7 @@ namespace ServerMonitoring_fw.DAL
 		{
 			StringBuilder mySql = new StringBuilder();
 			mySql.Append("log.id AS log_id, log.idProjet AS log_idProjet, log.libelle AS log_libelle, ");
-			mySql.Append("log.cheminFichier AS log_cheminFichier ");
+			mySql.Append("log.cheminFichier AS log_cheminFichier, log.commentaire AS log_commentaire ");
 			return mySql.ToString();
 		}
 
@@ -30,6 +30,7 @@ namespace ServerMonitoring_fw.DAL
 			myItem.idProjet = iZyMySQL.GetIntFromDBInt(myReader["log_idProjet"]);
 			myItem.libelle = iZyMySQL.GetStringFromDBString(myReader["log_libelle"]);
 			myItem.cheminFichier = iZyMySQL.GetStringFromDBString(myReader["log_cheminFichier"]);
+			myItem.commentaire = iZyMySQL.GetStringFromDBString(myReader["log_commentaire"]);
 			return myItem;
 		}
 
@@ -103,16 +104,17 @@ namespace ServerMonitoring_fw.DAL
 				StringBuilder mySql = new StringBuilder();
 				mySql.Append("INSERT INTO `Log` ");
 				mySql.Append("(`idProjet`, `libelle`, ");
-				mySql.Append("`cheminFichier` )");
+				mySql.Append("`cheminFichier`, commentaire )");
 				mySql.Append(" VALUES ");
 				mySql.Append("(@idProjet, @libelle, ");
-				mySql.Append("@cheminFichier );");
+				mySql.Append("@cheminFichier, @commentaire );");
 				mySql.Append("SELECT LAST_INSERT_ID(); ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@idProjet", myItem.idProjet);
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myCommand.Parameters.AddWithValue("@cheminFichier", myItem.cheminFichier);
+				myCommand.Parameters.AddWithValue("@commentaire", myItem.commentaire);
 				myConnection.Open();
 				myItem.id = iZyMySQL.GetIntFromDBInt(myCommand.ExecuteScalar());
 				myConnection.Close();
@@ -129,7 +131,8 @@ namespace ServerMonitoring_fw.DAL
 				mySql.Append("UPDATE `Log` SET ");
 				mySql.Append("`idProjet` = @idProjet, ");
 				mySql.Append("`libelle` = @libelle, ");
-				mySql.Append("`cheminFichier` = @cheminFichier ");
+				mySql.Append("`cheminFichier` = @cheminFichier, ");
+				mySql.Append("`commentaire` = @commentaire ");
 				mySql.Append("WHERE `id` = @id ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
@@ -137,6 +140,7 @@ namespace ServerMonitoring_fw.DAL
 				myCommand.Parameters.AddWithValue("@idProjet", myItem.idProjet);
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myCommand.Parameters.AddWithValue("@cheminFichier", myItem.cheminFichier);
+				myCommand.Parameters.AddWithValue("@commentaire", myItem.commentaire);
 				myConnection.Open();
 				myCommand.ExecuteNonQuery();
 				myConnection.Close();
