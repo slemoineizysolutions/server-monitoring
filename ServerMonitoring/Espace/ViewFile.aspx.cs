@@ -41,6 +41,7 @@ public partial class Espace_ViewFile : BasePage
 						else // c'est un fichier
 						{
 							pnlListeFichier.Visible = false;
+							pnlContenuFichier.CssClass += " visible";
 
 							icon_file.Visible = true;
 							DisplayFichierContenu(myLog.cheminFichier);
