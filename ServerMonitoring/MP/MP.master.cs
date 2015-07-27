@@ -46,8 +46,8 @@ public partial class MP_MP : System.Web.UI.MasterPage
 
 	}
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
+	protected void Page_Load(object sender, EventArgs e)
+	{
 		Utilisateur user = (Utilisateur)MySession.GetSession("user");
 		if (user != null)
 		{
@@ -64,7 +64,7 @@ public partial class MP_MP : System.Web.UI.MasterPage
 				}
 			}
 		}
-    }
+	}
 
 	protected void MenuInit()
 	{
@@ -73,5 +73,10 @@ public partial class MP_MP : System.Web.UI.MasterPage
 		hlMenuServeurs.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
 		hlMenuProjets.NavigateUrl = "~/Espace/Projets.aspx" + MySession.GenerateGetParams();
 		hlMenuUtilisateurs.NavigateUrl = "~/Espace/Utilisateurs.aspx" + MySession.GenerateGetParams();
+	}
+	protected void btnDeconnexion_Click(object sender, EventArgs e)
+	{
+		MySession.LogOut();
+		Response.Redirect("~/Default.aspx" + MySession.GenerateGetParams());
 	}
 }

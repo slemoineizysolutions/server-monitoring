@@ -24,9 +24,12 @@
     <![endif]-->
 	<link rel="stylesheet" type="text/css" href="/CSS/flat-ui.css" />
 	<link rel="stylesheet" type="text/css" href="/CSS/style.css" />
+	<link rel="stylesheet" type="text/css" href="/CSS/jquery-ui.min.css" />
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="/js/jquery-1.11.3.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/jquery.sorttable.js"></script>
 
 	<asp:ContentPlaceHolder ID="head" runat="server">
 	</asp:ContentPlaceHolder>
@@ -80,6 +83,12 @@
 								<i class="fa fa-users"></i>
 								Utilisateurs
 							</asp:HyperLink>
+						</li>
+						<li class="menu-item">
+							<asp:LinkButton runat="server" ID="btnDeconnexion" OnClick="btnDeconnexion_Click">
+								<i class="fa fa-power-off"></i>
+								Se déconnecter
+							</asp:LinkButton>
 						</li>
 					</ul>
 				</div>
