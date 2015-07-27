@@ -8,10 +8,12 @@
         <EntityContainer Name="server_monitoringModelStoreContainer">
           <EntitySet Name="BaseDonnee" EntityType="server_monitoringModel.Store.BaseDonnee" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="EnumTheme" EntityType="server_monitoringModel.Store.EnumTheme" store:Type="Tables" Schema="server_monitoring" />
+          <EntitySet Name="EnumTypeFavoris" EntityType="server_monitoringModel.Store.EnumTypeFavoris" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="Log" EntityType="server_monitoringModel.Store.Log" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="Projet" EntityType="server_monitoringModel.Store.Projet" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="Serveur" EntityType="server_monitoringModel.Store.Serveur" store:Type="Tables" Schema="server_monitoring" />
           <EntitySet Name="Utilisateur" EntityType="server_monitoringModel.Store.Utilisateur" store:Type="Tables" Schema="server_monitoring" />
+          <EntitySet Name="UtilisateurFavoris" EntityType="server_monitoringModel.Store.UtilisateurFavoris" store:Type="Tables" Schema="server_monitoring" />
         </EntityContainer>
         <EntityType Name="BaseDonnee">
           <Key>
@@ -33,6 +35,13 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="cssClass" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EnumTypeFavoris">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -71,6 +80,16 @@
           <Property Name="login" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="password" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="UtilisateurFavoris">
+          <Key>
+            <PropertyRef Name="idUtilisateur" />
+            <PropertyRef Name="idEntite" />
+            <PropertyRef Name="idType" />
+          </Key>
+          <Property Name="idUtilisateur" Type="int" Nullable="false" />
+          <Property Name="idEntite" Type="int" Nullable="false" />
+          <Property Name="idType" Type="int" Nullable="false" />
+        </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -82,6 +101,8 @@
           <EntitySet Name="Utilisateur" EntityType="server_monitoringModel.Utilisateur" />
           <EntitySet Name="EnumTheme" EntityType="server_monitoringModel.EnumTheme" />
           <EntitySet Name="Projet" EntityType="server_monitoringModel.Projet" />
+          <EntitySet Name="EnumTypeFavoris" EntityType="server_monitoringModel.EnumTypeFavoris" />
+          <EntitySet Name="UtilisateurFavoris" EntityType="server_monitoringModel.UtilisateurFavoris" />
         </EntityContainer>
         <EntityType Name="BaseDonnee">
           <Key>
@@ -140,6 +161,23 @@
           <Property Type="Int32" Name="idTheme" Nullable="false" />
           <Property Type="String" Name="urlProd" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="urlTest" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EnumTypeFavoris">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UtilisateurFavoris">
+          <Key>
+            <PropertyRef Name="idUtilisateur" />
+            <PropertyRef Name="idEntite" />
+            <PropertyRef Name="idType" />
+          </Key>
+          <Property Type="Int32" Name="idUtilisateur" Nullable="false" />
+          <Property Type="Int32" Name="idEntite" Nullable="false" />
+          <Property Type="Int32" Name="idType" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -208,6 +246,23 @@
                 <ScalarProperty Name="idTheme" ColumnName="idTheme" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnumTypeFavoris">
+            <EntityTypeMapping TypeName="server_monitoringModel.EnumTypeFavoris">
+              <MappingFragment StoreEntitySet="EnumTypeFavoris">
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UtilisateurFavoris">
+            <EntityTypeMapping TypeName="server_monitoringModel.UtilisateurFavoris">
+              <MappingFragment StoreEntitySet="UtilisateurFavoris">
+                <ScalarProperty Name="idType" ColumnName="idType" />
+                <ScalarProperty Name="idEntite" ColumnName="idEntite" />
+                <ScalarProperty Name="idUtilisateur" ColumnName="idUtilisateur" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

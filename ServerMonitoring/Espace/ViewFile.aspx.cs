@@ -23,7 +23,10 @@ public partial class Espace_ViewFile : BasePage
 				if (myLog != null)
 				{
 					lblNomFichier.Text = myLog.myProjet.libelle + " - " + myLog.libelle;
-					litFileContent.Text = File.ReadAllText(myLog.cheminFichier);
+					if (File.Exists(myLog.cheminFichier))
+						litFileContent.Text = File.ReadAllText(myLog.cheminFichier);
+					else
+						litFileContent.Text = "Le fichier n'existe pas ou le chemin est inaccessible";
 					lblCheminFichier.Text = myLog.cheminFichier;
 					pnlHeader.CssClass += " " + myLog.myProjet.myTheme.cssClass;
 				}

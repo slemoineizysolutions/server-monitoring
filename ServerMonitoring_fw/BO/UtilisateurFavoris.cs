@@ -12,12 +12,10 @@ namespace ServerMonitoring_fw
     using System;
     using System.Collections.Generic;
     
-    public partial class Projet
+    public partial class UtilisateurFavoris
     {
-        public int id { get; set; }
-        public string libelle { get; set; }
-        public int idTheme { get; set; }
-        public string urlProd { get; set; }
-        public string urlTest { get; set; }
+        public int idUtilisateur { get; set; }
+        public int idEntite { get; set; }
+        public int idType { get; set; }
     }
 }

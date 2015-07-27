@@ -11,36 +11,32 @@ using ServerMonitoring_fw.BIZ;
 
 namespace ServerMonitoring_fw.DAL
 {
-	public partial class ProjetDB
+	public partial class EnumTypeFavorisDB
 	{
 		#region LOAD / FIND
 
 		private static string GetSelectFields()
 		{
 			StringBuilder mySql = new StringBuilder();
-			mySql.Append("projet.id AS projet_id, projet.libelle AS projet_libelle, projet.idTheme AS projet_idTheme, ");
-			mySql.Append("projet.urlProd AS projet_urlProd, projet.urlTest AS projet_urlTest ");
+			mySql.Append("enumtypefavoris.id AS enumtypefavoris_id, enumtypefavoris.libelle AS enumtypefavoris_libelle ");
 			return mySql.ToString();
 		}
 
-		private static Projet LoadADO(MySqlDataReader myReader)
+		private static EnumTypeFavoris LoadADO(MySqlDataReader myReader)
 		{
-			Projet myItem = new Projet();
-			myItem.id = iZyMySQL.GetIntFromDBInt(myReader["projet_id"]);
-			myItem.libelle = iZyMySQL.GetStringFromDBString(myReader["projet_libelle"]);
-			myItem.idTheme = iZyMySQL.GetIntFromDBInt(myReader["projet_idTheme"]);
-			myItem.urlProd = iZyMySQL.GetStringFromDBString(myReader["projet_urlProd"]);
-			myItem.urlTest = iZyMySQL.GetStringFromDBString(myReader["projet_urlTest"]);
+			EnumTypeFavoris myItem = new EnumTypeFavoris();
+			myItem.id = iZyMySQL.GetIntFromDBInt(myReader["enumtypefavoris_id"]);
+			myItem.libelle = iZyMySQL.GetStringFromDBString(myReader["enumtypefavoris_libelle"]);
 			return myItem;
 		}
 
-		public static Projet Load(int id)
+		public static EnumTypeFavoris Load(int id)
 		{
-			Projet myItem = null;
+			EnumTypeFavoris myItem = null;
 			StringBuilder mySql = new StringBuilder();
 			mySql.Append("SELECT ");
 			mySql.Append(GetSelectFields() + " ");
-			mySql.Append("FROM `Projet` projet ");
+			mySql.Append("FROM `EnumTypeFavoris` enumtypefavoris ");
 			mySql.Append("WHERE `id` = @id ");
 			using (MySqlConnection myConnection = new MySqlConnection(Param.MySQLConnectionString))
 			{
@@ -62,14 +58,14 @@ namespace ServerMonitoring_fw.DAL
 			return myItem;
 		}
 
-		public static List<Projet> FindAll()
+		public static List<EnumTypeFavoris> FindAll()
 		{
-			Projet myItem = null;
-			List<Projet> listItem = new List<Projet>();
+			EnumTypeFavoris myItem = null;
+			List<EnumTypeFavoris> listItem = new List<EnumTypeFavoris>();
 			StringBuilder mySql = new StringBuilder();
 			mySql.Append("SELECT ");
 			mySql.Append(GetSelectFields() + " ");
-			mySql.Append("FROM `Projet` projet ");
+			mySql.Append("FROM `EnumTypeFavoris` enumtypefavoris ");
 			mySql.Append("WHERE 1 ");
 			using (MySqlConnection myConnection = new MySqlConnection(Param.MySQLConnectionString))
 			{
@@ -97,24 +93,19 @@ namespace ServerMonitoring_fw.DAL
 
 		#region INSERT / UPDATE / DELETE
 
-		public static Projet Insert(Projet myItem)
+		public static EnumTypeFavoris Insert(EnumTypeFavoris myItem)
 		{
 			using (MySqlConnection myConnection = new MySqlConnection(Param.MySQLConnectionString))
 			{
 				StringBuilder mySql = new StringBuilder();
-				mySql.Append("INSERT INTO `Projet` ");
-				mySql.Append("(`libelle`, `idTheme`, ");
-				mySql.Append("`urlProd`, `urlTest` )");
+				mySql.Append("INSERT INTO `EnumTypeFavoris` ");
+				mySql.Append("(`libelle` )");
 				mySql.Append(" VALUES ");
-				mySql.Append("(@libelle, @idTheme, ");
-				mySql.Append("@urlProd, @urlTest );");
+				mySql.Append("(@libelle );");
 				mySql.Append("SELECT LAST_INSERT_ID(); ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
-				myCommand.Parameters.AddWithValue("@idTheme", myItem.idTheme);
-				myCommand.Parameters.AddWithValue("@urlProd", myItem.urlProd);
-				myCommand.Parameters.AddWithValue("@urlTest", myItem.urlTest);
 				myConnection.Open();
 				myItem.id = iZyMySQL.GetIntFromDBInt(myCommand.ExecuteScalar());
 				myConnection.Close();
@@ -123,24 +114,18 @@ namespace ServerMonitoring_fw.DAL
 			return myItem;
 		}
 
-		public static Projet Update(Projet myItem)
+		public static EnumTypeFavoris Update(EnumTypeFavoris myItem)
 		{
 			using (MySqlConnection myConnection = new MySqlConnection(Param.MySQLConnectionString))
 			{
 				StringBuilder mySql = new StringBuilder();
-				mySql.Append("UPDATE `Projet` SET ");
-				mySql.Append("`libelle` = @libelle, ");
-				mySql.Append("`idTheme` = @idTheme, ");
-				mySql.Append("`urlProd` = @urlProd, ");
-				mySql.Append("`urlTest` = @urlTest ");
+				mySql.Append("UPDATE `EnumTypeFavoris` SET ");
+				mySql.Append("`libelle` = @libelle ");
 				mySql.Append("WHERE `id` = @id ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@id", myItem.id);
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
-				myCommand.Parameters.AddWithValue("@idTheme", myItem.idTheme);
-				myCommand.Parameters.AddWithValue("@urlProd", myItem.urlProd);
-				myCommand.Parameters.AddWithValue("@urlTest", myItem.urlTest);
 				myConnection.Open();
 				myCommand.ExecuteNonQuery();
 				myConnection.Close();
@@ -155,7 +140,7 @@ namespace ServerMonitoring_fw.DAL
 			using (MySqlConnection myConnection = new MySqlConnection(Param.MySQLConnectionString))
 			{
 				StringBuilder mySql = new StringBuilder();
-				mySql.Append("DELETE FROM `Projet` WHERE `id` = @id; ");
+				mySql.Append("DELETE FROM `EnumTypeFavoris` WHERE `id` = @id; ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@id", id);

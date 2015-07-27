@@ -42,5 +42,39 @@ namespace ServerMonitoring_fw.DAL
 			}
 			return listItem;
 		}
+
+		public static List<Log> FindFavoris(int idUtilisateur)
+		{
+			Log myItem = null;
+			List<Log> listItem = new List<Log>();
+			StringBuilder mySql = new StringBuilder();
+			mySql.Append("SELECT ");
+			mySql.Append(GetSelectFields() + " ");
+			mySql.Append("FROM `Log` log ");
+			mySql.Append("JOIN `UtilisateurFavoris` utilisateurfavoris ON utilisateurfavoris.idEntite = log.id ");
+			mySql.Append("WHERE utilisateurfavoris.idType = @idType AND utilisateurfavoris.idUtilisateur = @idUtilisateur");
+			using (MySqlConnection myConnection = new MySqlConnection(Param.MySQLConnectionString))
+			{
+				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
+				myCommand.CommandType = CommandType.Text;
+				myCommand.Parameters.AddWithValue("@idType", EnumTypeFavoris.LOG);
+				myCommand.Parameters.AddWithValue("@idUtilisateur", idUtilisateur);
+				myConnection.Open();
+				using (MySqlDataReader myReader = myCommand.ExecuteReader())
+				{
+					if (myReader.HasRows)
+					{
+						while (myReader.Read())
+						{
+							myItem = LoadADO(myReader);
+							listItem.Add(myItem);
+						}
+					}
+					myReader.Close();
+				}
+				myConnection.Close();
+			}
+			return listItem;
+		}
 	}
 }

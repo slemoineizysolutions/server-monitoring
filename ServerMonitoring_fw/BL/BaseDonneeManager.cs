@@ -65,5 +65,10 @@ namespace ServerMonitoring_fw
 		{
 			return BaseDonneeDB.FindAll(idProjet);
 		}
+
+		public static List<BaseDonnee> FindFavoris(int idUtilisateur)
+		{
+			return BaseDonneeDB.FindFavoris(idUtilisateur);
+		}
 	}
 }

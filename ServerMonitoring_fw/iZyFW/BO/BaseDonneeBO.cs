@@ -16,6 +16,7 @@ namespace ServerMonitoring_fw
 	{
 		public Nullable<int> id { get; set; } 
 		public Nullable<int> idProjet { get; set; } 
+		public string libelle { get; set; } 
 		public string host { get; set; } 
 		public string databaseName { get; set; } 
 		public string user { get; set; } 

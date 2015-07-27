@@ -75,10 +75,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Context.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BO\EnumTypeFavorisBO.cs" />
     <Compile Include="BO\EnumTheme.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="BO\EnumThemeBO.cs" />
+    <Compile Include="BO\EnumTypeFavoris.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="BO\Log.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
@@ -93,28 +97,38 @@
     <Compile Include="BO\Utilisateur.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="BO\UtilisateurBO.cs" />
+    <Compile Include="BO\UtilisateurFavoris.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\BaseDonneeDB.cs" />
     <Compile Include="DAL\LogDB.cs" />
     <Compile Include="DAL\UtilisateurDB.cs" />
     <Compile Include="iZyFW\BL\BaseDonneeManager.cs" />
     <Compile Include="iZyFW\BL\EnumThemeManager.cs" />
+    <Compile Include="iZyFW\BL\EnumTypeFavorisManager.cs" />
     <Compile Include="iZyFW\BL\LogManager.cs" />
     <Compile Include="iZyFW\BL\ProjetManager.cs" />
     <Compile Include="iZyFW\BL\ServeurManager.cs" />
+    <Compile Include="iZyFW\BL\UtilisateurFavorisManager.cs" />
     <Compile Include="iZyFW\BL\UtilisateurManager.cs" />
     <Compile Include="iZyFW\BO\BaseDonneeBO.cs" />
     <Compile Include="iZyFW\BO\EnumThemeBO.cs" />
+    <Compile Include="iZyFW\BO\EnumTypeFavorisBO.cs" />
     <Compile Include="iZyFW\BO\LogBO.cs" />
     <Compile Include="iZyFW\BO\ProjetBO.cs" />
     <Compile Include="iZyFW\BO\ServeurBO.cs" />
     <Compile Include="iZyFW\BO\UtilisateurBO.cs" />
+    <Compile Include="iZyFW\BO\UtilisateurFavorisBO.cs" />
     <Compile Include="iZyFW\DAL\BaseDonneeDB.cs" />
     <Compile Include="iZyFW\DAL\EnumThemeDB.cs" />
+    <Compile Include="iZyFW\DAL\EnumTypeFavorisDB.cs" />
     <Compile Include="iZyFW\DAL\LogDB.cs" />
     <Compile Include="iZyFW\DAL\ProjetDB.cs" />
     <Compile Include="iZyFW\DAL\ServeurDB.cs" />
     <Compile Include="iZyFW\DAL\UtilisateurDB.cs" />
+    <Compile Include="iZyFW\DAL\UtilisateurFavorisDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

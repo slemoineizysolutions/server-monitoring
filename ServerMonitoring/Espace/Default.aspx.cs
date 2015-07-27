@@ -26,7 +26,7 @@ public partial class Espace_Default : BasePage
 		{
 			if (!IsPostBack)
 			{
-				Initialization();
+				Initialization(myUser);
 			}
 			PerfInit();
 		}
@@ -35,38 +35,47 @@ public partial class Espace_Default : BasePage
 	}
 
 	#region Init
-	public void Initialization()
+	public void Initialization(Utilisateur myUser)
 	{
-		List<Serveur> listeServeur = ServeurManager.FindAll();
-		if (listeServeur.Count > 0)
+		if (myUser != null)
 		{
-			lblNomServeur.Text = listeServeur[0].libelle;
-			lblIPLocale.Text = listeServeur[0].ipLocale;
-			lblIPPublique.Text = listeServeur[0].ipPublique;
+			List<Serveur> listeServeur = ServeurManager.FindAll();
+			if (listeServeur.Count > 0)
+			{
+				lblNomServeur.Text = listeServeur[0].libelle;
+				lblIPLocale.Text = listeServeur[0].ipLocale;
+				lblIPPublique.Text = listeServeur[0].ipPublique;
+			}
+
+			ListeLog_Init(myUser);
+			ListeBaseDonnees_Init(myUser);
 		}
-
-		ListeLog_Init();
-		ListeBaseDonnees_Init();
 	}
 
-	public void ListeLog_Init()
+	public void ListeLog_Init(Utilisateur myUser)
 	{
-		List<Log> logs = LogManager.FindAll();
+		if (myUser != null)
+		{
+			List<Log> logs = myUser.myLogFavoris;
 
-		rptLogs.DataSource = logs;
-		rptLogs.DataBind();
+			rptLogs.DataSource = logs;
+			rptLogs.DataBind();
 
-		upLogs.Update();
+			upLogs.Update();
+		}
 	}
 
-	public void ListeBaseDonnees_Init()
+	public void ListeBaseDonnees_Init(Utilisateur myUser)
 	{
-		List<BaseDonnee> bdd = BaseDonneeManager.FindAll();
+		if (myUser != null)
+		{
+			List<BaseDonnee> bdd = myUser.myBaseDonneeFavoris;
 
-		rptDatabase.DataSource = bdd;
-		rptDatabase.DataBind();
+			rptDatabase.DataSource = bdd;
+			rptDatabase.DataBind();
 
-		upDatabase.Update();
+			upDatabase.Update();
+		}
 	}
 	#endregion
 
@@ -153,7 +162,7 @@ public partial class Espace_Default : BasePage
 
 
 	#region Base de données
-	
+
 	protected void btnSaveDatabase_Click(object sender, EventArgs e)
 	{
 		LinkButton btn = (LinkButton)sender;

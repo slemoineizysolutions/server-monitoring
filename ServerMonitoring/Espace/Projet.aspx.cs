@@ -13,6 +13,9 @@ using iZyTools.Convertion;
 
 public partial class Espace_Projet : BasePage
 {
+	protected List<Log> ListeLogFavoris { get; set; }
+	protected List<BaseDonnee> ListeBaseDonneeFavoris { get; set; }
+
 	protected Projet GetProjet()
 	{
 		return ProjetManager.Load(iZyInt.ConvertStringToInt(MySession.GetParam("id")));
@@ -68,17 +71,19 @@ public partial class Espace_Projet : BasePage
 
 	public void ListeLog_Init(Projet myProjet = null)
 	{
+		Utilisateur myUser = GetUtilisateur();
 		if (myProjet == null) myProjet = GetProjet();
 		if (myProjet != null)
 		{
-
+			ListeLogFavoris = LogManager.FindFavoris(myUser.id);
 			List<Log> logs = LogManager.FindAll(myProjet.id);
 
 			rptLogs.DataSource = logs;
 			rptLogs.DataBind();
 
-			upLogs.Update();
+			
 		}
+		upLogs.Update();
 	}
 
 	public void ListeBaseDonnees_Init(Projet myProjet = null)
@@ -237,20 +242,63 @@ public partial class Espace_Projet : BasePage
 		}
 	}
 
+	protected void btnFavorisLog_Click(object sender, EventArgs e)
+	{
+		LinkButton btn = (LinkButton)sender;
+		Utilisateur myUser = GetUtilisateur();
+		if (btn != null && myUser != null)
+		{
+			int idLog = iZyInt.ConvertStringToInt(btn.CommandArgument);
+			if (btn.CommandName == "1") // on retire le favoris
+			{
+				UtilisateurFavorisManager.Delete(myUser.id, idLog, EnumTypeFavoris.LOG);
+			}
+			else // on rajoute un favoris
+			{
+				UtilisateurFavoris myFav = new UtilisateurFavoris() { idUtilisateur = myUser.id, idEntite = idLog, idType = EnumTypeFavoris.LOG };
+				UtilisateurFavorisManager.Insert(myFav);
+			}
+		}
+		ListeLog_Init();
+	}
+
 	protected void rptLogs_ItemDataBound(object sender, RepeaterItemEventArgs e)
 	{
 		if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
 		{
-			// ~/Espace/ViewFile.aspx
-			HyperLink btnSeeFile = (HyperLink)e.Item.FindControl("btnSeeFile");
 			Log myLog = (Log)e.Item.DataItem;
-			if (btnSeeFile != null && myLog != null)
+			if (myLog != null)
 			{
-				btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id + "&menuDisabled=1");
+				// ~/Espace/ViewFile.aspx
+				HyperLink btnSeeFile = (HyperLink)e.Item.FindControl("btnSeeFile");
+
+				if (btnSeeFile != null)
+				{
+					btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id + "&menuDisabled=1");
+				}
+
+				LinkButton btnFavorisLog = (LinkButton)e.Item.FindControl("btnFavorisLog");
+				if (ListeLogFavoris != null && btnFavorisLog != null)
+				{
+					if (ListeLogFavoris.Find(l => l.id == myLog.id) != null)
+					{
+						Control favOn = e.Item.FindControl("logFavorisOn");
+						if (favOn != null) favOn.Visible = true;
+						btnFavorisLog.CommandName = "1";
+					}
+					else
+					{
+						Control favOff = e.Item.FindControl("logFavorisOff");
+						if (favOff != null) favOff.Visible = true;
+						btnFavorisLog.CommandName = "0";
+					}
+				}
 			}
 		}
 
 	}
+
+
 	#endregion
 
 	#region Base de données
@@ -386,5 +434,6 @@ public partial class Espace_Projet : BasePage
 		}
 	}
 	#endregion
+
 
 }

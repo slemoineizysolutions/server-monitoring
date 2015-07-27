@@ -18,5 +18,10 @@ namespace ServerMonitoring_fw
 		{
 			return LogDB.FindAll(idProjet);
 		}
+
+		public static List<Log> FindFavoris(int idUtilisateur)
+		{
+			return LogDB.FindFavoris(idUtilisateur);
+		}
 	}
 }

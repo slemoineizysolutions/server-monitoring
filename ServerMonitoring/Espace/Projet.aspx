@@ -66,10 +66,10 @@
 						<div class="section">
 							<div class="section-title">
 								Logs
-				&nbsp;
-				<asp:LinkButton runat="server" CssClass="log-add" ID="btnAddLog" OnClick="btnAddLog_Click">
-					<i class="fa fa-plus add"></i>
-				</asp:LinkButton>
+								&nbsp;
+								<asp:LinkButton runat="server" CssClass="log-add" ID="btnAddLog" OnClick="btnAddLog_Click">
+									<i class="fa fa-plus add"></i>
+								</asp:LinkButton>
 							</div>
 
 							<div class="section-content">
@@ -114,14 +114,18 @@
 									<asp:Label runat="server" Text='<%# Eval("libelle") %>' CssClass="log-label-subtitle"></asp:Label>
 
 											<div class="log-buttons">
+												<asp:LinkButton runat="server" ID="btnFavorisLog" CssClass="log-btn" ToolTip="Favoris" OnClick="btnFavorisLog_Click" CommandArgument='<%# Eval("id") %>' CommandName="">
+													<i runat="server" id="logFavorisOn" visible="false" class="fa fa-star"></i>
+													<i runat="server" id="logFavorisOff" visible="false" class="fa fa-star-o"></i>
+												</asp:LinkButton>
 												<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Paramètres" OnClick="btnConfigLog_Click" CommandArgument='<%# Eval("id") %>'>
-									<i class="fa fa-cogs"></i>
+													<i class="fa fa-cogs"></i>
 												</asp:LinkButton>
 												<asp:HyperLink runat="server" CssClass="log-btn" ToolTip="Voir le fichier de log" ID="btnSeeFile" Target="_blank">
-									<i class="fa fa-eye"></i>
+													<i class="fa fa-eye"></i>
 												</asp:HyperLink>
 												<asp:LinkButton runat="server" CssClass="log-btn" ToolTip="Télécharger le fichier de log" OnClick="btnDownloadFichier_Click" CommandArgument='<%# Eval("id") %>'>
-									<i class="fa fa-download"></i>
+													<i class="fa fa-download"></i>
 												</asp:LinkButton>
 											</div>
 										</asp:Panel>
