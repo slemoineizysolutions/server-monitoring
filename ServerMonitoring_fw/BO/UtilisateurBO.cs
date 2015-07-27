@@ -8,6 +8,7 @@ namespace ServerMonitoring_fw
 {
 	public partial class Utilisateur
 	{
+		
 		private List<BaseDonnee> _myBaseDonneeFavoris
 		{
 			get;

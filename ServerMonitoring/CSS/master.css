@@ -104,7 +104,8 @@
 	border-bottom: 4px solid #2A72A1;
 }
 
-.page-title.blue * {
+.page-title.blue *,
+.textbox-icon.blue a {
 	color: #2980B9 !important;
 }
 
@@ -113,6 +114,11 @@
 .projet.blue:hover,
 .switch-options .switch-option.blue:hover {
 	background-color: #2A72A1;
+}
+
+.page-title.blue *:hover,
+.textbox-icon.blue a:hover {
+	color: #2A72A1 !important;
 }
 
 /* Orange*/
@@ -125,8 +131,9 @@
 	border-bottom: 4px solid #D98C10;
 }
 
-.page-title.orange * {
-	color: #D98C10 !important;
+.page-title.orange *,
+.textbox-icon.orange  {
+	color: #F39C12 !important;
 }
 
 .log.orange .log-btn:hover,
@@ -134,6 +141,11 @@
 .projet.orange:hover,
 .switch-options .switch-option.orange:hover {
 	background-color: #D98C10;
+}
+
+.page-title.orange *:hover,
+.textbox-icon.orange:hover  {
+	color: #D98C10 !important;
 }
 
 /* Rouge */
@@ -146,7 +158,8 @@
 	border-bottom: 4px solid #CD4435;
 }
 
-.page-title.red * {
+.page-title.red *,
+.textbox-icon.red {
 	color: #E74C3C !important;
 }
 
@@ -155,6 +168,11 @@
 .projet.red:hover,
 .switch-options .switch-option.red:hover {
 	background-color: #CD4435;
+}
+
+.page-title.red *:hover,
+.textbox-icon.red:hover {
+	color: #CD4435 !important;
 }
 
 /* Violet */
@@ -167,7 +185,8 @@
 	border-bottom: 4px solid #854D9C;
 }
 
-.page-title.purple * {
+.page-title.purple *,
+.textbox-icon.purple {
 	color: #9B59B6 !important;
 }
 
@@ -176,6 +195,11 @@
 .projet.purple:hover,
 .switch-options .switch-option.purple:hover {
 	background-color: #854D9C;
+}
+
+.page-title.purple *:hover,
+.textbox-icon.purple:hover {
+	color: #854D9C !important;
 }
 
 /* Gris */
@@ -188,7 +212,8 @@
 	border-bottom: 4px solid #7E8C8C;
 }
 
-.page-title.grey * {
+.page-title.grey *,
+.textbox-icon.grey {
 	color: #95A5A6 !important;
 }
 
@@ -197,6 +222,11 @@
 .projet.grey:hover,
 .switch-options .switch-option.grey:hover {
 	background-color: #7E8C8C;
+}
+
+.page-title.grey *:hover,
+.textbox-icon.grey:hover {
+	color: #7E8C8C !important;
 }
 
 /* Vert */
@@ -209,7 +239,8 @@
 	border-bottom: 4px solid #219452;
 }
 
-.page-title.green * {
+.page-title.green *,
+.textbox-icon.green {
 	color: #27AE60 !important;
 }
 
@@ -218,4 +249,9 @@
 .projet.green:hover,
 .switch-options .switch-option.green:hover {
 	background-color: #219452;
+}
+
+.page-title.green *:hover,
+.textbox-icon.green:hover {
+	color: #219452 !important;
 }

@@ -44,6 +44,8 @@ public partial class Espace_Projet : BasePage
 		{
 			projetName.Text = myProjet.libelle;
 			pnlPageTitle.CssClass = "page-title " + myProjet.myTheme.cssClass;
+			pnlUrlProd.CssClass = "textbox-icon " + myProjet.myTheme.cssClass;
+			pnlUrlTest.CssClass = "textbox-icon " + myProjet.myTheme.cssClass;
 
 			InfosGenerales_Init(myProjet);
 			ListeLog_Init(myProjet);
@@ -81,7 +83,7 @@ public partial class Espace_Projet : BasePage
 			rptLogs.DataSource = logs;
 			rptLogs.DataBind();
 
-			
+
 		}
 		upLogs.Update();
 	}
@@ -136,6 +138,18 @@ public partial class Espace_Projet : BasePage
 		}
 	}
 
+	protected void btnUrlProd_Click(object sender, EventArgs e)
+	{
+		string urlProd = tbUrlProd.Text;
+		ScriptManager.RegisterStartupScript(this, this.GetType(), "GoUrlProd", "window.open('" + urlProd + "', 'null', null);", true);
+
+	}
+
+	protected void btnUrlTest_Click(object sender, EventArgs e)
+	{
+		string urlTest = tbUrlTest.Text;
+		ScriptManager.RegisterStartupScript(this, this.GetType(), "GoUrlTest", "window.open('" + urlTest + "', 'null', null);", true);
+	}
 	#endregion
 
 	#region Logs
@@ -482,6 +496,7 @@ public partial class Espace_Projet : BasePage
 		}
 	}
 	#endregion
+
 
 
 

@@ -32,12 +32,22 @@
 									<tbody>
 										<tr>
 											<td>Site de production<br />
-												<asp:TextBox runat="server" ID="tbUrlProd" CssClass="form-control" placeholder="URL de production"></asp:TextBox>
+												<asp:Panel runat="server" ID="pnlUrlProd" CssClass="textbox-icon">
+													<asp:TextBox runat="server" ID="tbUrlProd" CssClass="form-control" placeholder="URL de production"></asp:TextBox>
+													<asp:LinkButton runat="server" ID="btnUrlProd" OnClick="btnUrlProd_Click">
+														<i class="fa fa-paper-plane"></i>
+													</asp:LinkButton>
+												</asp:Panel>
 											</td>
 										</tr>
 										<tr>
 											<td>Site de test<br />
-												<asp:TextBox runat="server" ID="tbUrlTest" CssClass="form-control" placeholder="URL de test"></asp:TextBox>
+												<asp:Panel runat="server" ID="pnlUrlTest" CssClass="textbox-icon">
+													<asp:TextBox runat="server" ID="tbUrlTest" CssClass="form-control" placeholder="URL de test"></asp:TextBox>
+													<asp:LinkButton runat="server" ID="btnUrlTest" OnClick="btnUrlTest_Click">
+														<i class="fa fa-paper-plane"></i>
+													</asp:LinkButton>
+												</asp:Panel>
 											</td>
 										</tr>
 										<tr>
