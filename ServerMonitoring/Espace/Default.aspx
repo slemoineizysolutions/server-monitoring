@@ -66,7 +66,7 @@
 			<ContentTemplate>
 				<div class="section">
 					<div class="section-title">
-						Fichiers
+						Fichiers/Répertoires
 						&nbsp;
 					</div>
 

@@ -75,7 +75,7 @@
 					<ContentTemplate>
 						<div class="section">
 							<div class="section-title">
-								Fichiers
+								Fichiers/Répertoires
 								&nbsp;
 								<asp:LinkButton runat="server" CssClass="log-add" ID="btnAddLog" OnClick="btnAddLog_Click">
 									<i class="fa fa-plus add"></i>
@@ -86,7 +86,7 @@
 
 								<asp:Panel runat="server" ID="pnlEditLog" CssClass="edit-log" Visible="false">
 									<div class="edit-log-title">
-										<asp:Label runat="server" ID="lblEditLogTitle" Text="Ajouter un fichier"></asp:Label>
+										<asp:Label runat="server" ID="lblEditLogTitle" Text="Ajouter un fichier/répertoire"></asp:Label>
 									</div>
 									<div class="edit-log-content">
 										<table>

@@ -1,6 +1,16 @@
-﻿.view-file-header,
+﻿html, body {
+	overflow-x: hidden;
+}
+
+.view-file-header,
 .header-space {
 	height: 60px;
+}
+
+.liste-fichier-contenu,
+.fichier-contenu {
+	top: 0px;
+	padding-top: 60px;
 }
 
 .view-file-header {
@@ -13,8 +23,13 @@
 	text-align: center;
 	padding-top: 8px;
 	overflow: hidden;
+	z-index: 9999;
 
 	transition: all 250ms;
+}
+
+.view-file-header i {
+	vertical-align: baseline;
 }
 
 .view-file-header-libelle {
@@ -29,23 +44,117 @@
 	transition: all 250ms;
 }
 
+.header-arrow {
+	margin-left: 5px;
+	width: 20px;
+	cursor: pointer;
 
-.view-file-header:hover {
+	transition: all 250ms;
+}
+
+.view-file-header.open {
 	padding-top: 5px;
 	height: 120px;
 }
 
-.view-file-header:hover .view-file-header-libelle {
+.view-file-header.open .header-arrow {
+	transform: rotate(180deg);
+}
+
+.view-file-header.open .view-file-header-libelle {
 	font-size: 22px;
 }
 
-.view-file-header:hover .view-file-header-chemin {
+.view-file-header.open .view-file-header-chemin {
 	padding-top: 0px;
 }
 
+/*******/
+.liste-fichier-contenu {
+	position: absolute;
+	width: 100%;
+	left: 0%;
+	padding-left: 10px;
 
+	transition: all 1000ms ease-in-out;
+}
+
+.liste-fichier-contenu.cache {
+	left: -100%;
+	/*width: 50%;*/
+}
+
+.liste-fichier-contenu .fichier,
+.liste-fichier-contenu .fichier:visited,
+.liste-fichier-contenu .fichier:active
+ {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+
+	transition: all 250ms;
+}
+
+.arrow-container {
+	    position: relative;
+    width: 30px;
+    height: 30px;
+    /*line-height: 30px;*/
+    display: inline-block;
+    padding-top: 14px;
+}
+
+.liste-fichier-contenu .fichier i {
+	position: absolute;
+	right: 500px;
+
+	transition: all 1s;
+}
+
+.liste-fichier-contenu .fichier:hover i{
+	right: 0%;
+}
+
+/*******/
+.fichier-contenu {
+	position: absolute;
+	width: 100%;
+	right: -100%;
+	border-left: 1px solid #CCC;
+	min-height: 100%;
+
+	transition: all 1000ms ease-in-out;
+}
+
+.fichier-contenu.visible {
+	right: 0%;
+}
+
+/*****/
+.btn-back,
+.btn-back:active,
+.btn-back:visited,
+.btn-back:hover
+
+ {
+	float: left;
+	opacity: 0;
+	margin-left: 15px;
+	color: #FFF !important;
+	cursor: pointer;
+
+	transition: all 250ms;
+}
+
+.btn-back.visible {
+	opacity: 1;
+}
+
+
+/****/
 pre {
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 0;
+	background-color: transparent;
 }

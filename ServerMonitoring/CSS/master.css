@@ -105,7 +105,8 @@
 }
 
 .page-title.blue *,
-.textbox-icon.blue a {
+.textbox-icon.blue a,
+.liste-fichier-contenu.blue .fichier {
 	color: #2980B9 !important;
 }
 
@@ -117,7 +118,8 @@
 }
 
 .page-title.blue *:hover,
-.textbox-icon.blue a:hover {
+.textbox-icon.blue a:hover,
+.liste-fichier-contenu.blue .fichier:hover {
 	color: #2A72A1 !important;
 }
 
@@ -132,7 +134,8 @@
 }
 
 .page-title.orange *,
-.textbox-icon.orange  {
+.textbox-icon.orange,
+.liste-fichier-contenu.orange .fichier  {
 	color: #F39C12 !important;
 }
 
@@ -144,7 +147,8 @@
 }
 
 .page-title.orange *:hover,
-.textbox-icon.orange:hover  {
+.textbox-icon.orange:hover,
+.liste-fichier-contenu.orange .fichier:hover  {
 	color: #D98C10 !important;
 }
 
@@ -159,7 +163,8 @@
 }
 
 .page-title.red *,
-.textbox-icon.red {
+.textbox-icon.red,
+.liste-fichier-contenu.red .fichier {
 	color: #E74C3C !important;
 }
 
@@ -171,7 +176,8 @@
 }
 
 .page-title.red *:hover,
-.textbox-icon.red:hover {
+.textbox-icon.red:hover,
+.liste-fichier-contenu.red .fichier:hover {
 	color: #CD4435 !important;
 }
 
@@ -186,7 +192,8 @@
 }
 
 .page-title.purple *,
-.textbox-icon.purple {
+.textbox-icon.purple,
+.liste-fichier-contenu.purple .fichier {
 	color: #9B59B6 !important;
 }
 
@@ -198,7 +205,8 @@
 }
 
 .page-title.purple *:hover,
-.textbox-icon.purple:hover {
+.textbox-icon.purple:hover,
+.liste-fichier-contenu.purple .fichier:hover {
 	color: #854D9C !important;
 }
 
@@ -213,7 +221,8 @@
 }
 
 .page-title.grey *,
-.textbox-icon.grey {
+.textbox-icon.grey,
+.liste-fichier-contenu.grey .fichier {
 	color: #95A5A6 !important;
 }
 
@@ -225,7 +234,8 @@
 }
 
 .page-title.grey *:hover,
-.textbox-icon.grey:hover {
+.textbox-icon.grey:hover,
+.liste-fichier-contenu.grey .fichier:hover {
 	color: #7E8C8C !important;
 }
 
@@ -240,7 +250,8 @@
 }
 
 .page-title.green *,
-.textbox-icon.green {
+.textbox-icon.green,
+.liste-fichier-contenu.green .fichier {
 	color: #27AE60 !important;
 }
 
@@ -252,6 +263,7 @@
 }
 
 .page-title.green *:hover,
-.textbox-icon.green:hover {
+.textbox-icon.green:hover,
+.liste-fichier-contenu.green .fichier:hover {
 	color: #219452 !important;
 }
