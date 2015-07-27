@@ -88,9 +88,11 @@ public partial class Espace_Projet : BasePage
 
 	public void ListeBaseDonnees_Init(Projet myProjet = null)
 	{
+		Utilisateur myUser = GetUtilisateur();
 		if (myProjet == null) myProjet = GetProjet();
 		if (myProjet != null)
 		{
+			ListeBaseDonneeFavoris = BaseDonneeManager.FindFavoris(myUser.id);
 			List<BaseDonnee> bdd = BaseDonneeManager.FindAll(myProjet.id);
 
 			rptDatabase.DataSource = bdd;
@@ -368,6 +370,52 @@ public partial class Espace_Projet : BasePage
 		}
 	}
 
+	protected void rptDatabase_ItemDataBound(object sender, RepeaterItemEventArgs e)
+	{
+		if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+		{
+			BaseDonnee myDatabase = (BaseDonnee)e.Item.DataItem;
+			if (myDatabase != null)
+			{
+				LinkButton btnFavorisBaseDonnee = (LinkButton)e.Item.FindControl("btnFavorisBaseDonnee");
+				if (ListeBaseDonneeFavoris != null && btnFavorisBaseDonnee != null)
+				{
+					if (ListeBaseDonneeFavoris.Find(l => l.id == myDatabase.id) != null)
+					{
+						Control favOn = e.Item.FindControl("dbFavorisOn");
+						if (favOn != null) favOn.Visible = true;
+						btnFavorisBaseDonnee.CommandName = "1";
+					}
+					else
+					{
+						Control favOff = e.Item.FindControl("dbFavorisOff");
+						if (favOff != null) favOff.Visible = true;
+						btnFavorisBaseDonnee.CommandName = "0";
+					}
+				}
+			}
+		}
+	}
+
+	protected void btnFavorisBaseDonnee_Click(object sender, EventArgs e)
+	{
+		LinkButton btn = (LinkButton)sender;
+		Utilisateur myUser = GetUtilisateur();
+		if (btn != null && myUser != null)
+		{
+			int idBaseDonnee = iZyInt.ConvertStringToInt(btn.CommandArgument);
+			if (btn.CommandName == "1") // on retire le favoris
+			{
+				UtilisateurFavorisManager.Delete(myUser.id, idBaseDonnee, EnumTypeFavoris.BASE_DONNEE);
+			}
+			else // on rajoute un favoris
+			{
+				UtilisateurFavoris myFav = new UtilisateurFavoris() { idUtilisateur = myUser.id, idEntite = idBaseDonnee, idType = EnumTypeFavoris.BASE_DONNEE };
+				UtilisateurFavorisManager.Insert(myFav);
+			}
+		}
+		ListeBaseDonnees_Init();
+	}
 
 	protected void btnConfigDatabase_Click(object sender, EventArgs e)
 	{
@@ -434,6 +482,8 @@ public partial class Espace_Projet : BasePage
 		}
 	}
 	#endregion
+
+
 
 
 }

@@ -144,10 +144,10 @@
 						<div class="section">
 							<div class="section-title">
 								Bases de données
-						&nbsp;
-				<asp:LinkButton runat="server" CssClass="log-add" ID="btnAddDatabase" OnClick="btnAddDatabase_Click">
-					<i class="fa fa-plus add"></i>
-				</asp:LinkButton>
+								&nbsp;
+								<asp:LinkButton runat="server" CssClass="log-add" ID="btnAddDatabase" OnClick="btnAddDatabase_Click">
+									<i class="fa fa-plus add"></i>
+								</asp:LinkButton>
 							</div>
 							<div class="section-content">
 
@@ -198,7 +198,7 @@
 								</asp:Panel>
 
 
-								<asp:Repeater runat="server" ID="rptDatabase">
+								<asp:Repeater runat="server" ID="rptDatabase" OnItemDataBound="rptDatabase_ItemDataBound">
 									<ItemTemplate>
 
 										<div class="database-container">
@@ -207,14 +207,18 @@
 													<asp:Label runat="server" Text='<%# Eval("libelle") %>'></asp:Label>
 												</div>
 												<div class="database-buttons">
-													<asp:LinkButton runat="server" CssClass="database-btn third" ID="btnConfigDatabase" OnClick="btnConfigDatabase_Click" CommandArgument='<%# Eval("id") %>'>
-												<i class="fa fa-cogs"></i>
+													<asp:LinkButton runat="server" ID="btnFavorisBaseDonnee" CssClass="database-btn fourth" ToolTip="Favoris" OnClick="btnFavorisBaseDonnee_Click" CommandArgument='<%# Eval("id") %>' CommandName="">
+														<i runat="server" id="dbFavorisOn" visible="false" class="fa fa-star"></i>
+														<i runat="server" id="dbFavorisOff" visible="false" class="fa fa-star-o"></i>
 													</asp:LinkButton>
-													<asp:LinkButton runat="server" CssClass="database-btn third" ID="btnSaveDatabase" OnClick="btnSaveDatabase_Click" CommandArgument='<%# Eval("id") %>'>
-												<i class="fa fa-floppy-o"></i>
+													<asp:LinkButton runat="server" CssClass="database-btn fourth" ID="btnConfigDatabase" OnClick="btnConfigDatabase_Click" CommandArgument='<%# Eval("id") %>'>
+														<i class="fa fa-cogs"></i>
 													</asp:LinkButton>
-													<asp:LinkButton runat="server" CssClass="database-btn third" ID="btnDownload" OnClick="btnDownload_Click" CommandArgument='<%# Eval("id") %>'>
-												<i class="fa fa-download"></i>
+													<asp:LinkButton runat="server" CssClass="database-btn fourth" ID="btnSaveDatabase" OnClick="btnSaveDatabase_Click" CommandArgument='<%# Eval("id") %>'>
+														<i class="fa fa-floppy-o"></i>
+													</asp:LinkButton>
+													<asp:LinkButton runat="server" CssClass="database-btn fourth" ID="btnDownload" OnClick="btnDownload_Click" CommandArgument='<%# Eval("id") %>'>
+														<i class="fa fa-download"></i>
 													</asp:LinkButton>
 												</div>
 											</asp:Panel>

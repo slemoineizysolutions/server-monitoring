@@ -152,8 +152,8 @@
 	width: 50%;
 }
 
-.database-btn.third {
-	width: 33% !important;
+.database-btn.fourth {
+	width: 25% !important;
 }
 
 .database-btn:first-child {
@@ -164,9 +164,6 @@
 	border-radius: 0 6px 6px 0;
 }
 
-.database-btn.third:last-child {
-	width: 34% !important;
-}
 
 
 /*** Edit log ***/
