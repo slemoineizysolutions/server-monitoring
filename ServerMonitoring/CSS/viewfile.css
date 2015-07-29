@@ -95,25 +95,6 @@
 	transition: all 250ms;
 }
 
-.arrow-container {
-	    position: relative;
-    width: 30px;
-    height: 30px;
-    /*line-height: 30px;*/
-    display: inline-block;
-    padding-top: 14px;
-}
-
-.liste-fichier-contenu .fichier i {
-	position: absolute;
-	right: 500px;
-
-	transition: all 1s;
-}
-
-.liste-fichier-contenu .fichier:hover i{
-	right: 0%;
-}
 
 /*******/
 .fichier-contenu {

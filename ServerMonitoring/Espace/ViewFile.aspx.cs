@@ -76,14 +76,35 @@ public partial class Espace_ViewFile : BasePage
 			litFileContent.Text = "Le fichier n'existe pas ou le chemin est inaccessible";
 	}
 
+
+
+	public class Fichier
+	{
+		public string chemin { get; set; }
+		public string nom { get; set; }
+	}
+
+	public class Repertoire
+	{
+		public string chemin { get; set; }
+		public string nom { get; set; }
+	}
+
 	protected void DisplayListeFichiers(string cheminRepertoire)
 	{
 		if (Directory.Exists(cheminRepertoire))
 		{
-			string[] listeFichiers = Directory.GetFiles(cheminRepertoire);
-			rptListeFichiers.DataSource = listeFichiers;
+			string[] arrayFichiers = Directory.GetFiles(cheminRepertoire);
+
+			List<Fichier> listeFichiers = arrayFichiers.Select(f => new Fichier() { chemin = f, nom = Path.GetFileName(f) }).ToList();
+			rptListeFichiers.DataSource = listeFichiers.OrderBy(f => f.nom);
 			rptListeFichiers.DataBind();
 
+
+			string[] listeFolder = Directory.GetDirectories(cheminRepertoire);
+			List<Repertoire> listeRepertoire = listeFolder.Select(f => new Repertoire() { chemin = f, nom = Path.GetFileName(f) }).ToList();
+			rptListeFolder.DataSource = listeRepertoire.OrderBy(f => f.nom);
+			rptListeFolder.DataBind();
 		}
 	}
 
@@ -96,6 +117,21 @@ public partial class Espace_ViewFile : BasePage
 
 			ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowFileDelay", "ShowFileDelay();", true);
 			upFile.Update();
+		}
+	}
+	protected void btnGoFolder_Click(object sender, EventArgs e)
+	{
+
+	}
+	protected void btnGoBackListe_Click(object sender, EventArgs e)
+	{
+		int idLog = iZyInt.ConvertStringToInt(MySession.GetParam("idLog"));
+		Log myLog = LogManager.Load(idLog);
+		if (myLog != null)
+		{
+			DisplayListeFichiers(myLog.cheminFichier);
+			ScriptManager.RegisterStartupScript(this, this.GetType(), "HideFileDelay", "HideFileDelay();", true);
+			upGeneral.Update();
 		}
 	}
 }

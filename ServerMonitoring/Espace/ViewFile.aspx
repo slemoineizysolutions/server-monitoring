@@ -18,11 +18,17 @@
 		}
 
 
+		function HideFileDelay() {
+			console.log("hide file delay");
+			setTimeout(HideFile, 1000);
+		}
+
 		function HideFile() {
+			console.log("hide file ");
 			$(".liste-fichier-contenu").removeClass("cache");
 			$(".fichier-contenu").removeClass("visible");
 			$(".btn-back").removeClass("visible");
-			console.log("showfile");
+			console.log("hidefile");
 		}
 
 		function OpenCloseHeader() {
@@ -31,9 +37,9 @@
 	</script>
 
 	<asp:Panel runat="server" ID="pnlHeader" CssClass="view-file-header">
-		<a class="btn-back" onclick="HideFile()">
+		<asp:LinkButton runat="server" CssClass="btn-back" OnClick="btnGoBackListe_Click">
 			<i class="fa fa-arrow-circle-left fa-2x"></i>
-		</a>
+		</asp:LinkButton>
 
 		<asp:Label runat="server" ID="lblNomFichier" CssClass="view-file-header-libelle"></asp:Label>
 		&nbsp;
@@ -52,21 +58,39 @@
 	<asp:UpdatePanel runat="server" ID="upGeneral" UpdateMode="Conditional">
 		<ContentTemplate>
 
-			<asp:Panel runat="server" ID="pnlListeFichier" CssClass="liste-fichier-contenu">
+			<asp:UpdatePanel runat="server" ID="upListes" UpdateMode="Conditional">
+				<ContentTemplate>
+					<asp:Panel runat="server" ID="pnlListeFichier" CssClass="liste-fichier-contenu">
 
-				<asp:Repeater runat="server" ID="rptListeFichiers">
-					<ItemTemplate>
-						<asp:LinkButton runat="server" ID="btnSeeFichier" CssClass="fichier" CommandArgument='<%# Container.DataItem.ToString() %>' OnClick="btnSeeFichier_Click">
-							<asp:Label runat="server" Text='<%# Container.DataItem.ToString() %>'></asp:Label>
+						<asp:Repeater runat="server" ID="rptListeFolder">
+							<ItemTemplate>
+								<asp:LinkButton runat="server" ID="btnGoFolder" CssClass="fichier" CommandArgument='<%# Eval("chemin") %>' OnClick="btnGoFolder_Click">
+							<i class="fa fa-folder-o fa-lg" title="Répertoire"></i>
+							<asp:Label runat="server" Text='<%# Eval("nom") %>'></asp:Label>
 							<%--<div class="arrow-container">
 								<i class="fa fa-arrow-right"></i>
 							</div>--%>
-						</asp:LinkButton>
-						<br />
-					</ItemTemplate>
-				</asp:Repeater>
+								</asp:LinkButton>
+								<br />
+							</ItemTemplate>
+						</asp:Repeater>
 
-			</asp:Panel>
+						<asp:Repeater runat="server" ID="rptListeFichiers">
+							<ItemTemplate>
+								<asp:LinkButton runat="server" ID="btnSeeFichier" CssClass="fichier" CommandArgument='<%# Eval("chemin") %>' OnClick="btnSeeFichier_Click">
+							<i class="fa fa-file-text-o fa-lg" title="Fichier"></i>
+							<asp:Label runat="server" Text='<%# Eval("nom") %>'></asp:Label>
+							<%--<div class="arrow-container">
+								<i class="fa fa-arrow-right"></i>
+							</div>--%>
+								</asp:LinkButton>
+								<br />
+							</ItemTemplate>
+						</asp:Repeater>
+
+					</asp:Panel>
+				</ContentTemplate>
+			</asp:UpdatePanel>
 
 			<asp:UpdatePanel runat="server" ID="upFile" UpdateMode="Conditional">
 				<ContentTemplate>
