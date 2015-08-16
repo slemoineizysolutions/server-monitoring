@@ -84,6 +84,12 @@
 	/*width: 50%;*/
 }
 
+.fichier-size {
+	display: inline-block;
+	margin-left: 25px;
+	font-size: 12px;
+}
+
 .liste-fichier-contenu .fichier,
 .liste-fichier-contenu .fichier:visited,
 .liste-fichier-contenu .fichier:active
