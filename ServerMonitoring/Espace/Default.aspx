@@ -9,59 +9,6 @@
 
 	<div class="content">
 
-		<div class="section">
-			<div class="section-title">
-				Serveur
-			</div>
-			<asp:UpdatePanel runat="server" ID="upPerformances" UpdateMode="Conditional">
-				<ContentTemplate>
-					<%--<asp:Timer runat="server" ID="timerPerf" Interval="1000" OnTick="timerPerf_Tick"></asp:Timer>--%>
-					<div class="section-content">
-						<table class="section-infos">
-							<tr>
-								<td>Nom du serveur</td>
-								<td>
-									<asp:Label runat="server" ID="lblNomServeur"></asp:Label>
-								</td>
-								<td rowspan="3">
-									<div class="perf-card cpu">
-										<div class="perf-card-title">
-											CPU
-										</div>
-										<div class="perf-card-valeur">
-											<asp:Label runat="server" ID="lblCPUValeur"></asp:Label>
-										</div>
-									</div>
-								</td>
-								<td rowspan="3">
-									<div class="perf-card ram">
-										<div class="perf-card-title">
-											RAM Dispo
-										</div>
-										<div class="perf-card-valeur">
-											<asp:Label runat="server" ID="lblRAMDispoValeur"></asp:Label>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>IP locale</td>
-								<td>
-									<asp:Label runat="server" ID="lblIPLocale"></asp:Label>
-								</td>
-							</tr>
-							<tr>
-								<td>IP publique</td>
-								<td>
-									<asp:Label runat="server" ID="lblIPPublique"></asp:Label>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</ContentTemplate>
-			</asp:UpdatePanel>
-		</div>
-
 		<asp:UpdatePanel runat="server" ID="upLogs" UpdateMode="Conditional">
 			<ContentTemplate>
 				<div class="section">

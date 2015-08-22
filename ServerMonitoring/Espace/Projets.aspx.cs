@@ -39,5 +39,5 @@ public partial class Espace_Projets : BasePage
 		{
 			Response.Redirect("~/Espace/Projet.aspx" + MySession.GenerateGetParams("id=" + btn.CommandArgument));
 		}
-	}
+	} 
 }

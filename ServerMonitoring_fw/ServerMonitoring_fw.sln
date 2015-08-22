@@ -26,6 +26,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ServerMonitoring", "http://
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerInfosMonitoring", "..\ServerInfosMonitoring\ServerInfosMonitoring.csproj", "{64238665-E024-4CB5-BF6C-84E92A350E56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{8095DAD0-6A18-4158-9C9B-170A2EAA4EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8095DAD0-6A18-4158-9C9B-170A2EAA4EA8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{8095DAD0-6A18-4158-9C9B-170A2EAA4EA8}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{64238665-E024-4CB5-BF6C-84E92A350E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64238665-E024-4CB5-BF6C-84E92A350E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64238665-E024-4CB5-BF6C-84E92A350E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64238665-E024-4CB5-BF6C-84E92A350E56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

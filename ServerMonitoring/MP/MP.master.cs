@@ -70,7 +70,7 @@ public partial class MP_MP : System.Web.UI.MasterPage
 	{
 		hlMenuMonCompte.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
 		hlMenuDashboard.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
-		hlMenuServeurs.NavigateUrl = "~/Espace/Default.aspx" + MySession.GenerateGetParams();
+		hlMenuServeurs.NavigateUrl = "~/Espace/Serveurs.aspx" + MySession.GenerateGetParams();
 		hlMenuProjets.NavigateUrl = "~/Espace/Projets.aspx" + MySession.GenerateGetParams();
 		hlMenuUtilisateurs.NavigateUrl = "~/Espace/Utilisateurs.aspx" + MySession.GenerateGetParams();
 	}

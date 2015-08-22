@@ -101,7 +101,6 @@
     <Compile Include="BO\UtilisateurFavoris.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="DAL\BaseDonneeDB.cs" />
     <Compile Include="DAL\LogDB.cs" />
     <Compile Include="DAL\UtilisateurDB.cs" />

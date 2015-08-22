@@ -13,6 +13,7 @@
 .content {
 	width: 1080px;
 	margin: auto;
+	margin-top: 50px;
 }
 
 .section {
@@ -26,6 +27,21 @@
 
 .section-content {
 	padding-top: 10px;
+}
+
+.textbox-icon {
+	position: relative;
+	width: 100%;
+}
+
+.textbox-icon a,
+.textbox-icon a:visited,
+.textbox-icon a:active {
+	text-decoration: none;
+	position: absolute;
+	right: 15px;
+	top: 5px;
+	transition: all 250ms;
 }
 
 
@@ -135,7 +151,7 @@
 
 .page-title.orange *,
 .textbox-icon.orange,
-.liste-fichier-contenu.orange .fichier  {
+.liste-fichier-contenu.orange .fichier {
 	color: #F39C12 !important;
 }
 
@@ -148,7 +164,7 @@
 
 .page-title.orange *:hover,
 .textbox-icon.orange:hover,
-.liste-fichier-contenu.orange .fichier:hover  {
+.liste-fichier-contenu.orange .fichier:hover {
 	color: #D98C10 !important;
 }
 

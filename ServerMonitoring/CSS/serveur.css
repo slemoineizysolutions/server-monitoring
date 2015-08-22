@@ -1,11 +1,11 @@
-﻿.projet-container {
+﻿.serveur-container {
 	position: relative;
 	float: left;
 	width: 25%;
 	padding: 10px;
 }
 
-.projet {
+.serveur {
 	display: block;
 	border-radius: 6px;
 	height: 120px;
@@ -15,6 +15,7 @@
 	text-align: center;
 	line-height: 90px;
 	font-size: 24px;
+	background-color: #415b76;
 }
 
 .serveur:hover,
@@ -37,47 +38,32 @@
 	width: 50%;
 }
 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes fadeOut {
-	0% {
-		opacity: 1;
-	}
-
-	90% {
-		opacity: 1;
-	}
-
-	100% {
-		opacity: 0;
-	}
-}
-
-/* Standard syntax */
-@keyframes fadeOut {
-	0% {
-		opacity: 1;
-	}
-
-	90% {
-		opacity: 1;
-	}
-
-	100% {
-		opacity: 0;
-	}
-}
-
-.projet-save-message {
+.serveur-save-message {
 	animation-name: fadeOut;
 	animation-duration: 6s;
 	opacity: 0;
 }
 
-.projet-save-message.success {
+.serveur-save-message.success {
 	color: #2ECC71;
 }
 
-.projet-save-message.error {
+.serveur-save-message.error {
 	color: #E74C3C;
 }
 
+.table-monitoring {
+	width: 100%;
+}
+
+.table-monitoring td {
+	width: 50%;
+	padding: 10px;
+}
+
+.table-monitoring canvas {
+	width: 540px;
+	max-width: 540px;
+	height: 400px;
+	max-height: 400px;
+}
