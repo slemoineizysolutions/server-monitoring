@@ -98,13 +98,61 @@ public partial class Espace_Serveur : BasePage
         Random rnd = new Random();
         for (int i = 0; i < 60; i++)
         {
-            //cpuValues.Add("0");
+			cpuValues.Add("0");
 
-            cpuValues.Add(rnd.Next(0, 100).ToString());
+			//cpuValues.Add(rnd.Next(0, 100).ToString());
         }
 
         CPUValues = cpuValues;
     }
+
+	protected void FillCPUValues()
+	{
+		List<string> cpuValues = CPUValues;
+		if (cpuValues == null) cpuValues = new List<string>();
+
+		List<string> cpuValuesNonZero = cpuValues.Where(v => !string.IsNullOrEmpty(v) && v != "0").ToList();
+		cpuValuesNonZero.Add(GetLastCPUValue());
+
+		if (cpuValuesNonZero.Count > 60) cpuValuesNonZero.RemoveAt(0);
+
+		cpuValues = new List<string>();
+		cpuValues.AddRange(cpuValuesNonZero);
+		for (int i = cpuValues.Count - 1; i < 60; i++)
+		{
+			cpuValues.Add("0");
+		}
+
+		CPUValues = cpuValues;
+	}
+
+	protected string GetLastCPUValue()
+	{
+		string val = "0";
+		try
+		{
+			string execPath = @"D:\Github\server-monitoring\ServerInfosMonitoring\bin\Debug\ServerInfosMonitoring.exe";
+
+			string resPath = Path.Combine(Path.GetDirectoryName(execPath), "cpu.txt");
+
+			ProcessStartInfo psi = new ProcessStartInfo();
+			psi.FileName = execPath;
+			psi.Arguments = "cpu";
+			psi.CreateNoWindow = true;
+			psi.WindowStyle = ProcessWindowStyle.Hidden;
+
+			Process proc = Process.Start(psi);
+			proc.WaitForExit();
+
+			val = File.ReadAllText(resPath);
+			val = val.Replace(",", ".");
+		}
+		catch (Exception e)
+		{
+
+		}
+		return val;
+	}
 
     protected void InitChartCPU()
     {
@@ -300,6 +348,9 @@ public partial class Espace_Serveur : BasePage
     {
         FillRAMValues();
         InitChartRAM();
+
+		FillCPUValues();
+		InitChartCPU();
 
         upMonitoring.Update();
     }
