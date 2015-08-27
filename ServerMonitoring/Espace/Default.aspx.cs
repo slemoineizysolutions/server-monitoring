@@ -38,7 +38,7 @@ public partial class Espace_Default : BasePage
     {
         if (myUser != null)
         {
-          
+
 
             ListeLog_Init(myUser);
             ListeBaseDonnees_Init(myUser);
@@ -72,8 +72,6 @@ public partial class Espace_Default : BasePage
     }
     #endregion
 
-
-
     #region LOGS
     protected void btnDownloadFichier_Click(object sender, EventArgs e)
     {
@@ -100,7 +98,7 @@ public partial class Espace_Default : BasePage
 
                     if (File.Exists(zipfile))
                     {
-                        Response.AppendHeader("content-disposition", "attachment; filename=" + fileName + "_pdf.zip");
+                        Response.AppendHeader("content-disposition", "attachment; filename=" + fileName + ".zip");
                         Response.ContentType = "application/zip";
                         Response.WriteFile(zipfile);
                     }
@@ -118,13 +116,20 @@ public partial class Espace_Default : BasePage
             Log myLog = (Log)e.Item.DataItem;
             if (btnSeeFile != null && myLog != null)
             {
-                btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id + "&menuDisabled=1");
+                bool? isDirectory = IsDirectory(myLog.cheminFichier);
+                if (isDirectory.HasValue)
+                {
+                    if (isDirectory.Value)
+                        btnSeeFile.NavigateUrl = "~/Espace/FileSystem.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id + "&menuDisabled=1");
+                    else
+
+                        btnSeeFile.NavigateUrl = "~/Espace/ViewFile.aspx" + MySession.GenerateGetParams("idLog=" + myLog.id + "&menuDisabled=1");
+                }
             }
         }
 
     }
     #endregion
-
 
     #region Base de données
 
@@ -169,5 +174,14 @@ public partial class Espace_Default : BasePage
     }
     #endregion
 
+    public bool? IsDirectory(string path)
+    {
+        if (Directory.Exists(path))
+            return true; // is a directory 
+        else if (File.Exists(path))
+            return false; // is a file 
+        else
+            return null; // is a nothing 
+    }
 
 }

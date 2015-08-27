@@ -23,8 +23,7 @@
 	text-align: center;
 	padding-top: 8px;
 	overflow: hidden;
-	z-index: 9999;
-
+	z-index: 9990;
 	transition: all 250ms;
 }
 
@@ -48,7 +47,6 @@
 	margin-left: 5px;
 	width: 20px;
 	cursor: pointer;
-
 	transition: all 250ms;
 }
 
@@ -75,7 +73,6 @@
 	width: 100%;
 	left: 0%;
 	padding-left: 10px;
-
 	transition: all 1000ms ease-in-out;
 }
 
@@ -90,15 +87,24 @@
 	font-size: 12px;
 }
 
-.liste-fichier-contenu .fichier,
-.liste-fichier-contenu .fichier:visited,
-.liste-fichier-contenu .fichier:active
- {
-	display: inline-block;
-	overflow: hidden;
-	position: relative;
+.liste-fichier-contenu .fichier td {
+	padding-top: 10px;
+}
 
+.liste-fichier-contenu .fichier a,
+.liste-fichier-contenu .fichier a:visited,
+.liste-fichier-contenu .fichier a:active {
+	color: inherit;
 	transition: all 250ms;
+}
+
+.fichier-actions {
+	padding-left: 30px;
+	font-size: 22px;
+}
+
+.fichier-actions a {
+	margin-right: 10px;
 }
 
 
@@ -109,7 +115,6 @@
 	right: -100%;
 	border-left: 1px solid #CCC;
 	min-height: 100%;
-
 	transition: all 1000ms ease-in-out;
 }
 
@@ -117,19 +122,122 @@
 	right: 0%;
 }
 
+/*********/
+.popup-fichier-contenu {
+	display: none;
+	position: fixed;
+	z-index: 9993;
+	top: 3%;
+	left: 5%;
+	width: 90%;
+	height: 95%;
+	background-color: #FFF;
+	border-radius: 5px;
+	overflow: auto;
+	transition: all 1000ms ease-in-out;
+}
+
+.popup-fichier-header {
+	padding-top: 10px;
+	padding-left: 15px;
+	height: 50px;
+	text-align: left;
+	color: #FFF;
+	position: relative;
+}
+
+.popup-fichier-nom {
+	font-weight: bold;
+}
+
+.popup-fichier-search {
+	display: inline-block;
+	margin-left: 30px;
+	border-radius: 3px;
+	background-color: #236087;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.popup-fichier-search i {
+	color: #2A72A1;
+}
+
+.popup-fichier-search input {
+	background-color: transparent;
+	border: 0;
+	color: #F5F5F5;
+	outline: none;
+	font-size: 13px;
+}
+
+.popup-close {
+	font-size: 18px;
+	position: absolute;
+	right: 15px;
+	cursor: pointer;
+}
+
+.popup-fichier-contenu-background {
+	display: none;
+	z-index: 9991;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #333;
+	opacity: 0.8;
+}
+
+.popup-fichier-contenu table td {
+	vertical-align: top;
+	line-height: 30px;
+}
+
+.popup-fichier-contenu table td:first-child {
+	padding-left: 5px;
+	padding-right: 10px;
+	background-color: #F0F0F0;
+	text-align: center;
+	font-family: 'Times New Roman', serif;
+	font-size: 14px;
+}
+
+.popup-fichier-contenu table td:last-child {
+	font-size: 14px;
+}
+
+.file-search-action,
+.file-search-action:active,
+.file-search-action:visited {
+	color: #F0F0F0;
+	font-size: 14px;
+	margin-left: 10px;
+}
+
+.file-search-action:hover {
+	color: #FFF;
+}
+
+.popup-visible {
+	display: block;
+}
+
+.text-marked {
+	color: red;
+}
+
 /*****/
 .btn-back,
 .btn-back:active,
 .btn-back:visited,
-.btn-back:hover
-
- {
+.btn-back:hover {
 	float: left;
 	opacity: 0;
 	margin-left: 15px;
 	color: #FFF !important;
 	cursor: pointer;
-
 	transition: all 250ms;
 }
 

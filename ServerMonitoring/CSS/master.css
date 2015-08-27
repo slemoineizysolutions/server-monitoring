@@ -129,6 +129,7 @@
 .log.blue .log-btn:hover,
 .database.blue .database-btn:hover,
 .projet.blue:hover,
+.popup-fichier-header.blue,
 .switch-options .switch-option.blue:hover {
 	background-color: #2A72A1;
 }
@@ -158,6 +159,7 @@
 .log.orange .log-btn:hover,
 .database.orange .database-btn:hover,
 .projet.orange:hover,
+.popup-fichier-header.orange,
 .switch-options .switch-option.orange:hover {
 	background-color: #D98C10;
 }
@@ -187,6 +189,7 @@
 .log.red .log-btn:hover,
 .database.red .database-btn:hover,
 .projet.red:hover,
+.popup-fichier-header.red,
 .switch-options .switch-option.red:hover {
 	background-color: #CD4435;
 }
@@ -216,6 +219,7 @@
 .log.purple .log-btn:hover,
 .database.purple .database-btn:hover,
 .projet.purple:hover,
+.popup-fichier-header.purple,
 .switch-options .switch-option.purple:hover {
 	background-color: #854D9C;
 }
@@ -245,6 +249,7 @@
 .log.grey .log-btn:hover,
 .database.grey .database-btn:hover,
 .projet.grey:hover,
+.popup-fichier-header.grey,
 .switch-options .switch-option.grey:hover {
 	background-color: #7E8C8C;
 }
@@ -274,6 +279,7 @@
 .log.green .log-btn:hover,
 .database.green .database-btn:hover,
 .projet.green:hover,
+.popup-fichier-header.green,
 .switch-options .switch-option.green:hover {
 	background-color: #219452;
 }
