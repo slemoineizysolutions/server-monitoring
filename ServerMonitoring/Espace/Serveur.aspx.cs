@@ -13,119 +13,99 @@ using System.IO;
 
 public partial class Espace_Serveur : BasePage
 {
-    protected List<string> CPUValues
-    {
-        get
-        {
-            return (List<string>)MySession.GetSession("Serveur-CPU-Values");
-        }
-        set
-        {
-            MySession.SetSession("Serveur-CPU-Values", value);
-        }
-    }
-    protected List<string> RAMValues
-    {
-        get
-        {
-            return (List<string>)MySession.GetSession("Serveur-RAM-Values");
-        }
-        set
-        {
-            MySession.SetSession("Serveur-RAM-Values", value);
-        }
-    }
-
-    protected Serveur GetServeur()
-    {
-        return ServeurManager.Load(iZyInt.ConvertStringToInt(MySession.GetParam("id")));
-    }
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        Utilisateur myUser = GetUtilisateur();
-        if (myUser != null)
-        {
-            if (!IsPostBack)
-            {
-                Initialization();
-            }
-        }
-        else
-            Response.Redirect("~/Default.aspx");
-    }
-
-    public void Initialization()
-    {
-        hlBackProjet.NavigateUrl = "~/Espace/Projets.aspx" + MySession.GenerateGetParams();
-
-        Serveur myServeur = GetServeur();
-        if (myServeur != null)
-        {
-            projetName.Text = myServeur.libelle;
-
-            InfosGenerales_Init(myServeur);
-
-            InitializationCPUValues();
-            InitChartCPU();
-
-            InitializationRAMValues();
-            InitChartRAM();
-        }
-    }
-
-    #region Infos Générales
-    protected void InfosGenerales_Init(Serveur myServeur = null)
-    {
-        if (myServeur == null) myServeur = GetServeur();
-        if (myServeur != null)
-        {
-            tbNomServeur.Text = myServeur.libelle;
-            tbIPLocale.Text = myServeur.ipLocale;
-            tbIPPublique.Text = myServeur.ipPublique;
-        }
-    }
-    protected void btnEditServeur_Click(object sender, EventArgs e)
-    {
-
-    }
-    #endregion
-
-    #region CPU
-    protected void InitializationCPUValues()
-    {
-        List<string> cpuValues = new List<string>();
-        Random rnd = new Random();
-        for (int i = 0; i < 60; i++)
-        {
-			cpuValues.Add("0");
-
-			//cpuValues.Add(rnd.Next(0, 100).ToString());
-        }
-
-        CPUValues = cpuValues;
-    }
-
-	protected void FillCPUValues()
+	protected List<string> CPUValues
 	{
-		List<string> cpuValues = CPUValues;
-		if (cpuValues == null) cpuValues = new List<string>();
-
-		List<string> cpuValuesNonZero = cpuValues.Where(v => !string.IsNullOrEmpty(v) && v != "0").ToList();
-		cpuValuesNonZero.Add(GetLastCPUValue());
-
-		if (cpuValuesNonZero.Count > 60) cpuValuesNonZero.RemoveAt(0);
-
-		cpuValues = new List<string>();
-		cpuValues.AddRange(cpuValuesNonZero);
-		for (int i = cpuValues.Count - 1; i < 60; i++)
+		get
 		{
-			cpuValues.Add("0");
+			return (List<string>)MySession.GetSession("Serveur-CPU-Values");
 		}
-
-		CPUValues = cpuValues;
+		set
+		{
+			MySession.SetSession("Serveur-CPU-Values", value);
+		}
+	}
+	protected List<string> RAMValues
+	{
+		get
+		{
+			return (List<string>)MySession.GetSession("Serveur-RAM-Values");
+		}
+		set
+		{
+			MySession.SetSession("Serveur-RAM-Values", value);
+		}
 	}
 
+	protected int TotalRAM
+	{
+		get
+		{
+			return (int)MySession.GetSession("Serveur-RAM-Total");
+		}
+		set
+		{
+			MySession.SetSession("Serveur-RAM-Total", value);
+		}
+	}
+
+	protected Serveur GetServeur()
+	{
+		return ServeurManager.Load(iZyInt.ConvertStringToInt(MySession.GetParam("id")));
+	}
+
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		Utilisateur myUser = GetUtilisateur();
+		if (myUser != null)
+		{
+			if (!IsPostBack)
+			{
+				Initialization();
+			}
+		}
+		else
+			Response.Redirect("~/Default.aspx");
+	}
+
+	public void Initialization()
+	{
+		hlBackProjet.NavigateUrl = "~/Espace/Serveurs.aspx" + MySession.GenerateGetParams();
+
+		Serveur myServeur = GetServeur();
+		if (myServeur != null)
+		{
+			projetName.Text = myServeur.libelle;
+
+			InfosGenerales_Init(myServeur);
+
+			Microsoft.VisualBasic.Devices.ComputerInfo cptInfo = new Microsoft.VisualBasic.Devices.ComputerInfo();
+			ulong totalRam = cptInfo.TotalPhysicalMemory;
+			TotalRAM = Convert.ToInt32((totalRam / 1024) / 1024);
+			//TotalRAM = Convert.ToInt32(cptInfo.TotalPhysicalMemory);
+
+			InitCPU();
+			InitRAM();
+		}
+	}
+
+	#region Infos Générales
+	protected void InfosGenerales_Init(Serveur myServeur = null)
+	{
+		if (myServeur == null) myServeur = GetServeur();
+		if (myServeur != null)
+		{
+			tbNomServeur.Text = myServeur.libelle;
+			tbIPLocale.Text = myServeur.ipLocale;
+			tbIPPublique.Text = myServeur.ipPublique;
+		}
+	}
+	protected void btnEditServeur_Click(object sender, EventArgs e)
+	{
+
+	}
+	#endregion
+
+	#region CPU
 	protected string GetLastCPUValue()
 	{
 		string val = "0";
@@ -154,204 +134,131 @@ public partial class Espace_Serveur : BasePage
 		return val;
 	}
 
-    protected void InitChartCPU()
-    {
-        List<string> cpuValues = CPUValues;
-        string script = string.Empty;
+	protected void InitCPU()
+	{
+		string lastCPUStr = GetLastCPUValue().Replace(".", ",");
+		decimal lastCPU = Decimal.Parse(lastCPUStr);
+		decimal lastCPURound = Math.Round(lastCPU);
+		pnlCPuCircle.CssClass = "c100 p" + lastCPURound + " big";
+		lblCPUValue.Text = lastCPURound + "%";
+	}
+	#endregion CPU
 
-        if (cpuValues != null && cpuValues.Count > 0)
-        {
-            script += "var lineChartCPU = {";
-            script += "labels : ['0 sec','";
-            for (int i = 0; i < cpuValues.Count - 1; i++)
-            {
-                if (i == cpuValues.Count - 2)
-                    script += "60 sec'],";
-                else
-                    script += "','";
-            }
+	#region RAM
 
-            script += "datasets : [";
-            script += "{";
-            script += "label: 'CPU',";
-            //script += "title: 'CPU',";
-            script += "fillColor : 'rgba(169,68,24,0.2)',";
-            script += "strokeColor : 'rgba(169,68,24,1)',";
-            script += "pointColor : 'rgba(169,68,24,1)',";
-            script += "pointStrokeColor : '#fff',";
-            script += "pointHighlightFill : '#fff',";
-            script += "pointHighlightStroke : 'rgba(169,68,24,1)',";
-            script += "data : [";
-            for (int i = 0; i < cpuValues.Count; i++)
-            {
-                if (i == cpuValues.Count - 1)
-                    script += cpuValues[i] + "]";
-                else
-                    script += cpuValues[i] + ",";
-            }
-            script += "}";
-            script += "]";
-            script += "};";
+	protected string GetLastRAMValue()
+	{
+		string val = "0";
+		try
+		{
+			string execPath = @"D:\Github\server-monitoring\ServerInfosMonitoring\bin\Debug\ServerInfosMonitoring.exe";
 
-            script += "function chartCPU(){";
-            script += "var ctx = document.getElementById('canvasCPU').getContext('2d');";
-            script += "window.myLine = new Chart(ctx).Line(lineChartCPU, {";
-            script += "responsive: true, bezierCurve : false, animation: false";
-            script += "});";
-            script += "}";
+			string resPath = Path.Combine(Path.GetDirectoryName(execPath), "ram.txt");
 
-            script += "$(function(){";
-            script += "chartCPU();";
-            script += "});";
+			ProcessStartInfo psi = new ProcessStartInfo();
+			psi.FileName = execPath;
+			psi.Arguments = "ram";
+			psi.CreateNoWindow = true;
+			psi.WindowStyle = ProcessWindowStyle.Hidden;
 
-            script += "Sys.WebForms"; /** add_endRequest pour relancer la fonction lors d'updates partielles, on fait un remove_endRequest avant au cas où (peut-être sans intéret ...) **/
-            script += ".PageRequestManager";
-            script += ".getInstance()";
-            script += ".remove_endRequest(chartCPU);";
-            script += "Sys.WebForms";
-            script += ".PageRequestManager";
-            script += ".getInstance()";
-            script += ".add_endRequest(chartCPU);";
+			Process proc = Process.Start(psi);
+			proc.WaitForExit();
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "chartCPU", script, true);
-        }
-    }
-    #endregion CPU
+			val = File.ReadAllText(resPath);
+		}
+		catch (Exception e)
+		{
 
-    #region RAM
-    protected void InitializationRAMValues()
-    {
-        List<string> ramValues = new List<string>();
-        Random rnd = new Random();
-        for (int i = 0; i < 60; i++)
-        {
-            ramValues.Add("0");
+		}
+		return val;
+	}
 
-            //ramValues.Add(rnd.Next(0, 100).ToString());
-        }
+	protected void InitChartRAM()
+	{
+		List<string> ramValues = RAMValues;
+		string script = string.Empty;
 
-        RAMValues = ramValues;
-    }
+		if (ramValues != null && ramValues.Count > 0)
+		{
+			script += "var lineChartRAM = {";
+			script += "labels : ['0 sec','";
+			for (int i = 0; i < ramValues.Count - 1; i++)
+			{
+				if (i == ramValues.Count - 2)
+					script += "60 sec'],";
+				else
+					script += "','";
+			}
 
-    protected void FillRAMValues()
-    {
-        List<string> ramValues = RAMValues;
-        if (ramValues == null) ramValues = new List<string>();
+			script += "datasets : [";
+			script += "{";
+			script += "label: 'RAM',";
+			//script += "title: 'CPU',";
+			script += "fillColor : 'rgba(169,68,24,0.2)',";
+			script += "strokeColor : 'rgba(169,68,24,1)',";
+			script += "pointColor : 'rgba(169,68,24,1)',";
+			script += "pointStrokeColor : '#fff',";
+			script += "pointHighlightFill : '#fff',";
+			script += "pointHighlightStroke : 'rgba(169,68,24,1)',";
+			script += "data : [";
+			for (int i = 0; i < ramValues.Count; i++)
+			{
+				if (i == ramValues.Count - 1)
+					script += ramValues[i] + "]";
+				else
+					script += ramValues[i] + ",";
+			}
+			script += "}";
+			script += "]";
+			script += "};";
 
-        List<string> ramValuesNonZero = ramValues.Where(v => !string.IsNullOrEmpty(v) && v != "0").ToList();
-        ramValuesNonZero.Add(GetLastRAMValue());
+			script += "function chartRAM(){";
+			script += "var ctx = document.getElementById('canvasRAM').getContext('2d');";
+			script += "window.myLine = new Chart(ctx).Line(lineChartRAM, {";
+			script += "responsive: true, bezierCurve : false, animation: false";
+			script += "});";
+			script += "}";
 
-        if (ramValuesNonZero.Count > 60) ramValuesNonZero.RemoveAt(0);
+			script += "$(function(){";
+			script += "chartRAM();";
+			script += "});";
 
-        ramValues = new List<string>();
-        ramValues.AddRange(ramValuesNonZero);
-        for (int i = ramValues.Count - 1; i < 60; i++)
-        {
-            ramValues.Add("0");
-        }
+			script += "Sys.WebForms"; /** add_endRequest pour relancer la fonction lors d'updates partielles, on fait un remove_endRequest avant au cas où (peut-être sans intéret ...) **/
+			script += ".PageRequestManager";
+			script += ".getInstance()";
+			script += ".remove_endRequest(chartRAM);";
+			script += "Sys.WebForms";
+			script += ".PageRequestManager";
+			script += ".getInstance()";
+			script += ".add_endRequest(chartRAM);";
 
-        RAMValues = ramValues;
-    }
+			ScriptManager.RegisterStartupScript(this, this.GetType(), "chartRAM", script, true);
+		}
+	}
 
-    protected string GetLastRAMValue()
-    {
-        string val = "0";
-        try
-        {
-            string execPath = @"D:\Github\server-monitoring\ServerInfosMonitoring\bin\Debug\ServerInfosMonitoring.exe";
+	protected void InitRAM()
+	{
+		string lastRAMStr = GetLastRAMValue();
+		int lastRAM = Convert.ToInt32(lastRAMStr);
 
-            string resPath = Path.Combine(Path.GetDirectoryName(execPath), "ram.txt");
+		int pourcentage = lastRAM * 100 / TotalRAM;
+		int pourcentageRound = pourcentage;
+		pnlRAMCircle.CssClass = "c100 p" + pourcentageRound + " big";
+		lblRAMValue.Text = pourcentageRound + "%";
+	}
+	#endregion RAM
 
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = execPath;
-            psi.Arguments = "ram";
-            psi.CreateNoWindow = true;
-            psi.WindowStyle = ProcessWindowStyle.Hidden;
+	protected void timerMonitoring_Tick(object sender, EventArgs e)
+	{
+		//FillRAMValues();
+		//InitChartRAM();
 
-            Process proc = Process.Start(psi);
-            proc.WaitForExit();
+		//FillCPUValues();
+		//InitChartCPU();
 
-            val = File.ReadAllText(resPath);
-        }
-        catch (Exception e)
-        {
+		InitCPU();
+		InitRAM();
 
-        }
-        return val;
-    }
-
-    protected void InitChartRAM()
-    {
-        List<string> ramValues = RAMValues;
-        string script = string.Empty;
-
-        if (ramValues != null && ramValues.Count > 0)
-        {
-            script += "var lineChartRAM = {";
-            script += "labels : ['0 sec','";
-            for (int i = 0; i < ramValues.Count - 1; i++)
-            {
-                if (i == ramValues.Count - 2)
-                    script += "60 sec'],";
-                else
-                    script += "','";
-            }
-
-            script += "datasets : [";
-            script += "{";
-            script += "label: 'RAM',";
-            //script += "title: 'CPU',";
-            script += "fillColor : 'rgba(169,68,24,0.2)',";
-            script += "strokeColor : 'rgba(169,68,24,1)',";
-            script += "pointColor : 'rgba(169,68,24,1)',";
-            script += "pointStrokeColor : '#fff',";
-            script += "pointHighlightFill : '#fff',";
-            script += "pointHighlightStroke : 'rgba(169,68,24,1)',";
-            script += "data : [";
-            for (int i = 0; i < ramValues.Count; i++)
-            {
-                if (i == ramValues.Count - 1)
-                    script += ramValues[i] + "]";
-                else
-                    script += ramValues[i] + ",";
-            }
-            script += "}";
-            script += "]";
-            script += "};";
-
-            script += "function chartRAM(){";
-            script += "var ctx = document.getElementById('canvasRAM').getContext('2d');";
-            script += "window.myLine = new Chart(ctx).Line(lineChartRAM, {";
-            script += "responsive: true, bezierCurve : false, animation: false";
-            script += "});";
-            script += "}";
-
-            script += "$(function(){";
-            script += "chartRAM();";
-            script += "});";
-
-            script += "Sys.WebForms"; /** add_endRequest pour relancer la fonction lors d'updates partielles, on fait un remove_endRequest avant au cas où (peut-être sans intéret ...) **/
-            script += ".PageRequestManager";
-            script += ".getInstance()";
-            script += ".remove_endRequest(chartRAM);";
-            script += "Sys.WebForms";
-            script += ".PageRequestManager";
-            script += ".getInstance()";
-            script += ".add_endRequest(chartRAM);";
-
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "chartRAM", script, true);
-        }
-    }
-    #endregion RAM
-
-    protected void timerMonitoring_Tick(object sender, EventArgs e)
-    {
-        FillRAMValues();
-        InitChartRAM();
-
-		FillCPUValues();
-		InitChartCPU();
-
-        upMonitoring.Update();
-    }
+		upMonitoring.Update();
+	}
 }

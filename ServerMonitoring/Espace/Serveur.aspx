@@ -4,90 +4,105 @@
 <%@ Register Assembly="iZyWebServerControl" Namespace="iZyWebServerControl" TagPrefix="iZy" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="head">
-    <link rel="stylesheet" type="text/css" href="../CSS/serveur.css" />
-    <link rel="stylesheet" type="text/css" href="../CSS/dashboard.css" />
-    <script src="/js/Chart.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../CSS/serveur.css" />
+	<link rel="stylesheet" type="text/css" href="../CSS/dashboard.css" />
+	<link rel="stylesheet" type="text/css" href="../CSS/circle.css" />
+	<script src="/js/Chart.min.js"></script>
 </asp:Content>
 
 
 <asp:Content runat="server" ContentPlaceHolderID="Content">
-    <div class="content">
-        <asp:UpdatePanel runat="server" ID="upGeneral" UpdateMode="Conditional">
-            <ContentTemplate>
+	<div class="content">
+		<asp:UpdatePanel runat="server" ID="upGeneral" UpdateMode="Conditional">
+			<ContentTemplate>
 
-                <asp:Panel runat="server" ID="pnlPageTitle" CssClass="page-title">
-                    <asp:HyperLink runat="server" CssClass="back" ID="hlBackProjet" NavigateUrl="~/Espace/Serveurs.aspx">
+				<asp:Panel runat="server" ID="pnlPageTitle" CssClass="page-title">
+					<asp:HyperLink runat="server" CssClass="back" ID="hlBackProjet" NavigateUrl="~/Espace/Serveurs.aspx">
 						<i class="fa fa-arrow-circle-left fa-lg"></i>
-                    </asp:HyperLink>
+					</asp:HyperLink>
 
-                    <asp:Label runat="server" ID="projetName"></asp:Label>
-                </asp:Panel>
+					<asp:Label runat="server" ID="projetName"></asp:Label>
+				</asp:Panel>
 
-                <div class="section">
-                    <div class="section-title">
-                        Infos générales
-                    </div>
-                    <asp:UpdatePanel runat="server" ID="upInfos" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <asp:Panel runat="server" DefaultButton="btnEditServeur" class="section-content">
-                                <table class="table-infos">
-                                    <tbody>
-                                        <tr>
-                                            <td>Nom<br />
-                                                <asp:TextBox runat="server" ID="tbNomServeur" CssClass="form-control" placeholder="Nom du serveur"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>IP locale<br />
-                                                <asp:TextBox runat="server" ID="tbIPLocale" CssClass="form-control" placeholder="IP Locale du serveur"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>IP publique<br />
-                                                <asp:TextBox runat="server" ID="tbIPPublique" CssClass="form-control" placeholder="IP Publique du serveur"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <br />
-                                                <asp:Button runat="server" ID="btnEditServeur" Text="Sauvegarder" CssClass="btn btn-block btn-lg btn-info" OnClick="btnEditServeur_Click" />
-                                                <div style="text-align: center">
-                                                    <asp:Label runat="server" ID="lblMessageSauvegarde" CssClass="serveur-save-message"></asp:Label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                </table>
+				<div class="section">
+					<div class="section-title">
+						Infos générales
+					</div>
+					<asp:UpdatePanel runat="server" ID="upInfos" UpdateMode="Conditional">
+						<ContentTemplate>
+							<asp:Panel runat="server" DefaultButton="btnEditServeur" class="section-content">
+								<table class="table-infos">
+									<tbody>
+										<tr>
+											<td>Nom<br />
+												<asp:TextBox runat="server" ID="tbNomServeur" CssClass="form-control" placeholder="Nom du serveur"></asp:TextBox>
+											</td>
+										</tr>
+										<tr>
+											<td>IP locale<br />
+												<asp:TextBox runat="server" ID="tbIPLocale" CssClass="form-control" placeholder="IP Locale du serveur"></asp:TextBox>
+											</td>
+										</tr>
+										<tr>
+											<td>IP publique<br />
+												<asp:TextBox runat="server" ID="tbIPPublique" CssClass="form-control" placeholder="IP Publique du serveur"></asp:TextBox>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<br />
+												<asp:Button runat="server" ID="btnEditServeur" Text="Sauvegarder" CssClass="btn btn-block btn-lg btn-info" OnClick="btnEditServeur_Click" />
+												<div style="text-align: center">
+													<asp:Label runat="server" ID="lblMessageSauvegarde" CssClass="serveur-save-message"></asp:Label>
+												</div>
+											</td>
+										</tr>
+								</table>
 
 
-                            </asp:Panel>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
+							</asp:Panel>
+						</ContentTemplate>
+					</asp:UpdatePanel>
+				</div>
 
-                <div class="section">
-                    <div class="section-title">
-                        Monitoring
-                    </div>
-                    <asp:Timer runat="server" ID="timerMonitoring" OnTick="timerMonitoring_Tick" Interval="1000"></asp:Timer>
-                    <asp:UpdatePanel runat="server" ID="upMonitoring" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <table class="table-monitoring">
-                                <tbody>
-                                    <tr>
-                                        <td>CPU
-                                    <canvas id="canvasCPU" style="width: 100%" height="220"></canvas>
-                                        </td>
-                                        <td>Mémoire Disponible
-                                    <canvas id="canvasRAM" style="width: 100%" height="220"></canvas>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
+				<div class="section">
+					<div class="section-title">
+						Monitoring
+					</div>
+					<asp:Timer runat="server" ID="timerMonitoring" OnTick="timerMonitoring_Tick" Interval="1000"></asp:Timer>
+					<asp:UpdatePanel runat="server" ID="upMonitoring" UpdateMode="Conditional">
+						<ContentTemplate>
+							<table class="table-monitoring">
+								<tbody>
+									<tr>
+										<td>CPU
+                                    <%--<canvas id="canvasCPU" style="width: 100%" height="220"></canvas>--%>
+											<asp:Panel runat="server" ID="pnlCPuCircle" CssClass="c100 p50 big">
+												<asp:Label runat="server" ID="lblCPUValue">50%</asp:Label>
+												<div class="slice">
+													<div class="bar"></div>
+													<div class="fill"></div>
+												</div>
+											</asp:Panel>
+										</td>
+										<td>Mémoire Disponible
+                                    <%--<canvas id="canvasRAM" style="width: 100%" height="220"></canvas>--%>
+											<asp:Panel runat="server" ID="pnlRAMCircle" CssClass="c100 p50 big">
+												<asp:Label runat="server" ID="lblRAMValue">50%</asp:Label>
+												<div class="slice">
+													<div class="bar"></div>
+													<div class="fill"></div>
+												</div>
+											</asp:Panel>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</ContentTemplate>
+					</asp:UpdatePanel>
+				</div>
 
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </div>
+			</ContentTemplate>
+		</asp:UpdatePanel>
+	</div>
 </asp:Content>
