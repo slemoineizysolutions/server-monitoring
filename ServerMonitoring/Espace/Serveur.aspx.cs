@@ -10,6 +10,7 @@ using ServerMonitoring_fw.BIZ;
 using iZyTools.Convertion;
 using System.Diagnostics;
 using System.IO;
+using System.Security;
 
 public partial class Espace_Serveur : BasePage
 {
@@ -98,10 +99,22 @@ public partial class Espace_Serveur : BasePage
 			tbNomServeur.Text = myServeur.libelle;
 			tbIPLocale.Text = myServeur.ipLocale;
 			tbIPPublique.Text = myServeur.ipPublique;
+			tbCheminServerInfosExe.Text = myServeur.cheminInfosMonitoring;
 		}
 	}
 	protected void btnEditServeur_Click(object sender, EventArgs e)
 	{
+		Serveur myServeur = GetServeur();
+		if (myServeur != null)
+		{
+			myServeur.libelle = tbNomServeur.Text;
+			myServeur.ipLocale = tbIPLocale.Text;
+			myServeur.ipPublique = tbIPPublique.Text;
+			myServeur.cheminInfosMonitoring = tbCheminServerInfosExe.Text;
+			ServeurManager.Update(myServeur);
+			lblMessageSauvegarde.Text = "Sauvegarde effectuée";
+			upInfos.Update();
+		}
 
 	}
 	#endregion
@@ -112,32 +125,44 @@ public partial class Espace_Serveur : BasePage
 		string val = "0";
 		try
 		{
-			string execPath = @"D:\Github\server-monitoring\ServerInfosMonitoring\bin\Debug\ServerInfosMonitoring.exe";
+			Serveur myServeur = GetServeur();
+			if (myServeur != null)
+			{
+				LogMonitoring.Add("-- Début GetLastCPUValue --");
+				string execPath = myServeur.cheminInfosMonitoring;
+				string resPath = Path.Combine(Path.GetDirectoryName(execPath), "cpu.txt");
 
-			string resPath = Path.Combine(Path.GetDirectoryName(execPath), "cpu.txt");
+				ProcessStartInfo psi = new ProcessStartInfo();
+				psi.FileName = execPath;
+				psi.Arguments = "cpu";
+				psi.CreateNoWindow = true;
+				psi.WindowStyle = ProcessWindowStyle.Hidden;
+				psi.UserName = "QVYLMZ8L03CTZE";
+				psi.Password = ConvertToSecureString("LZ0i0GODt9cuoJ");
+				psi.UseShellExecute = false;
 
-			ProcessStartInfo psi = new ProcessStartInfo();
-			psi.FileName = execPath;
-			psi.Arguments = "cpu";
-			psi.CreateNoWindow = true;
-			psi.WindowStyle = ProcessWindowStyle.Hidden;
+				LogMonitoring.Add("Lancement ProcessStartInfo");
+				Process proc = Process.Start(psi);
+				proc.WaitForExit();
+				LogMonitoring.Add("Fin ProcessStartInfo");
 
-			Process proc = Process.Start(psi);
-			proc.WaitForExit();
-
-			val = File.ReadAllText(resPath);
-			val = val.Replace(",", ".");
+				val = File.ReadAllText(resPath);
+				val = val.Replace(",", ".");
+				LogMonitoring.Add("CPU : " + val);
+				LogMonitoring.Add("-- Fin GetLastCPUValue --");
+			}
 		}
 		catch (Exception e)
 		{
-
+			LogMonitoring.Add("ERROR : GetLastCPUValue : " + e.Message);
+			LogMonitoring.Add(e.StackTrace);
 		}
 		return val;
 	}
 
 	protected void InitCPU()
 	{
-		string lastCPUStr = GetLastCPUValue().Replace(".", ",");
+		string lastCPUStr = GetLastCPUValue();
 		decimal lastCPU = Decimal.Parse(lastCPUStr);
 		decimal lastCPURound = Math.Round(lastCPU);
 		pnlCPuCircle.CssClass = "c100 p" + lastCPURound + " big";
@@ -152,24 +177,37 @@ public partial class Espace_Serveur : BasePage
 		string val = "0";
 		try
 		{
-			string execPath = @"D:\Github\server-monitoring\ServerInfosMonitoring\bin\Debug\ServerInfosMonitoring.exe";
+			Serveur myServeur = GetServeur();
+			if (myServeur != null)
+			{
+				LogMonitoring.Add("-- Début GetLastRAMValue --");
+				string execPath = myServeur.cheminInfosMonitoring;
+				string resPath = Path.Combine(Path.GetDirectoryName(execPath), "ram.txt");
+				LogMonitoring.Add("Préparation ProcessStartInfo");
+				ProcessStartInfo psi = new ProcessStartInfo();
+				psi.FileName = execPath;
+				psi.Arguments = "ram";
+				psi.CreateNoWindow = true;
+				psi.WindowStyle = ProcessWindowStyle.Hidden;
+				psi.UserName = "QVYLMZ8L03CTZE";
+				psi.Password = ConvertToSecureString("LZ0i0GODt9cuoJ");
+				psi.UseShellExecute = false;
 
-			string resPath = Path.Combine(Path.GetDirectoryName(execPath), "ram.txt");
+				LogMonitoring.Add("Lancement ProcessStartInfo");
+				Process proc = Process.Start(psi);
+				proc.WaitForExit();
+				
+				LogMonitoring.Add("Fin ProcessStartInfo");
 
-			ProcessStartInfo psi = new ProcessStartInfo();
-			psi.FileName = execPath;
-			psi.Arguments = "ram";
-			psi.CreateNoWindow = true;
-			psi.WindowStyle = ProcessWindowStyle.Hidden;
-
-			Process proc = Process.Start(psi);
-			proc.WaitForExit();
-
-			val = File.ReadAllText(resPath);
+				val = File.ReadAllText(resPath);
+				LogMonitoring.Add("RAM : " + val);
+				LogMonitoring.Add("-- Fin GetLastRAMValue --");
+			}
 		}
 		catch (Exception e)
 		{
-
+			LogMonitoring.Add("ERROR : GetLastRAMValue : " + e.Message);
+			LogMonitoring.Add(e.StackTrace);
 		}
 		return val;
 	}
@@ -293,7 +331,7 @@ public partial class Espace_Serveur : BasePage
 			string code = string.Empty;
 			if (IsOk)
 			{
-				code += "<div class='c100 orange p50'>";
+				code += "<div class='c100 orange p" + Pourcentage + "'>";
 				code += "<span>" + Lettre + " " + Pourcentage + "%</span>";
 				code += "<div class='slice'>";
 				code += "<div class='bar'></div>";
@@ -311,25 +349,37 @@ public partial class Espace_Serveur : BasePage
 		List<string> val = new List<string>();
 		try
 		{
-			string execPath = @"D:\Github\server-monitoring\ServerInfosMonitoring\bin\Debug\ServerInfosMonitoring.exe";
+			Serveur myServeur = GetServeur();
+			if (myServeur != null)
+			{
+				LogMonitoring.Add("-- Début GetLastEspaceDisque --");
+				string execPath = myServeur.cheminInfosMonitoring;
 
-			string resPath = Path.Combine(Path.GetDirectoryName(execPath), "disk.txt");
+				string resPath = Path.Combine(Path.GetDirectoryName(execPath), "disk.txt");
 
-			ProcessStartInfo psi = new ProcessStartInfo();
-			psi.FileName = execPath;
-			psi.Arguments = "disk";
-			psi.CreateNoWindow = true;
-			psi.WindowStyle = ProcessWindowStyle.Hidden;
+				ProcessStartInfo psi = new ProcessStartInfo();
+				psi.FileName = execPath;
+				psi.Arguments = "disk";
+				psi.CreateNoWindow = true;
+				psi.WindowStyle = ProcessWindowStyle.Hidden;
+				psi.UserName = "QVYLMZ8L03CTZE";
+				psi.Password = ConvertToSecureString("LZ0i0GODt9cuoJ");
+				psi.UseShellExecute = false;
 
-			Process proc = Process.Start(psi);
-			proc.WaitForExit();
+				LogMonitoring.Add("Lancement ProcessStartInfo");
+				Process proc = Process.Start(psi);
+				proc.WaitForExit();
+				LogMonitoring.Add("Fin ProcessStartInfo");
 
-			val = File.ReadAllLines(resPath).ToList();
-
+				val = File.ReadAllLines(resPath).ToList();
+				LogMonitoring.Add("DISK : " + val);
+				LogMonitoring.Add("-- Fin GetLastEspaceDisque --");
+			}
 		}
 		catch (Exception e)
 		{
-
+			LogMonitoring.Add("ERROR : GetLastEspaceDisque : " + e.Message);
+			LogMonitoring.Add(e.StackTrace);
 		}
 		return val;
 	}
@@ -357,11 +407,23 @@ public partial class Espace_Serveur : BasePage
 
 		//FillCPUValues();
 		//InitChartCPU();
-
+		LogMonitoring.Add("Tick");
 		InitCPU();
 		InitRAM();
 		InitStockage();
 
 		upMonitoring.Update();
+	}
+
+	private SecureString ConvertToSecureString(string password)
+	{
+		if (password == null)
+			throw new ArgumentNullException("password");
+
+		var securePassword = new SecureString();
+		foreach (char c in password)
+			securePassword.AppendChar(c);
+		securePassword.MakeReadOnly();
+		return securePassword;
 	}
 }

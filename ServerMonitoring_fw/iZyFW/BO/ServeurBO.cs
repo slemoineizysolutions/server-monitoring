@@ -16,7 +16,8 @@ namespace ServerMonitoring_fw
 	{
 		public Nullable<int> id { get; set; } 
 		public string libelle { get; set; } 
-		public string ipLocale { get; set; } 
-		public string ipPublique { get; set; } 
+		public string ipLocale { get; set; }
+		public string ipPublique { get; set; }
+		public string cheminInfosMonitoring { get; set; } 
 	}
 }

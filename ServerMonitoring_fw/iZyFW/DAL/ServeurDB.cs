@@ -19,7 +19,7 @@ namespace ServerMonitoring_fw.DAL
 		{
 			StringBuilder mySql = new StringBuilder();
 			mySql.Append("serveur.id AS serveur_id, serveur.libelle AS serveur_libelle, serveur.ipLocale AS serveur_ipLocale, ");
-			mySql.Append("serveur.ipPublique AS serveur_ipPublique ");
+			mySql.Append("serveur.ipPublique AS serveur_ipPublique, cheminInfosMonitoring AS serveur_cheminInfosMonitoring ");
 			return mySql.ToString();
 		}
 
@@ -30,6 +30,7 @@ namespace ServerMonitoring_fw.DAL
 			myItem.libelle = iZyMySQL.GetStringFromDBString(myReader["serveur_libelle"]);
 			myItem.ipLocale = iZyMySQL.GetStringFromDBString(myReader["serveur_ipLocale"]);
 			myItem.ipPublique = iZyMySQL.GetStringFromDBString(myReader["serveur_ipPublique"]);
+			myItem.cheminInfosMonitoring = iZyMySQL.GetStringFromDBString(myReader["serveur_cheminInfosMonitoring"]);
 			return myItem;
 		}
 
@@ -103,16 +104,17 @@ namespace ServerMonitoring_fw.DAL
 				StringBuilder mySql = new StringBuilder();
 				mySql.Append("INSERT INTO `Serveur` ");
 				mySql.Append("(`libelle`, `ipLocale`, ");
-				mySql.Append("`ipPublique` )");
+				mySql.Append("`ipPublique`, `cheminInfosMonitoring` )");
 				mySql.Append(" VALUES ");
 				mySql.Append("(@libelle, @ipLocale, ");
-				mySql.Append("@ipPublique );");
+				mySql.Append("@ipPublique, @cheminInfosMonitoring );");
 				mySql.Append("SELECT LAST_INSERT_ID(); ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myCommand.Parameters.AddWithValue("@ipLocale", myItem.ipLocale);
 				myCommand.Parameters.AddWithValue("@ipPublique", myItem.ipPublique);
+				myCommand.Parameters.AddWithValue("@cheminInfosMonitoring", myItem.cheminInfosMonitoring);
 				myConnection.Open();
 				myItem.id = iZyMySQL.GetIntFromDBInt(myCommand.ExecuteScalar());
 				myConnection.Close();
@@ -129,7 +131,8 @@ namespace ServerMonitoring_fw.DAL
 				mySql.Append("UPDATE `Serveur` SET ");
 				mySql.Append("`libelle` = @libelle, ");
 				mySql.Append("`ipLocale` = @ipLocale, ");
-				mySql.Append("`ipPublique` = @ipPublique ");
+				mySql.Append("`ipPublique` = @ipPublique, ");
+				mySql.Append("`cheminInfosMonitoring` = @cheminInfosMonitoring ");
 				mySql.Append("WHERE `id` = @id ");
 				MySqlCommand myCommand = new MySqlCommand(mySql.ToString(), myConnection);
 				myCommand.CommandType = CommandType.Text;
@@ -137,6 +140,7 @@ namespace ServerMonitoring_fw.DAL
 				myCommand.Parameters.AddWithValue("@libelle", myItem.libelle);
 				myCommand.Parameters.AddWithValue("@ipLocale", myItem.ipLocale);
 				myCommand.Parameters.AddWithValue("@ipPublique", myItem.ipPublique);
+				myCommand.Parameters.AddWithValue("@cheminInfosMonitoring", myItem.cheminInfosMonitoring);
 				myConnection.Open();
 				myCommand.ExecuteNonQuery();
 				myConnection.Close();

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BIZ\Log.cs" />
     <Compile Include="BIZ\Param.cs" />
     <Compile Include="BL\BaseDonneeManager.cs" />
     <Compile Include="BL\LogManager.cs" />

@@ -49,6 +49,11 @@
 											</td>
 										</tr>
 										<tr>
+											<td>Chemin de l'executable ServerInfosMonitoring<br />
+												<asp:TextBox runat="server" ID="tbCheminServerInfosExe" CssClass="form-control" placeholder="Chemin de l'executable"></asp:TextBox>
+											</td>
+										</tr>
+										<tr>
 											<td>
 												<br />
 												<asp:Button runat="server" ID="btnEditServeur" Text="Sauvegarder" CssClass="btn btn-block btn-lg btn-info" OnClick="btnEditServeur_Click" />
@@ -101,7 +106,7 @@
 										</td>
 										<td class="td40">
 											<div class="monitoring-title">
-												Stockage
+												Espace disque libre
 											</div>
 											<asp:Literal runat="server" ID="litStockages"></asp:Literal>
 											

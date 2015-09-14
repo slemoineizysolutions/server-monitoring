@@ -13,7 +13,7 @@
 			<ContentTemplate>
 				<div class="section">
 					<div class="section-title">
-						Fichiers/Répertoires
+						Fichiers/Répertoires favoris
 						&nbsp;
 					</div>
 
@@ -51,7 +51,7 @@
 			<ContentTemplate>
 				<div class="section">
 					<div class="section-title">
-						Bases de données
+						Bases de données favories
 						&nbsp; 
 					</div>
 					<div class="section-content">

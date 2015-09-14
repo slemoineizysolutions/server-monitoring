@@ -71,6 +71,7 @@
           <Property Name="libelle" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="ipLocale" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="ipPublique" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="cheminInfosMonitoring" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="Utilisateur">
           <Key>
@@ -136,6 +137,7 @@
           <Property Name="libelle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="ipLocale" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="ipPublique" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="cheminInfosMonitoring" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Utilisateur">
           <Key>
@@ -215,6 +217,7 @@
           <EntitySetMapping Name="Serveur">
             <EntityTypeMapping TypeName="server_monitoringModel.Serveur">
               <MappingFragment StoreEntitySet="Serveur">
+                <ScalarProperty Name="cheminInfosMonitoring" ColumnName="cheminInfosMonitoring" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
                 <ScalarProperty Name="ipLocale" ColumnName="ipLocale" />
