@@ -75,8 +75,10 @@
 							<table class="table-monitoring">
 								<tbody>
 									<tr>
-										<td>CPU
-                                    <%--<canvas id="canvasCPU" style="width: 100%" height="220"></canvas>--%>
+										<td class="td30">
+											<div class="monitoring-title">
+												CPU
+											</div>
 											<asp:Panel runat="server" ID="pnlCPuCircle" CssClass="c100 p50 big">
 												<asp:Label runat="server" ID="lblCPUValue">50%</asp:Label>
 												<div class="slice">
@@ -85,8 +87,10 @@
 												</div>
 											</asp:Panel>
 										</td>
-										<td>Mémoire Disponible
-                                    <%--<canvas id="canvasRAM" style="width: 100%" height="220"></canvas>--%>
+										<td class="td30">
+											<div class="monitoring-title">
+												Mémoire disponible
+											</div>
 											<asp:Panel runat="server" ID="pnlRAMCircle" CssClass="c100 p50 big">
 												<asp:Label runat="server" ID="lblRAMValue">50%</asp:Label>
 												<div class="slice">
@@ -94,6 +98,13 @@
 													<div class="fill"></div>
 												</div>
 											</asp:Panel>
+										</td>
+										<td class="td40">
+											<div class="monitoring-title">
+												Stockage
+											</div>
+											<asp:Literal runat="server" ID="litStockages"></asp:Literal>
+											
 										</td>
 									</tr>
 								</tbody>

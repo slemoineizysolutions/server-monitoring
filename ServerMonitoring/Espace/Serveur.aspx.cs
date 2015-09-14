@@ -85,6 +85,7 @@ public partial class Espace_Serveur : BasePage
 
 			InitCPU();
 			InitRAM();
+			InitStockage();
 		}
 	}
 
@@ -243,10 +244,111 @@ public partial class Espace_Serveur : BasePage
 
 		int pourcentage = lastRAM * 100 / TotalRAM;
 		int pourcentageRound = pourcentage;
-		pnlRAMCircle.CssClass = "c100 p" + pourcentageRound + " big";
+		pnlRAMCircle.CssClass = "c100 green p" + pourcentageRound + " big";
 		lblRAMValue.Text = pourcentageRound + "%";
 	}
 	#endregion RAM
+
+	#region ESPACE DISQUE
+	class Disque
+	{
+		public string Lettre;
+		public long TotalSize;
+		public long TotalFree;
+
+		public bool IsOk;
+
+		public long Pourcentage
+		{
+			get
+			{
+				long pct = TotalFree * 100 / TotalSize;
+				return pct;
+			}
+		}
+
+		public Disque(string ligne)
+		{
+			try
+			{
+				string[] ligneTab = ligne.Split(' ');
+				if (ligneTab.Length == 3)
+				{
+					Lettre = ligneTab[0];
+					TotalSize = Convert.ToInt64(ligneTab[1]);
+					TotalFree = Convert.ToInt64(ligneTab[2]);
+					IsOk = true;
+				}
+				else
+					IsOk = false;
+			}
+			catch (Exception ex)
+			{
+				IsOk = false;
+			}
+		}
+
+		public string GetHTMLCode()
+		{
+			string code = string.Empty;
+			if (IsOk)
+			{
+				code += "<div class='c100 orange p50'>";
+				code += "<span>" + Lettre + " " + Pourcentage + "%</span>";
+				code += "<div class='slice'>";
+				code += "<div class='bar'></div>";
+				code += "<div class='fill'></div>";
+				code += "</div>";
+				code += "</div>";
+			}
+			return code;
+		}
+
+	}
+
+	protected List<string> GetLastEspaceDisque()
+	{
+		List<string> val = new List<string>();
+		try
+		{
+			string execPath = @"D:\Github\server-monitoring\ServerInfosMonitoring\bin\Debug\ServerInfosMonitoring.exe";
+
+			string resPath = Path.Combine(Path.GetDirectoryName(execPath), "disk.txt");
+
+			ProcessStartInfo psi = new ProcessStartInfo();
+			psi.FileName = execPath;
+			psi.Arguments = "disk";
+			psi.CreateNoWindow = true;
+			psi.WindowStyle = ProcessWindowStyle.Hidden;
+
+			Process proc = Process.Start(psi);
+			proc.WaitForExit();
+
+			val = File.ReadAllLines(resPath).ToList();
+
+		}
+		catch (Exception e)
+		{
+
+		}
+		return val;
+	}
+
+	protected void InitStockage()
+	{
+		List<string> currentDiskSpaces = GetLastEspaceDisque();
+		litStockages.Text = string.Empty;
+		foreach (string ligne in currentDiskSpaces)
+		{
+			Disque myDisk = new Disque(ligne);
+			if (myDisk.IsOk)
+			{
+				litStockages.Text += myDisk.GetHTMLCode();
+			}
+		}
+	}
+
+	#endregion
 
 	protected void timerMonitoring_Tick(object sender, EventArgs e)
 	{
@@ -258,6 +360,7 @@ public partial class Espace_Serveur : BasePage
 
 		InitCPU();
 		InitRAM();
+		InitStockage();
 
 		upMonitoring.Update();
 	}

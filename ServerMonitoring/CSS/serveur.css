@@ -57,8 +57,17 @@
 }
 
 .table-monitoring td {
-	width: 50%;
+	
 	padding: 10px;
+	text-align: center;
+}
+
+.table-monitoring td.td30 {
+	width: 30%;
+}
+
+.table-monitoring td.td40 {
+	width: 40%;
 }
 
 .table-monitoring canvas {
@@ -66,4 +75,14 @@
 	max-width: 540px;
 	height: 400px;
 	max-height: 400px;
+}
+
+.monitoring-title {
+	text-align: center;
+	font-size: 25px;
+}
+
+.c100 {
+	margin: auto !important;
+	float: none !important;
 }
